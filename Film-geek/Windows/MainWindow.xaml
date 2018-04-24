@@ -11,4 +11,5 @@
         <Button Style="{StaticResource BasicButton}" Width="500" Height="100" >gowno</Button>
 
     </StackPanel>-->
+    
 </Window>
