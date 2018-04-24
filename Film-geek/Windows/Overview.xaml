@@ -1,0 +1,56 @@
+﻿<Window x:Class="Film_geek.Windows.Overview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Film_geek.Windows"
+        mc:Ignorable="d"
+        Title="Overview" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#ddd">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="5" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
+            <StackPanel Grid.Column="1" Margin="10 5">
+                <Label>Powiadomienie 1</Label>
+                <Label>Powiadomienie 2</Label>
+                <Label>Powiadomienie 3</Label>
+            </StackPanel>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Margin="5" Padding="10 5">Wyloguj</Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Moje konto</Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Margin="0 10" Padding="10 5">Przeglądaj listy filmów</Button>
+                    <Button Margin="0 10" Padding="10 5">Dodaj film</Button>
+                    <Button Margin="0 10" Padding="10 5">Pomoc</Button>
+                </StackPanel>
+                <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
+                    <Calendar/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
