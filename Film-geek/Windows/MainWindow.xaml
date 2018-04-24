@@ -6,14 +6,10 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-<<<<<<< HEAD
-        
-=======
     <!--Przykład użycia buttona głównego
     <StackPanel>
         <Button Style="{StaticResource BasicButton}" Width="500" Height="100" >gowno</Button>
 
     </StackPanel>-->
->>>>>>> 5b21289123185c340e811f69090ce3da4318f158
-    
+
 </Window>

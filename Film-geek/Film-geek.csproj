@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ListSerializer.cs" />
+    <Compile Include="Classes\PasswordEncoder.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Windows\create_account.xaml.cs">
       <DependentUpon>create_account.xaml</DependentUpon>
     </Compile>
@@ -114,8 +117,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
