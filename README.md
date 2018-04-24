@@ -1,1 +1,26 @@
-# Film-geek
+# Film geek
+
+Projekt aplikacji desktopowej wykonany w języku Windows Presentation Foundation, C#.
+
+## Getting Started
+
+Podział obowiązków
+
+### Interfejs (xaml)
+
+* Okno startowe - *Paweł*
+* Okno logowania
+* Okno tworzenia konta
+* Okno przypominania hasła
+* Okno główne
+* Okno pomocy
+* Okno listy filmów
+* Okno dodania/edycji filmu
+* Okno szczegółów filmu
+* Okno wyboru filtrów
+* Okno zarządzania listami
+* Okno dodawania filmów na liście
+
+### Backend
+
+tu jest opis 
