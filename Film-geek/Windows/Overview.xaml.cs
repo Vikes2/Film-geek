@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Film_geek.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy Window1.xaml
+    /// Logika interakcji dla klasy Overview.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Overview : Window
     {
-        public Window1()
+        public Overview()
         {
             InitializeComponent();
         }
