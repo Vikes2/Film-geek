@@ -61,18 +61,26 @@
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Playlist.cs" />
     <Compile Include="Classes\User.cs" />
+    
+    <Compile Include="PasswordRemind.xaml.cs">
+      <DependentUpon>PasswordRemind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateAccount.xaml.cs">
+      <DependentUpon>CreateAccount.xaml</DependentUpon>
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
-    <Compile Include="Windows\create_account.xaml.cs">
-      <DependentUpon>create_account.xaml</DependentUpon>
-    </Compile>
+
     <Compile Include="Windows\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
-    <Page Include="Windows\create_account.xaml">
+    <Page Include="PasswordRemind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

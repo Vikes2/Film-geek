@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Film_geek.Windows
+namespace Film_geek
 {
     /// <summary>
-    /// Logika interakcji dla klasy create_account.xaml
+    /// Logika interakcji dla klasy PasswordRemind.xaml
     /// </summary>
-    public partial class create_account : Window
+    public partial class PasswordRemind : Window
     {
-        public create_account()
+        public PasswordRemind()
         {
             InitializeComponent();
         }
