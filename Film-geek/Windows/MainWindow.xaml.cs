@@ -25,5 +25,24 @@ namespace Film_geek.Windows
             InitializeComponent();
             
         }
+
+        private void sigin_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn window = new SignIn();
+            window.Show();
+            
+        }
+
+        private void create_account_Click(object sender, RoutedEventArgs e)
+        {
+            create_account window = new create_account();
+            window.Show();
+        }
+
+        private void overview_Click(object sender, RoutedEventArgs e)
+        {
+            Overview window = new Overview();
+            window.Show();
+        }
     }
 }
