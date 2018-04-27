@@ -66,11 +66,14 @@
     <Compile Include="Windows\AddOrEditFilm.xaml.cs">
       <DependentUpon>AddOrEditFilm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\create_account.xaml.cs">
-      <DependentUpon>create_account.xaml</DependentUpon>
+    <Compile Include="Windows\CreateAccount.xaml.cs">
+      <DependentUpon>CreateAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PasswordRemind.xaml.cs">
+      <DependentUpon>PasswordRemind.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -79,9 +82,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\create_account.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Windows\CreateAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\Overview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PasswordRemind.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

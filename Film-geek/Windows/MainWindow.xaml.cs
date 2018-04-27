@@ -35,7 +35,7 @@ namespace Film_geek.Windows
 
         private void create_account_Click(object sender, RoutedEventArgs e)
         {
-            create_account window = new create_account();
+            CreateAccount window = new CreateAccount();
             window.Show();
         }
 
