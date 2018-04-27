@@ -63,6 +63,9 @@
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
+    <Compile Include="Windows\AddOrEditFilm.xaml.cs">
+      <DependentUpon>AddOrEditFilm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\AddOrEditFilm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\CreateAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

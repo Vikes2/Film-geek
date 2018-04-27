@@ -44,5 +44,11 @@ namespace Film_geek.Windows
             Overview window = new Overview();
             window.Show();
         }
+
+        private void AOEFilm_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrEditFilm window = new AddOrEditFilm();
+            window.Show();
+        }
     }
 }
