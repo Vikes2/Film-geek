@@ -72,6 +72,9 @@
     <Compile Include="Windows\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PasswordInput.xaml.cs">
+      <DependentUpon>PasswordInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PasswordRemind.xaml.cs">
       <DependentUpon>PasswordRemind.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
     <Page Include="Windows\Overview.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PasswordInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PasswordRemind.xaml">
       <Generator>MSBuild:Compile</Generator>

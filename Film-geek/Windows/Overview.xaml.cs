@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class Overview : Window
     {
-        public Overview()
+        public Overview(User user)
         {
             InitializeComponent();
         }
