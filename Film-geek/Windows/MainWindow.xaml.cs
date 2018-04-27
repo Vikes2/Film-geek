@@ -41,7 +41,7 @@ namespace Film_geek.Windows
 
         private void overview_Click(object sender, RoutedEventArgs e)
         {
-            Overview window = new Overview();
+            Overview window = new Overview(null);
             window.Show();
         }
     }

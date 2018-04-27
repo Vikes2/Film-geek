@@ -33,5 +33,26 @@ namespace Film_geek.Windows
             ListUsers.Add(u);
             ListUsr.ItemsSource = ListUsers;
         }
+
+        private void User_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            User user = ((Grid)sender).Tag as User;
+
+            PasswordInput dialog = new PasswordInput();
+            dialog.User = user;
+            if (dialog.ShowDialog() == true)
+            {
+                // wybrano OK
+                Close();
+                Overview overview = new Overview(user);
+                overview.Show();
+                
+            }
+            else
+            {
+                // wybrano Anuluj
+            }
+
+        }
     }
 }

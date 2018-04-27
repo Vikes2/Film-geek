@@ -16,13 +16,28 @@ using System.Windows.Shapes;
 namespace Film_geek.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy Overview.xaml
+    /// Logika interakcji dla klasy PasswordInput.xaml
     /// </summary>
-    public partial class Overview : Window
+    public partial class PasswordInput : Window
     {
-        public Overview(User user)
+        public User User { get; set; }
+        public string Password { get; set; }
+
+        public PasswordInput()
         {
             InitializeComponent();
+        }
+
+        private void BTN_LogIn_Click(object sender, RoutedEventArgs e)
+        {
+            // czy pass ok
+            DialogResult = true;
+            Close();
+        }
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -9,7 +9,7 @@
     <Window.Resources>
         <DataTemplate x:Key="UserTemplate">
             <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4">
-                <Grid Margin="3" >
+                <Grid MouseLeftButtonDown="User_MouseLeftButtonDown" Tag="{Binding}" Margin="3" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="auto"/>
@@ -46,7 +46,7 @@
 
         </ListBox>
 
-        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
+        <Button Name="BTN_NewUser" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
 
     </Grid>
 </Window>
