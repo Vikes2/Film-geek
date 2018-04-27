@@ -54,12 +54,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Actor.cs" />
+    <Compile Include="Classes\Director.cs" />
     <Compile Include="Classes\ListSerializer.cs" />
     <Compile Include="Classes\PasswordEncoder.cs" />
+    <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\Playlist.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Windows\AddOrEditFilm.xaml.cs">
-      <DependentUpon>AddOrEditFilm.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\Film.cs" />
+    <Compile Include="Classes\FilmGenre.cs" />
     <Compile Include="Windows\create_account.xaml.cs">
       <DependentUpon>create_account.xaml</DependentUpon>
     </Compile>

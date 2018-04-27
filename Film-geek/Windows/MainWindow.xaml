@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!--Przykład użycia buttona głównego
-    <StackPanel>
-        <Button Style="{StaticResource BasicButton}" Width="500" Height="100" >gowno</Button>
 
-    </StackPanel>-->
+    <StackPanel >
+        <Button Click="sigin_Click" Padding="10" Margin="15" Name="sigin">SignInWindow</Button>
+        <Button Click="create_account_Click" Padding="10" Margin="15" Name="create_account">create _account</Button>
+        <Button Click="overview_Click" Padding="10" Margin="15" Name="overview">overview</Button>
+        
+    </StackPanel>
 
+    
+    <!-- Tylendotest-->
 </Window>

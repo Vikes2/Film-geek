@@ -45,7 +45,8 @@
             </ListBox.ItemsPanel>
 
         </ListBox>
-        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
+
+        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
 
     </Grid>
 </Window>
