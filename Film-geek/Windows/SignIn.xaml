@@ -16,7 +16,7 @@
                     </Grid.RowDefinitions>
 
                     <Image Grid.Row="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
-                    
+
                     <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalContentAlignment="Center"></Label>
                 </Grid>
             </Border>

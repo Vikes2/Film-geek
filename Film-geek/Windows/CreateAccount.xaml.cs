@@ -17,9 +17,9 @@ namespace Film_geek.Windows
     /// <summary>
     /// Logika interakcji dla klasy create_account.xaml
     /// </summary>
-    public partial class create_account : Window
+    public partial class CreateAccount : Window
     {
-        public create_account()
+        public CreateAccount()
         {
             InitializeComponent();
         }

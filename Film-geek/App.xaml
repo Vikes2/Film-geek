@@ -4,12 +4,7 @@
              xmlns:local="clr-namespace:Film_geek"
              StartupUri="Windows/MainWindow.xaml">
     <Application.Resources>
-        
-
-
-
-
-<!--Button podstawowy-->
+        <!--Button podstawowy-->
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -27,11 +22,11 @@
             <Setter Property="Control.Foreground" Value="LightGray" />
         </Style>
 
-        <Style x:Key="BasicButton" TargetType="Button">
+        <Style TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontSize" Value="13px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
             <Setter Property="Background" >
@@ -47,9 +42,9 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="border" 
         				BorderThickness="3"
-        				Padding="4,2" 
+        				Padding="5" 
         				BorderBrush="DarkGray" 
-        				CornerRadius="10" 
+        				CornerRadius="7" 
         				Background="{TemplateBinding Background}">
                             <Grid >
                                 <ContentPresenter HorizontalAlignment="Center" 
@@ -88,8 +83,43 @@
             </Setter>
         </Style>
 
-        <!--Koniec buttona podstawowego-->
+        <!--Koniec buttona podstawowego
 
+        Base Style for all Elements-->
+        <Style TargetType="FrameworkElement">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
 
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        
     </Application.Resources>
 </Application>
