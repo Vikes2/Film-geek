@@ -11,7 +11,7 @@
         <Button Click="sigin_Click" Padding="10" Margin="15" Name="sigin">SignInWindow</Button>
         <Button Click="create_account_Click" Padding="10" Margin="15" Name="create_account">create _account</Button>
         <Button Click="overview_Click" Padding="10" Margin="15" Name="overview">overview</Button>
-        
+        <Button Click="AOEFilm_Click" Padding="10" Margin="15" Name="AOEFilm">Add or Edit Film</Button>
     </StackPanel>
 
     
