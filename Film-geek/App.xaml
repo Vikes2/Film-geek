@@ -30,7 +30,7 @@
         <Style x:Key="BasicButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
             <Setter Property="FontSize" Value="13px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
@@ -49,7 +49,7 @@
         				BorderThickness="3"
         				Padding="5" 
         				BorderBrush="DarkGray" 
-        				CornerRadius="10" 
+        				CornerRadius="7" 
         				Background="{TemplateBinding Background}">
                             <Grid >
                                 <ContentPresenter HorizontalAlignment="Center" 

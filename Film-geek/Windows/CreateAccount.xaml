@@ -36,7 +36,6 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
-
             </Grid.RowDefinitions>
             <Label Content="Zakładanie konta" FontSize="18" Margin="5"></Label>
             <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>

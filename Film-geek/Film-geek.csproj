@@ -57,6 +57,9 @@
     <Compile Include="Classes\ListSerializer.cs" />
     <Compile Include="Classes\PasswordEncoder.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="PasswordRemind.xaml.cs">
+      <DependentUpon>PasswordRemind.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,10 @@
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
+    <Page Include="PasswordRemind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\CreateAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
