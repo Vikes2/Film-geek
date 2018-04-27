@@ -5,37 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="CreateAccount" Height="450" Width="800">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>aaa</TextBlock>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Content="Zakładanie konta" FontSize="24"></Label>
-                <Label Content="Nazwa użytkownika" Grid.Row="1"/>
-                <TextBox Grid.Row="1" Grid.Column="1">login</TextBox>
-                <Label Content="Pytanie użytkownika" Grid.Row="2"></Label>
-                    <TextBox Grid.Row="2" Grid.Column="1">treść pytania</TextBox>
-                <Label Content="Odpowiedź" Grid.Row="3"></Label>
-                    <TextBox Grid.Row="3" Grid.Column="2">odpowiedź</TextBox>
-                <Label Content="Wpisz nowe hasło" Grid.Row="4"></Label>
-                    <TextBox Grid.Row="4" Grid.Column="1">mityczne haslo</TextBox>
-                <Label Content="Powtórz" Grid.Row="5"></Label>
-                    <TextBox Grid.Row="5" Grid.Column="1">powtorzone</TextBox>
-
-
+        Title="CreateAccount" Height="350" Width="600"
+        SizeToContent="Height">
+    <Grid ScrollViewer.CanContentScroll="True"
+       ScrollViewer.HorizontalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+      
+    <DockPanel Height="auto">
+            <Grid Margin="10" DockPanel.Dock="Left" Height="auto" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+                <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
+                <Button   Grid.Row="1"  Margin="5" Style="{StaticResource BasicButton}" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center">Chcę ustawić zdjęcie</Button>
             </Grid>
-        </StackPanel>
-    </StackPanel>
+        <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Label Content="Zakładanie konta" FontSize="18" Margin="5"></Label>
+            <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5">login</TextBox>
+            <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="5">treść pytania</TextBox>
+            <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
+            <TextBox Grid.Row="3" Grid.Column="2" Margin="5">odpowiedź</TextBox>
+            <Label Content="Wpisz nowe hasło" Grid.Row="4" Margin="5"></Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="5">mityczne haslo</TextBox>
+            <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="5">powtorzone</TextBox>
+        </Grid>
+    </DockPanel>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button  Margin="10,10,10,5" Style="{StaticResource BasicButton}">Anuluj</Button>
+            <Button  Grid.Column="1"  Margin="10,10,10,5" Style="{StaticResource BasicButton}">OK</Button>
+
+        </Grid>
+    </Grid>
+
 </Window>
