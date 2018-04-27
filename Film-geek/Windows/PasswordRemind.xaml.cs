@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Film_geek.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy create_account.xaml
+    /// Logika interakcji dla klasy PasswordRemind.xaml
     /// </summary>
-    public partial class CreateAccount : Window
+    public partial class PasswordRemind : Window
     {
-        public CreateAccount()
+        public PasswordRemind()
         {
             InitializeComponent();
         }
