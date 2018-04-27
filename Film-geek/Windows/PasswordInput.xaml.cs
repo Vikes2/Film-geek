@@ -31,13 +31,27 @@ namespace Film_geek.Windows
         private void BTN_LogIn_Click(object sender, RoutedEventArgs e)
         {
             // czy pass ok
-            DialogResult = true;
-            Close();
+            PasswordEncoder pe = new PasswordEncoder();
+            if(User.Password == pe.EncryptWithByteArray(TB_Password.Password))
+            {
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Podano nieprawidłowe hasło.", "Błędne hasło", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GD_userContext.DataContext = User;
         }
     }
 }
