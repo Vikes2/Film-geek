@@ -15,6 +15,11 @@
             </Setter>
         </Style>
 
+        <Style x:Key="LightBackground3" TargetType="{x:Type StackPanel}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
         <Style x:Key="DarkBackground" TargetType="{x:Type Grid}">
             <Setter Property="Background" Value="Gray">
             </Setter>
