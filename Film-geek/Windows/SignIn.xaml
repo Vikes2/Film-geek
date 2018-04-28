@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SignIn" Height="300" Width="300">
 
-    <Grid>
+    <Grid Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
