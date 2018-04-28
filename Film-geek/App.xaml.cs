@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Classes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,19 @@ namespace Film_geek
     /// </summary>
     public partial class App : Application
     {
+        private List<FilmGenre> allGenres = new List<FilmGenre>();
+
+        public List<FilmGenre> AllGenres
+        {
+            get
+            {
+                return allGenres;
+            }
+            set
+            {
+                allGenres = value;
+            }
+        }
+
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="AddOrEditFilm" Height="600" Width="300">
+        Title="AddOrEditFilm" Height="500" Width="300">
     <Window.Resources>
         <!--Potrzebne do zaimportowania stylu z App.xaml-->
     </Window.Resources>
@@ -14,7 +14,7 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Name="GD_ValuesGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -23,7 +23,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="6*"/>
             </Grid.ColumnDefinitions>
@@ -35,19 +35,25 @@
             <Label Content="Reżyser:" Grid.Row="2" Grid.Column="1"/>
             <Label Content="Aktorzy:" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Ocena:" Grid.Row="4" Grid.Column="1"/>
-            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2"/>
-            <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2"/>
-            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2"/>
-            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2"/>
-            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2"/>
+            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Path=Key.Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}"/>
+            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" />
+            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <GroupBox Grid.Row="0" BorderBrush="Black" BorderThickness="1">
                 <GroupBox.Header>
@@ -69,12 +75,17 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_ReleaseDate" Grid.Column="0" Content="Data Premiery:"/>
-                <Button Name="BTN_ReleaseDatePicker" Grid.Column="1" Content="Wybierz datę..."/>
+                <Button Name="BTN_ReleaseDatePicker" Grid.Column="1" Content="Wybierz datę..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}"/>
             </Grid>
             <!--???-->
-            <Border Grid.Row="2" BorderBrush="Black">
-                <TextBlock Name="TBL_Description" Grid.Row="2"/>
-            </Border>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="14*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Opis:" Margin="0"/>
+                <TextBox Name="TB_Description" Grid.Row="2" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"/>
+            </Grid>
             
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -82,7 +93,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_Image" Grid.Column="0" Content="Zdjęcie"/>
-                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..."/>
+                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}"/>
             </Grid>
             
             <Grid Grid.Row="4">
