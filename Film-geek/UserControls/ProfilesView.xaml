@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Film_geek.UserControls.ProfilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Film_geek.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded"
+             >
+    <UserControl.Resources>
+        <DataTemplate x:Key="UserTemplate">
+            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4">
+                <Grid MouseLeftButtonDown="User_MouseLeftButtonDown" Tag="{Binding}" Margin="3" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
+
+                    <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalContentAlignment="Center"></Label>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <ListBox Name="LB_Users" HorizontalContentAlignment="Center"
+                 ItemTemplate="{StaticResource UserTemplate}"
+                 ScrollViewer.CanContentScroll="False" >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" IsItemsHost="True" />
+                    <!--<WrapPanel IsItemsHost="True"/>-->
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+        </ListBox>
+
+        <Button Name="BTN_NewUser" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
+
+    </Grid>
+</UserControl>
