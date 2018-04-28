@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="Overview" Height="450" Width="800">
+        Title="Overview" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BasicButton}"></Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -23,15 +27,19 @@
                 <Label>Powiadomienie 2</Label>
                 <Label>Powiadomienie 3</Label>
             </StackPanel>
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" Name="UserDetails">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                
+                <Image Source="{Binding Path=ImagePath}" Height="39"/>
+                <Label Grid.Row="1" Content="{Binding Path=Nickname}"/>
+                
                 <Button Grid.Column="1" Margin="5" Padding="10 5">Wyloguj</Button>
                 <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Moje konto</Button>
             </Grid>
@@ -48,7 +56,16 @@
                     <Button Margin="0 10" Padding="10 5">Pomoc</Button>
                 </StackPanel>
                 <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
-                    <Calendar/>
+                    <Viewbox Margin="20">
+                        <Calendar SelectionMode="MultipleRange" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <Calendar.SelectedDates>
+                                <sys:DateTime>4/25/2018</sys:DateTime>
+                                <sys:DateTime>4/14/2018</sys:DateTime>
+                                <sys:DateTime>4/13/2018</sys:DateTime>
+                                <sys:DateTime>4/15/2018</sys:DateTime>
+                            </Calendar.SelectedDates>
+                        </Calendar>
+                    </Viewbox>
                 </Grid>
             </Grid>
         </Grid>
