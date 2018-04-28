@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="FilmDetails" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="FilmDetails" Height="600" Width="450">
+    <DockPanel Margin="10">
+        <Grid DockPanel.Dock="Top" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image x:Name="filmImage" Source="/resources/Avatars/Default.png" Grid.RowSpan="4"/>
+            <Label Content="Film title" Grid.Column="1"/>
+            <TextBlock x:Name="filmGenres" Grid.Column="1" Grid.Row="1">Film generes</TextBlock>
+            <Label Grid.Column="1" Grid.Row="2">Rating</Label>
+            <CheckBox Grid.Column="1" Grid.Row="3">Obejrzane</CheckBox>
+        </Grid>
+        <StackPanel DockPanel.Dock="Top" Margin="5">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Reżyseria"/>
+                <TextBlock Text="rezyser"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="główni aktorzy"/>
+                <TextBlock Text="aktorzy"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Premiera"/>
+                <TextBlock Text="data"/>
+            </StackPanel>
+            <TextBlock MinHeight="200" Text="opis filmu" FontStyle="Italic" FontSize="12"/>
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0">Edytuj</Button>
+            <Button Grid.Column="1">Wyjdź</Button>
+        </Grid>
+    </DockPanel>
 </Window>
