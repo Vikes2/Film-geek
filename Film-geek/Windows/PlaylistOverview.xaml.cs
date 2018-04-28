@@ -1,5 +1,4 @@
 ﻿using Film_geek.Classes;
-using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,26 +16,16 @@ using System.Windows.Shapes;
 namespace Film_geek.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy Overview.xaml
+    /// Logika interakcji dla klasy PlaylistOverview.xaml
     /// </summary>
-    public partial class Overview : Window
+    public partial class PlaylistOverview : Window
     {
         public User LoggedUser { get; set; }
 
-        public OverviewUC oUC { get; }
-        public PlaylistView pUC { get; }
-
-        public Overview()
+        public PlaylistOverview(User user)
         {
             InitializeComponent();
-            LoggedUser = ((App)Application.Current).LoggedUser;
-
-            oUC = new OverviewUC();
-            pUC = new PlaylistView();
-
-            GD_Content.Children.Add(oUC);
-
-            ((App)Application.Current).Overview = this;
+            LoggedUser = user;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

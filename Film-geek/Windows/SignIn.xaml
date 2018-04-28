@@ -6,47 +6,19 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="SignIn" Height="300" Width="300">
-    <Window.Resources>
-        <DataTemplate x:Key="UserTemplate">
-            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4">
-                <Grid Margin="3" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
-
-                    <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalContentAlignment="Center"></Label>
-                </Grid>
-            </Border>
-        </DataTemplate>
-    </Window.Resources>
-
 
     <Grid Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <WrapPanel Orientation="Horizontal">
-            <Image Source="/resources/images/logotest.png" HorizontalAlignment="Left"/>
-            <Label Content="Witaj w naszej aplikacji:"></Label>
-        </WrapPanel>
+        <DockPanel>
+            <Image DockPanel.Dock="Left" Source="/resources/images/logotest.png" HorizontalAlignment="Left"/>
+            <Label Name="LB_InfoBar" VerticalAlignment="Center" HorizontalAlignment="Center" ></Label>
+        </DockPanel>
+        <Grid Grid.Row="1" Background="#ddd" Name="GD_SignInContent">
 
-        <ListBox Grid.Row="1" Name="ListUsr" HorizontalContentAlignment="Center"
-                 ItemTemplate="{StaticResource UserTemplate}"
-                 ScrollViewer.CanContentScroll="False">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-
-        </ListBox>
-
-        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
+        </Grid>
 
     </Grid>
 </Window>
