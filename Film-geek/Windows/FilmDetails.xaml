@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="FilmDetails" Height="600" Width="450">
-    <DockPanel Margin="10">
-        <Grid DockPanel.Dock="Top" Margin="5">
+    <DockPanel Style="{StaticResource LightBackground2}">
+        <Grid DockPanel.Dock="Top" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -23,7 +23,7 @@
             <Label Grid.Column="1" Grid.Row="2">Rating</Label>
             <CheckBox Grid.Column="1" Grid.Row="3">Obejrzane</CheckBox>
         </Grid>
-        <StackPanel DockPanel.Dock="Top" Margin="5">
+        <StackPanel DockPanel.Dock="Top" Margin="10">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Reżyseria"/>
                 <TextBlock Text="rezyser"/>
@@ -38,7 +38,7 @@
             </StackPanel>
             <TextBlock MinHeight="200" Text="opis filmu" FontStyle="Italic" FontSize="12"/>
         </StackPanel>
-        <Grid DockPanel.Dock="Bottom">
+        <Grid DockPanel.Dock="Bottom" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

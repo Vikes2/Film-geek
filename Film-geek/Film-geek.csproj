@@ -148,8 +148,5 @@
     <Resource Include="Resources\Avatars\default.png" />
     <Resource Include="Resources\Images\LogoTest.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="filmdetails.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

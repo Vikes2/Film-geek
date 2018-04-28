@@ -4,7 +4,31 @@
              xmlns:local="clr-namespace:Film_geek"
              StartupUri="Windows/MainWindow.xaml">
     <Application.Resources>
-        <!--Button podstawowy-->
+
+        <Style x:Key="LightBackground" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
+        <Style x:Key="LightBackground2" TargetType="{x:Type DockPanel}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
+        <Style x:Key="DarkBackground" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="Gray">
+            </Setter>
+        </Style>
+
+        <Style TargetType="Image">
+            <!--tutaj jest styl pod bordera-->
+        </Style>
+
+        <Style TargetType="Image" x:Key="ProgramLogo">
+            <Setter Property="Source" Value="/resources/Avatars/Default.png" />
+        </Style>
+
+                <!--Button podstawowy-->
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -106,6 +130,12 @@
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="13"/>
         </Style>
+
+        <!--nie dziala :(
+        <Style TargetType="Label" x:Key="h1" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>-->
 
         <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
