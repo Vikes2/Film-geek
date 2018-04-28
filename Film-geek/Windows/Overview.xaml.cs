@@ -36,7 +36,6 @@ namespace Film_geek.Windows
 
             GD_Content.Children.Add(oUC);
 
-            MessageBox.Show(LoggedUser.Nickname);
             ((App)Application.Current).Overview = this;
         }
 

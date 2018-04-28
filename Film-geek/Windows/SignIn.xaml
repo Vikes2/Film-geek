@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <DockPanel>
             <Image DockPanel.Dock="Left" Source="/resources/images/logotest.png" HorizontalAlignment="Left"/>
-            <Label Name="LB_InfoBar" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Witaj w naszej aplikacji:"></Label>
+            <Label Name="LB_InfoBar" VerticalAlignment="Center" HorizontalAlignment="Center" ></Label>
         </DockPanel>
         <Grid Grid.Row="1" Background="#ddd" Name="GD_SignInContent">
 

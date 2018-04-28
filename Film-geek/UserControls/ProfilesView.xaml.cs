@@ -28,38 +28,23 @@ namespace Film_geek.UserControls
         {
             InitializeComponent();
             signInWindow = ((App)Application.Current).SignIn;
-
-            LB_Users.ItemsSource = signInWindow.ListUsers;
-
         }
 
 
         private void User_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             User user = ((Grid)sender).Tag as User;
-            //((App)Application.Current).LoggedUser = user;
 
             signInWindow.GD_SignInContent.Children.Clear();
             signInWindow.PasswordView.User = user;
             signInWindow.GD_SignInContent.Children.Add(signInWindow.PasswordView);
-
-            //PasswordInput dialog = new PasswordInput();
-            //dialog.User = user;
-            //if (dialog.ShowDialog() == true)
-            //{
-            //    // wybrano OK
-            //    Close();
-            //    Overview overview = new Overview(user);
-            //    overview.Show();
-
-            //}
-            //else
-            //{
-            //    // wybrano Anuluj
-            //}
-
-
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            LB_Users.ItemsSource = signInWindow.ListUsers;
+            signInWindow.LB_InfoBar.Content = "Witaj w aplikacji. Wybierz profil.";
+
+        }
     }
 }

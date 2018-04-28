@@ -35,7 +35,6 @@ namespace Film_geek.UserControls
 
         private void BTN_LogIn_Click(object sender, RoutedEventArgs e)
         {
-            // czy pass ok
             PasswordEncoder pe = new PasswordEncoder();
             if (User.Password == pe.EncryptWithByteArray(TB_Password.Password))
             {
@@ -63,6 +62,7 @@ namespace Film_geek.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             GD_userContext.DataContext = User;
+            signInWindow.LB_InfoBar.Content = "Podaj hasło. Hasło: 1234.";
         }
     }
 }

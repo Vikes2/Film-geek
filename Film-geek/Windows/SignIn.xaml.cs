@@ -21,7 +21,19 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-        public List<User> ListUsers = new List<User>();
+
+        private List<User> listUsers;
+        public List<User> ListUsers
+        {
+            get
+            {
+                return listUsers;
+            }
+            set
+            {
+                listUsers = value;
+            }
+        }
 
         public ProfilesView ProfilesView { get; set; }
         public PasswordInputView PasswordView { get; set; }
@@ -29,6 +41,8 @@ namespace Film_geek.Windows
         public SignIn()
         {
             InitializeComponent();
+            ((App)Application.Current).SignIn = this;
+            ListUsers = new List<User>();
 
             #region test users
             User u = new User();
