@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,21 @@ namespace Film_geek.Windows
     public partial class Overview : Window
     {
         public User LoggedUser { get; set; }
+        public OverviewUC oUC { get; }
+        public PlaylistView pUC { get; }
 
         public Overview(User user)
         {
             InitializeComponent();
             LoggedUser = user;
 
+            oUC = new OverviewUC();
+            pUC = new PlaylistView();
+
+            GD_Content.Children.Add(oUC);
+
             MessageBox.Show(LoggedUser.Nickname);
+            ((App)Application.Current).Overview = this;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

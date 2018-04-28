@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Windows;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace Film_geek
     /// </summary>
     public partial class App : Application
     {
+        public Overview Overview { get; set; }
     }
 }
