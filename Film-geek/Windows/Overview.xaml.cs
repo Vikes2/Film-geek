@@ -20,9 +20,19 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class Overview : Window
     {
+        public User LoggedUser { get; set; }
+
         public Overview(User user)
         {
             InitializeComponent();
+            LoggedUser = user;
+
+            MessageBox.Show(LoggedUser.Nickname);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserDetails.DataContext = LoggedUser;
         }
     }
 }
