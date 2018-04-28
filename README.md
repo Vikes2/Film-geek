@@ -10,17 +10,19 @@ Podział obowiązków
 
 * Okno startowe - *Paweł*
 * Okno logowania
-* Okno tworzenia konta
+* Okno tworzenia konta - *Marcin*
 * Okno przypominania hasła
-* Okno główne
+* Okno główne - *Wojtek*
 * Okno pomocy
 * Okno listy filmów
-* Okno dodania/edycji filmu
+* Okno dodania/edycji filmu - *Kamil*
 * Okno szczegółów filmu
 * Okno wyboru filtrów
 * Okno zarządzania listami
 * Okno dodawania filmów na liście
-
+* Styl buttona - *Marcin*
+* Mockup - *Marcin*
 ### Backend
 
-tu jest opis 
+* Serializer - *Wojtek*
+* Klasy - *wszyscy członkowie*

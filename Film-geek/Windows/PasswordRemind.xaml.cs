@@ -1,5 +1,4 @@
-﻿using Film_geek.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +15,11 @@ using System.Windows.Shapes;
 namespace Film_geek.Windows
 {
     /// <summary>
-    /// Logika interakcji dla klasy Overview.xaml
+    /// Logika interakcji dla klasy PasswordRemind.xaml
     /// </summary>
-    public partial class Overview : Window
+    public partial class PasswordRemind : Window
     {
-        public Overview(User user)
+        public PasswordRemind()
         {
             InitializeComponent();
         }
