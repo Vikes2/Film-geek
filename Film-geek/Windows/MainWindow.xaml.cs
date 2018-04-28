@@ -41,7 +41,7 @@ namespace Film_geek.Windows
 
         private void overview_Click(object sender, RoutedEventArgs e)
         {
-            Overview window = new Overview(null);
+            Overview window = new Overview();
             window.Show();
         }
 
@@ -49,6 +49,13 @@ namespace Film_geek.Windows
         {
             AddOrEditFilm window = new AddOrEditFilm();
             window.Show();
+        }
+
+        private void PlaylistOverview_Click(object sender, RoutedEventArgs e)
+        {
+            PlaylistOverview window = new PlaylistOverview(null);
+            window.Show();
+
         }
     }
 }

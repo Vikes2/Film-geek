@@ -1,4 +1,5 @@
-﻿using Film_geek.Windows;
+﻿using Film_geek.Classes;
+using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,6 +15,8 @@ namespace Film_geek
     /// </summary>
     public partial class App : Application
     {
+        public User LoggedUser { get; set; }
         public Overview Overview { get; set; }
+        public SignIn SignIn { get; set; }
     }
 }

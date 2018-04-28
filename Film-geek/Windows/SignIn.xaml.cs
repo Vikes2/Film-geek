@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,38 +23,37 @@ namespace Film_geek.Windows
     {
         public List<User> ListUsers = new List<User>();
 
+        public ProfilesView ProfilesView { get; set; }
+        public PasswordInputView PasswordView { get; set; }
+
         public SignIn()
         {
             InitializeComponent();
+
+            #region test users
             User u = new User();
             u.Nickname = "Lysy";
             ListUsers.Add(u);
             u = new User();
             u.Nickname = "Stary";
             ListUsers.Add(u);
-            LB_Users.ItemsSource = ListUsers;
-        }
+            u = new User();
+            u.Nickname = "Ostry";
+            ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Tepy";
+            ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Łagodny";
+            ListUsers.Add(u);
+            #endregion
 
-        private void User_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            User user = ((Grid)sender).Tag as User;
-
-            PasswordInput dialog = new PasswordInput();
-            dialog.User = user;
-            if (dialog.ShowDialog() == true)
-            {
-                // wybrano OK
-                Close();
-                Overview overview = new Overview(user);
-                overview.Show();
-                
-            }
-            else
-            {
-                // wybrano Anuluj
-            }
+            ProfilesView = new ProfilesView();
+            PasswordView = new PasswordInputView();
+            GD_SignInContent.Children.Add(ProfilesView);
 
 
         }
+
     }
 }
