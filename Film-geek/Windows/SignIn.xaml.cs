@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,53 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-        public List<User> ListUsers = new List<User>();
+
+        private List<User> listUsers;
+        public List<User> ListUsers
+        {
+            get
+            {
+                return listUsers;
+            }
+            set
+            {
+                listUsers = value;
+            }
+        }
+
+        public ProfilesView ProfilesView { get; set; }
+        public PasswordInputView PasswordView { get; set; }
 
         public SignIn()
         {
             InitializeComponent();
+            ((App)Application.Current).SignIn = this;
+            ListUsers = new List<User>();
+
+            #region test users
             User u = new User();
             u.Nickname = "Lysy";
             ListUsers.Add(u);
             u = new User();
             u.Nickname = "Stary";
             ListUsers.Add(u);
-            ListUsr.ItemsSource = ListUsers;
+            u = new User();
+            u.Nickname = "Ostry";
+            ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Tepy";
+            ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Łagodny";
+            ListUsers.Add(u);
+            #endregion
+
+            ProfilesView = new ProfilesView();
+            PasswordView = new PasswordInputView();
+            GD_SignInContent.Children.Add(ProfilesView);
+
+
         }
+
     }
 }

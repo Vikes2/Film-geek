@@ -8,7 +8,7 @@
         Title="CreateAccount" Height="350" Width="600"
         SizeToContent="Height">
     <Grid ScrollViewer.CanContentScroll="True"
-       ScrollViewer.HorizontalScrollBarVisibility="Auto">
+       ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -21,7 +21,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
                 <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
-                <Button   Grid.Row="1"  Margin="5" Style="{StaticResource BasicButton}" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center">Chcę ustawić zdjęcie</Button>
+                <Button   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center">Chcę ustawić zdjęcie</Button>
             </Grid>
         <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="Zakładanie konta" FontSize="18" Margin="5"></Label>
+            <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
             <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="5">login</TextBox>
             <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
@@ -59,8 +59,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Button  Margin="10,10,10,5" Style="{StaticResource BasicButton}">Anuluj</Button>
-            <Button  Grid.Column="1"  Margin="10,10,10,5" Style="{StaticResource BasicButton}">OK</Button>
+            <Button  Margin="10,10,10,5">Anuluj</Button>
+            <Button  Grid.Column="1"  Margin="10,10,10,5">OK</Button>
 
         </Grid>
     </Grid>

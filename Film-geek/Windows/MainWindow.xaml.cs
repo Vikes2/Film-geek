@@ -50,5 +50,12 @@ namespace Film_geek.Windows
             AddOrEditFilm window = new AddOrEditFilm();
             window.Show();
         }
+
+        private void PlaylistOverview_Click(object sender, RoutedEventArgs e)
+        {
+            PlaylistOverview window = new PlaylistOverview(null);
+            window.Show();
+
+        }
     }
 }

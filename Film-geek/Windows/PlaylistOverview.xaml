@@ -1,30 +1,30 @@
-﻿<Window x:Class="Film_geek.Windows.Overview"
+﻿<Window x:Class="Film_geek.Windows.PlaylistOverview"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="Overview" Height="450" Width="800"
+        Title="PlaylistOverview" Height="300" Width="300"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Style="{StaticResource DarkBackground}">
+        <Grid Background="Gray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="5" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
-            <ListBox Name="LB_Notifications" Grid.Column="1" Margin="10 5">
-                <ListBoxItem>Powiadomienie 1</ListBoxItem>
-                <ListBoxItem>Powiadomienie 2</ListBoxItem>
-                <ListBoxItem>Powiadomienie 3</ListBoxItem>
-                </ListBox>
-                <Grid Grid.Column="2" Name="UserDetails">
+            <StackPanel Grid.Column="1" Margin="10 5">
+                <Label>Powiadomienie 1</Label>
+                <Label>Powiadomienie 2</Label>
+                <Label>Powiadomienie 3</Label>
+            </StackPanel>
+            <Grid Grid.Column="2" Name="UserDetails">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -33,17 +33,33 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Image Source="{Binding Path=ImagePath}" Height="39"/>
                 <Label Grid.Row="1" Content="{Binding Path=Nickname}"/>
-                
+
                 <Button Grid.Column="1" Margin="5" Padding="10 5">Wyloguj</Button>
-                <Button Name="BTN_"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Moje konto</Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Moje konto</Button>
             </Grid>
         </Grid>
+        
+        <Grid Grid.Row="1" Background="#ddd">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            
+            <ToolBar Grid.Row="0">
+                <ComboBox  HorizontalAlignment="Left"/>
+                
+                <Button HorizontalAlignment="Right" Command="New" Content="New" />
+                <Button HorizontalAlignment="Right" Command="Open" Content="Open" />
+                <Button HorizontalAlignment="Right" Command="Save" Content="Save" />
+            </ToolBar>
 
-        <Grid Grid.Row="1" Background="#ddd" Name="GD_Content">
-          
+            <ListView Grid.Row="1">
+                
+            </ListView>
         </Grid>
     </Grid>
 </Window>
