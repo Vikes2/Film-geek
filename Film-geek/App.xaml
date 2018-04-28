@@ -51,7 +51,7 @@
             <Setter Property="Control.Foreground" Value="LightGray" />
         </Style>
 
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="SpecialButton">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="FontFamily" Value="Helvetica"/>
@@ -116,24 +116,30 @@
 
         Base Style for all Elements-->
         <Style TargetType="FrameworkElement">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <!--<Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>-->
             <Setter Property="Margin" Value="2"/>
         </Style>
 
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
 
         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type FrameworkElement}}">
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="11"/>
+
         </Style>
 
         <Style TargetType="Label" BasedOn="{StaticResource {x:Type FrameworkElement}}">
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
         <!--nie dziala :(
@@ -155,6 +161,32 @@
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="13"/>
         </Style>
+
+        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+
+        <Style TargetType="Slider" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
         
+        <Style TargetType="Border" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!--Możliwe jest stworzenie neistosowanego stylu z dziedziczeniem, zamiast stylu z targettype framework element-->
     </Application.Resources>
 </Application>

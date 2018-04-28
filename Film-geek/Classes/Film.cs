@@ -18,7 +18,6 @@ namespace Film_geek.Classes
         public string ImagePath { get; set; }
         public List<Playlist> Playlists { get; }
 
-
         public Film()
         {
 
