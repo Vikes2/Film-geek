@@ -63,6 +63,7 @@
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
+    <Compile Include="Classes\Utilities.cs" />
     <Compile Include="UserControls\OverviewUC.xaml.cs">
       <DependentUpon>OverviewUC.xaml</DependentUpon>
     </Compile>

@@ -47,6 +47,5 @@ namespace Film_geek
                 allGenres = value;
             }
         }
-
     }
 }

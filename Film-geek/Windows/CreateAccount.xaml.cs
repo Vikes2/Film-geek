@@ -27,13 +27,15 @@ namespace Film_geek.Windows
 
         private void B_ok_Click(object sender, RoutedEventArgs e)
         {
-            if (TB_passwd.Password != TB_passwd2.Password)
-                MessageBox.Show("XD");
+            //if (TB_passwd.Password != TB_passwd2.Password)
+            //    MessageBox.Show("XD");
+            //tu bedzie walidacja
             User u = new User(TB_login.Text, TB_passwd.Password, TB_question.Text, TB_answer.Text);
              SignIn window = new SignIn();
             ((App)Application.Current).ListUsers.Add(u);
-            var w = Application.Current.Windows[0];
+            var w = Utilities.GetWindowRef("CreateAccountWindow");
             w.Close();
+           
             window.Show();
         }
     }

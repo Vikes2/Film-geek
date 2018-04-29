@@ -50,11 +50,9 @@ namespace Film_geek.UserControls
         private void BTN_NewUser_Click(object sender, RoutedEventArgs e)
         {
             CreateAccount window = new CreateAccount();
-            #region zamkniecie aktualnego okna
-            var w = Application.Current.Windows[0];
-            w.Close();
-            #endregion
 
+            var w = Utilities.GetWindowRef("SignInWindow");
+            w.Close();
             window.Show();
 
         }
