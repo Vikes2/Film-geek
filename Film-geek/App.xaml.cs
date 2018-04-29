@@ -19,7 +19,8 @@ namespace Film_geek
         public User LoggedUser { get; set; }
         public Overview Overview { get; set; }
         public SignIn SignIn { get; set; }
-        
+
+
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 
         public List<FilmGenre> AllGenres

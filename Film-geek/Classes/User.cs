@@ -26,5 +26,15 @@ namespace Film_geek.Classes
             Password = pe.EncryptWithByteArray("1234");
         
         }
+
+        public User(string nickname, string password, string securityquestion, string securityanswer)
+        {
+            ImagePath = "/resources/Avatars/Default.png";
+            PasswordEncoder pe = new PasswordEncoder();
+            Password = pe.EncryptWithByteArray(password);
+            Nickname = nickname;
+            SecurityQuestion = securityquestion;
+            SecurityAnswer = securityanswer;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace Film_geek.Windows
         public CreateAccount()
         {
             InitializeComponent();
+            //((App)Application.Current).CreateAccount = this;
+        }
+
+        private void B_ok_Click(object sender, RoutedEventArgs e)
+        {
+
+            User u = new User(TB_login.Text, TB_passwd.Text, TB_question.Text, TB_answer.Text);
+           // SignIn.ListUsers.Add(u);
         }
     }
 }

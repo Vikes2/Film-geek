@@ -39,15 +39,15 @@
             </Grid.RowDefinitions>
             <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
             <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5">login</TextBox>
+            <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5">login</TextBox>
             <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="5">treść pytania</TextBox>
+            <TextBox x:Name="TB_question" Grid.Row="2" Grid.Column="1" Margin="5">treść pytania</TextBox>
             <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
-            <TextBox Grid.Row="3" Grid.Column="2" Margin="5">odpowiedź</TextBox>
+            <TextBox x:Name="TB_answer" Grid.Row="3" Grid.Column="2" Margin="5">odpowiedź</TextBox>
             <Label Content="Wpisz nowe hasło" Grid.Row="4" Margin="5"></Label>
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="5">mityczne haslo</TextBox>
+            <TextBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5">mityczne haslo</TextBox>
             <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="5">powtorzone</TextBox>
+            <TextBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5">powtorzone</TextBox>
         </Grid>
     </DockPanel>
 
@@ -60,7 +60,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Button  Margin="10,10,10,5">Anuluj</Button>
-            <Button  Grid.Column="1"  Margin="10,10,10,5">OK</Button>
+            <Button x:Name="B_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="B_ok_Click">OK</Button>
 
         </Grid>
     </Grid>
