@@ -24,6 +24,8 @@ namespace Film_geek.UserControls
         public PlaylistView()
         {
             InitializeComponent();
+            CB_Playlists.ItemsSource = ((App)Application.Current).LoggedUser.Playlists;
+            CB_Playlists.SelectedIndex = 0;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
