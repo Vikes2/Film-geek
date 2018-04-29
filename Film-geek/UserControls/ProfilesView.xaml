@@ -43,7 +43,7 @@
 
         </ListBox>
 
-        <Button Name="BTN_NewUser" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >NOWY UZYTKOWNIK</Button>
+        <Button Name="BTN_NewUser" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BTN_NewUser_Click" >NOWY UZYTKOWNIK</Button>
 
     </Grid>
 </UserControl>

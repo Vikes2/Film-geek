@@ -21,6 +21,7 @@ namespace Film_geek.Classes
 
         public User()
         {
+            Nickname = "test_user";
             ImagePath = "/resources/Avatars/Default.png";
             PasswordEncoder pe = new PasswordEncoder();
             Password = pe.EncryptWithByteArray("1234");

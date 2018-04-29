@@ -21,19 +21,20 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
+        private static bool loaduser = false; //zmienna ladowania testowego usera
 
-        private List<User> listUsers;
-        public List<User> ListUsers
-        {
-            get
-            {
-                return listUsers;
-            }
-            set
-            {
-                listUsers = value;
-            }
-        }
+        //private List<User> listUsers;
+        //public List<User> ListUsers
+        //{
+        //    get
+        //    {
+        //        return listUsers;
+        //    }
+        //    set
+        //    {
+        //        listUsers = value;
+        //    }
+        //}
 
         public ProfilesView ProfilesView { get; set; }
         public PasswordInputView PasswordView { get; set; }
@@ -42,25 +43,17 @@ namespace Film_geek.Windows
         {
             InitializeComponent();
             ((App)Application.Current).SignIn = this;
-            ListUsers = new List<User>();
+            //ListUsers = new List<User>();
 
-            #region test users
-            User u = new User();
-            u.Nickname = "Lysy";
-            ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Stary";
-            ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Ostry";
-            ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Tepy";
-            ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Łagodny";
-            ListUsers.Add(u);
+            #region test_user_definition
+            if (loaduser == false)
+            {
+                User u = new User();
+                ((App)Application.Current).ListUsers.Add(u);
+                loaduser = true;
+            }
             #endregion
+
 
             ProfilesView = new ProfilesView();
             PasswordView = new PasswordInputView();

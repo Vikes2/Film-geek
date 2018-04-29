@@ -45,9 +45,9 @@
             <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
             <TextBox x:Name="TB_answer" Grid.Row="3" Grid.Column="2" Margin="5">odpowiedź</TextBox>
             <Label Content="Wpisz nowe hasło" Grid.Row="4" Margin="5"></Label>
-            <TextBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5">mityczne haslo</TextBox>
+                <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" ></PasswordBox>
             <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
-            <TextBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5">powtorzone</TextBox>
+                <PasswordBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5"></PasswordBox>
         </Grid>
     </DockPanel>
 

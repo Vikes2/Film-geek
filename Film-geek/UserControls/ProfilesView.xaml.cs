@@ -42,8 +42,20 @@ namespace Film_geek.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            LB_Users.ItemsSource = signInWindow.ListUsers;
+            LB_Users.ItemsSource = ((App)Application.Current).ListUsers;
             signInWindow.LB_InfoBar.Content = "Witaj w aplikacji. Wybierz profil.";
+
+        }
+
+        private void BTN_NewUser_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAccount window = new CreateAccount();
+            #region zamkniecie aktualnego okna
+            var w = Application.Current.Windows[0];
+            w.Close();
+            #endregion
+
+            window.Show();
 
         }
     }
