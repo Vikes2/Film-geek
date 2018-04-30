@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,31 +12,31 @@ namespace Film_geek.Classes.Serializer
 {
     public class ListSerializer<T>
     {
-        public List<T> list;
+        public ObservableCollection<T> list;
         private string fileName;
         private string header;
 
-        public ListSerializer(string fileName, string header, List<T> list)
+        public ListSerializer(string fileName, string header, ObservableCollection<T> list)
         {
             this.list = list;
             this.fileName = fileName;
             this.header = header;
         }
 
-        public List<T> PullData()
+        public ObservableCollection<T> PullData()
         {
             XmlRootAttribute oRootAttr = new XmlRootAttribute
             {
                 ElementName = header,
                 IsNullable = true
             };
-            XmlSerializer oSerializer = new XmlSerializer(typeof(List<T>), oRootAttr);
+            XmlSerializer oSerializer = new XmlSerializer(typeof(ObservableCollection<T>), oRootAttr);
             StreamReader oStreamReader = null;
 
             try
             {
                 oStreamReader = new StreamReader(fileName + ".xml");
-                list = (List<T>)oSerializer.Deserialize(oStreamReader);
+                list = (ObservableCollection<T>)oSerializer.Deserialize(oStreamReader);
             }
             catch (FileNotFoundException)
             {
@@ -66,7 +67,7 @@ namespace Film_geek.Classes.Serializer
                 ElementName = header,
                 IsNullable = true
             };
-            XmlSerializer oSerializer = new XmlSerializer(typeof(List<T>), oRootAttr);
+            XmlSerializer oSerializer = new XmlSerializer(typeof(ObservableCollection<T>), oRootAttr);
             StreamWriter oStreamWriter = null;
 
             try
@@ -92,7 +93,7 @@ namespace Film_geek.Classes.Serializer
          * </summary>
          * <returns>Zwraca listę</returns>
          **/
-        public List<T> getList()
+        public ObservableCollection<T> getList()
         {
             return list;
         }

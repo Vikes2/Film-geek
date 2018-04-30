@@ -1,6 +1,8 @@
 ﻿using Film_geek.Classes.Serializer;
+using Film_geek.Util;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -32,7 +34,7 @@ namespace Film_geek.Classes
             }
         }
         [XmlIgnore]
-        public List<Playlist> Playlists { get; set; }
+        public ObservableCollection<Playlist> Playlists { get; set; }
         [XmlIgnore]
         public Dictionary<Film,float> Rating{ get; set; }
         [XmlIgnore]
@@ -40,7 +42,7 @@ namespace Film_geek.Classes
         
         public User()
         {
-            Playlists = new List<Playlist>();
+            Playlists = new ObservableCollection<Playlist>();
             ImagePath = "/resources/Avatars/Default.png";
             // Hasło
             PasswordEncoder pe = new PasswordEncoder();
@@ -94,7 +96,7 @@ namespace Film_geek.Classes
             SecurityQuestion = securityquestion;
             SecurityAnswer = securityanswer;
 
-            Playlists = new List<Playlist>();
+            Playlists = new ObservableCollection<Playlist>();
 
             #region playlists
             // listy
@@ -145,7 +147,7 @@ namespace Film_geek.Classes
 
         bool IsUserNameOccupied(string username)
         {
-            foreach (User u in ((App)Application.Current).ListUsers)
+            foreach (User u in (Auth.Instance.users))
             {
                 if (username == u.Nickname)
                 {

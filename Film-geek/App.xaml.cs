@@ -20,19 +20,6 @@ namespace Film_geek
         public Overview Overview { get; set; }
         public SignIn SignIn { get; set; }
 
-        private List<User> listUsers = new List<User>();
-        public List<User> ListUsers
-        {
-            get
-            {
-                return listUsers;
-            }
-            set
-            {
-                listUsers = value;
-            }
-        }
-
         public List<Playlist>  UsersPlaylists{ get; set; }
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 

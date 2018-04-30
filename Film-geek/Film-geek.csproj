@@ -78,6 +78,7 @@
     <Compile Include="UserControls\ProfilesView.xaml.cs">
       <DependentUpon>ProfilesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Util\Auth.cs" />
     <Compile Include="Windows\AddOrEditFilm.xaml.cs">
       <DependentUpon>AddOrEditFilm.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using Film_geek.Classes;
 using Film_geek.Classes.Serializer;
+using Film_geek.Util;
 using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Film_geek.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //ps = new ProfileSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
-            LB_Users.ItemsSource = ((App)Application.Current).ListUsers;
+            LB_Users.ItemsSource = Auth.Instance.users;
             signInWindow.LB_InfoBar.Content = "Witaj w aplikacji. Wybierz profil.";
 
         }
@@ -57,11 +58,7 @@ namespace Film_geek.UserControls
             if (createAccountWindow.ShowDialog() == true)
             {
                 newUser = createAccountWindow.NewUser;
-                ((App)Application.Current).ListUsers.Add(newUser);
-                ps = new ProfileSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
-                ps.PushData();
-                ps.CreateProfileDirectory(newUser.Nickname);
-                newUser.PushData();
+                Auth.Instance.AddNewUser(newUser);
             }
         }
     }

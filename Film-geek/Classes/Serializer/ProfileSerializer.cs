@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Film_geek.Classes.Serializer
     {
         private string defaultPath = "profiles/";
 
-        public ProfileSerializer(string fileName, string header, List<T> list) : base(fileName, header, list)
+        public ProfileSerializer(string fileName, string header, ObservableCollection<T> list) : base(fileName, header, list)
         {
             string DirectoryName = Path.GetDirectoryName(Path.Combine(defaultPath, fileName));
             if (!Directory.Exists(DirectoryName))

@@ -39,8 +39,8 @@ namespace Film_geek.Windows
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
-            ((App)Application.Current).ListUsers = us.PullData();
+            //us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
+            //((App)Application.Current).ListUsers = us.PullData();
         }
     }
 }

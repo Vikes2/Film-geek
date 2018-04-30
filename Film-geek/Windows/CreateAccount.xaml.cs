@@ -66,7 +66,7 @@ namespace Film_geek.Windows
 
         private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
+            //us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
             DataGrid.DataContext = NewUser;
         }
     }
