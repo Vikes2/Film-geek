@@ -83,7 +83,7 @@ namespace Film_geek.Classes
             Playlists.Add(pl); 
             #endregion
         }
-        #endregion
+       
         public User(string nickname, string password, string securityquestion, string securityanswer)
         {
             ImagePath = "/resources/Avatars/Default.png";

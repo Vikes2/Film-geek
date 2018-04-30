@@ -63,9 +63,10 @@ namespace Film_geek.Windows
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (openFileDialog.ShowDialog() == true)
             {
-                File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\"+inputUser.Nickname+".jpg");
+                File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\" + inputUser.Nickname + ".jpg");
                 inputUser.ImagePath = openFileDialog.FileName;
             }
+        }
 
         private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
         {
