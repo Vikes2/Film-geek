@@ -26,7 +26,8 @@ namespace Film_geek.UserControls
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void BTN_PlaylistView_Click(object sender, RoutedEventArgs e)
         {
             Overview overview = ((App)Application.Current).Overview;
             overview.GD_Content.Children.Clear();

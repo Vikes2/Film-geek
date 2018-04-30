@@ -21,7 +21,6 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-        private static bool loaduser = false; //zmienna ladowania testowego usera
 
         //private List<User> listUsers;
         //public List<User> ListUsers
@@ -45,13 +44,24 @@ namespace Film_geek.Windows
             ((App)Application.Current).SignIn = this;
             //ListUsers = new List<User>();
 
-            #region test_user_definition
-            if (loaduser == false)
-            {
-                User u = new User();
-                ((App)Application.Current).ListUsers.Add(u);
-                loaduser = true;
-            }
+            #region test users
+
+
+            User u = new User();
+            u.Nickname = "Lysy";
+            ((App)Application.Current).ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Stary";
+            ((App)Application.Current).ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Ostry";
+            ((App)Application.Current).ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Tepy";
+            ((App)Application.Current).ListUsers.Add(u);
+            u = new User();
+            u.Nickname = "Łagodny";
+            ((App)Application.Current).ListUsers.Add(u);
             #endregion
 
 

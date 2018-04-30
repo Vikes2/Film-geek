@@ -17,7 +17,12 @@
             <ListBoxItem>Powiadomienie 3</ListBoxItem>
         </ListBox>
         <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
-            <Viewbox Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">Przegladaj listy</Button>
+            <Viewbox Grid.Row="1" Margin="20">
                 <Calendar SelectionMode="MultipleRange">
                 </Calendar>
             </Viewbox>

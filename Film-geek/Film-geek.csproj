@@ -94,9 +94,6 @@
     <Compile Include="Windows\PasswordRemind.xaml.cs">
       <DependentUpon>PasswordRemind.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PlaylistOverview.xaml.cs">
-      <DependentUpon>PlaylistOverview.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
@@ -151,10 +148,6 @@
     <Page Include="Windows\PasswordRemind.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\PlaylistOverview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SignIn.xaml">
       <Generator>MSBuild:Compile</Generator>

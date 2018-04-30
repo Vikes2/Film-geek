@@ -29,16 +29,17 @@ namespace Film_geek.UserControls
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Overview overview = ((App)Application.Current).Overview;
-            overview.GD_Content.Children.Clear();
-            overview.GD_Content.Children.Add(overview.oUC);
-        }
 
         private void CB_Playlists_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LB_PlaylistsView.Items.Refresh();
+        }
+
+        private void BTN_Overview_Click(object sender, RoutedEventArgs e)
+        {
+            Overview overview = ((App)Application.Current).Overview;
+            overview.GD_Content.Children.Clear();
+            overview.GD_Content.Children.Add(overview.oUC);
         }
     }
 }
