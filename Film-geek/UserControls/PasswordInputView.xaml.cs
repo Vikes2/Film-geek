@@ -39,8 +39,9 @@ namespace Film_geek.UserControls
             if (User.Password == pe.EncryptWithByteArray(TB_Password.Password))
             {
                 ((App)Application.Current).LoggedUser = User;
-                signInWindow.Close();
+                signInWindow.Hide();
                 Overview overview = new Overview();
+                ((App)Application.Current).Overview = overview;
                 overview.Show();
             }
             else

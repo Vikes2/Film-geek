@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Classes.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class CreateAccount : Window
     {
-        private ListSerializer<User> us;
+        private ProfileSerializer<User> us;
 
         public CreateAccount()
         {
@@ -37,13 +38,15 @@ namespace Film_geek.Windows
             //if (TB_passwd.Password != TB_passwd2.Password)
             //    MessageBox.Show("XD");
             //tu bedzie walidacja
-            us = new ListSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
+            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
             User u = new User(TB_login.Text, TB_passwd.Password, TB_question.Text, TB_answer.Text);
             SignIn window = new SignIn();
             ((App)Application.Current).ListUsers.Add(u);
             us.PushData();
+            us.CreateProfileDirectory(u.Nickname);
+            u.PushData();
             var w = Utilities.GetWindowRef("CreateAccountWindow");
-            w.Close();
+            //w.Close();
            
             window.Show();
         }

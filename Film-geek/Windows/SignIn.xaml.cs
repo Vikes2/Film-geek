@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Classes.Serializer;
 using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
@@ -21,21 +22,7 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-        private static bool loaduser = false; //zmienna ladowania testowego usera
-        private ListSerializer<User> us;
-
-        //private List<User> listUsers;
-        //public List<User> ListUsers
-        //{
-        //    get
-        //    {
-        //        return listUsers;
-        //    }
-        //    set
-        //    {
-        //        listUsers = value;
-        //    }
-        //}
+        private ProfileSerializer<User> us;
 
         public ProfilesView ProfilesView { get; set; }
         public PasswordInputView PasswordView { get; set; }
@@ -43,21 +30,7 @@ namespace Film_geek.Windows
         public SignIn()
         {
             InitializeComponent();
-
-            //us = new ListSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
-            //us.PullData();
             ((App)Application.Current).SignIn = this;
-            ////ListUsers = new List<User>();
-
-            //#region test_user_definition
-            //if (loaduser == false)
-            //{
-            //    User u = new User();
-            //    ((App)Application.Current).ListUsers.Add(u);
-            //    loaduser = true;
-            //}
-            //#endregion
-
 
             ProfilesView = new ProfilesView();
             PasswordView = new PasswordInputView();
@@ -66,7 +39,7 @@ namespace Film_geek.Windows
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            us = new ListSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
+            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
             ((App)Application.Current).ListUsers = us.PullData();
         }
     }
