@@ -127,6 +127,14 @@
             <Setter Property="Padding" Value="1"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+                
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type FrameworkElement}}">
@@ -187,5 +195,7 @@
         </Style>
 
         <!--Możliwe jest stworzenie neistosowanego stylu z dziedziczeniem, zamiast stylu z targettype framework element-->
+        
+
     </Application.Resources>
 </Application>

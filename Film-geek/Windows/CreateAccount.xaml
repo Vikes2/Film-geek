@@ -1,13 +1,20 @@
 ﻿<Window x:Name="CreateAccountWindow" x:Class="Film_geek.Windows.CreateAccount"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:app="clr-namespace:Film_geek"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:classes="clr-namespace:Film_geek.Classes"
         mc:Ignorable="d"
         Title="CreateAccount" Height="350" Width="600"
         SizeToContent="Height"
         Loaded="CreateAccountWindow_Loaded">
+    <Window.Resources>
+        <classes:BoolToOppositeBoolConverter x:Key="oppositeConverter" />
+        <classes:StringToBoolConverter x:Key="stbConverter" />
+
+    </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
@@ -22,9 +29,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
                 <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
-                <Button   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center">Chcę ustawić zdjęcie</Button>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" IsEnabled="{Binding Path= Nickname, Converter={StaticResource stbConverter}}">Chcę ustawić zdjęcie</Button>
             </Grid>
-        <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
+        <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -40,13 +47,60 @@
             </Grid.RowDefinitions>
             <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
             <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
-            <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5">login</TextBox>
+                <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname,ValidatesOnDataErrors=True}">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
             <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
-            <TextBox x:Name="TB_question" Grid.Row="2" Grid.Column="1" Margin="5">treść pytania</TextBox>
+                <TextBox x:Name="TB_question" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Path=SecurityQuestion, ValidatesOnDataErrors=True}">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
             <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
-            <TextBox x:Name="TB_answer" Grid.Row="3" Grid.Column="2" Margin="5">odpowiedź</TextBox>
-            <Label Content="Wpisz nowe hasło" Grid.Row="4" Margin="5"></Label>
-                <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" ></PasswordBox>
+                <TextBox x:Name="TB_answer" Grid.Row="3" Grid.Column="2" Margin="5" Text="{Binding Path=SecurityAnswer, ValidatesOnDataErrors=True}">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+            <Label Content="Wpisz hasło" Grid.Row="4" Margin="5"></Label>
+                <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" >
+
+                </PasswordBox>
             <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
                 <PasswordBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5"></PasswordBox>
         </Grid>
@@ -61,7 +115,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Button  Margin="10,10,10,5">Anuluj</Button>
-            <Button x:Name="B_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="B_ok_Click">OK</Button>
+            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}">OK</Button>
 
         </Grid>
     </Grid>

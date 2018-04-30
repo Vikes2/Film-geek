@@ -1,7 +1,9 @@
-﻿using Film_geek.Classes;
+using Film_geek.Classes;
+using Microsoft.Win32;
 using Film_geek.Classes.Serializer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +23,49 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class CreateAccount : Window
     {
+        public User inputUser;
         private ProfileSerializer<User> us;
-
+        
         public CreateAccount()
         {
             InitializeComponent();
+            inputUser = new User();
+            DataGrid.DataContext = inputUser;
         }
+        
+        private void BTN_ok_Click(object sender, RoutedEventArgs e)
+        {
+            #region setPassword
+            if (TB_passwd.Password == null || TB_passwd.Password.Length < 4)
+            {
+                MessageBox.Show("Hasło musi mieć minimum 4 znaki!");
+                return;
+            }
+            else if (TB_passwd.Password != TB_passwd2.Password)
+            {
+                MessageBox.Show("Hasła się nie zgadzają!");
+                return;
+            }
+            inputUser.Password = TB_passwd.Password; 
+            #endregion
+            ((App)Application.Current).ListUsers.Add(inputUser);
+            var w = Utilities.GetWindowRef("CreateAccountWindow");
+            w.Close();
+            
+            SignIn signWindow = new SignIn();
+            signWindow.Show();
+        }
+
+        private void BTN_setPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\"+inputUser.Nickname+".jpg");
+                inputUser.ImagePath = openFileDialog.FileName;
+            }
 
         private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
         {
