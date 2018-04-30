@@ -51,8 +51,7 @@ namespace Film_geek.UserControls
         {
             CreateAccount window = new CreateAccount();
 
-            var w = Utilities.GetWindowRef("SignInWindow");
-            w.Close();
+            
             window.Show();
 
         }

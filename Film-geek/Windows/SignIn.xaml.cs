@@ -48,7 +48,7 @@ namespace Film_geek.Windows
             #region test_user_definition
             if (loaduser == false)
             {
-                User u = new User();
+                User u = new User("testowy");
                 ((App)Application.Current).ListUsers.Add(u);
                 loaduser = true;
             }
