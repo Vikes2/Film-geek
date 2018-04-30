@@ -32,11 +32,7 @@ namespace Film_geek
             }
         }
 
-
         public List<Playlist>  UsersPlaylists{ get; set; }
-
-
-
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 
         public List<FilmGenre> AllGenres

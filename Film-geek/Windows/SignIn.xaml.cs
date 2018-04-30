@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Classes.Serializer;
 using Film_geek.UserControls;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,7 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-
-        //private List<User> listUsers;
-        //public List<User> ListUsers
-        //{
-        //    get
-        //    {
-        //        return listUsers;
-        //    }
-        //    set
-        //    {
-        //        listUsers = value;
-        //    }
-        //}
+        private ProfileSerializer<User> us;
 
         public ProfilesView ProfilesView { get; set; }
         public PasswordInputView PasswordView { get; set; }
@@ -42,35 +31,16 @@ namespace Film_geek.Windows
         {
             InitializeComponent();
             ((App)Application.Current).SignIn = this;
-            //ListUsers = new List<User>();
-
-            #region test users
-
-
-            User u = new User();
-            u.Nickname = "Lysy";
-            ((App)Application.Current).ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Stary";
-            ((App)Application.Current).ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Ostry";
-            ((App)Application.Current).ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Tepy";
-            ((App)Application.Current).ListUsers.Add(u);
-            u = new User();
-            u.Nickname = "Łagodny";
-            ((App)Application.Current).ListUsers.Add(u);
-            #endregion
-
 
             ProfilesView = new ProfilesView();
             PasswordView = new PasswordInputView();
             GD_SignInContent.Children.Add(ProfilesView);
-
-
         }
 
+        private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
+            ((App)Application.Current).ListUsers = us.PullData();
+        }
     }
 }

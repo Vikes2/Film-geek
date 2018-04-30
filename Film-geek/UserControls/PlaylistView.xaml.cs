@@ -26,6 +26,7 @@ namespace Film_geek.UserControls
             InitializeComponent();
             CB_Playlists.ItemsSource = ((App)Application.Current).LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
+            UserDetails.DataContext = ((App)Application.Current).LoggedUser;
 
         }
 
