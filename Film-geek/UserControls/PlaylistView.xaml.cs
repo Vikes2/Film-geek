@@ -24,6 +24,9 @@ namespace Film_geek.UserControls
         public PlaylistView()
         {
             InitializeComponent();
+            CB_Playlists.ItemsSource = ((App)Application.Current).LoggedUser.Playlists;
+            CB_Playlists.SelectedIndex = 0;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -31,6 +34,11 @@ namespace Film_geek.UserControls
             Overview overview = ((App)Application.Current).Overview;
             overview.GD_Content.Children.Clear();
             overview.GD_Content.Children.Add(overview.oUC);
+        }
+
+        private void CB_Playlists_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LB_PlaylistsView.Items.Refresh();
         }
     }
 }
