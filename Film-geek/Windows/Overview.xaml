@@ -12,34 +12,37 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Style="{StaticResource DarkBackground}">
+        <Grid Background="Gray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="5" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
-            <ListBox Name="LB_Notifications" Grid.Column="1" Margin="10 5">
-                <ListBoxItem>Powiadomienie 1</ListBoxItem>
-                <ListBoxItem>Powiadomienie 2</ListBoxItem>
-                <ListBoxItem>Powiadomienie 3</ListBoxItem>
-                </ListBox>
-                <Grid Grid.Column="2" Name="UserDetails">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Name="BTN_FilmsView">Przeglądaj filmy</Button>
+                <Button Name="BTN_AddFilm">Dodaj film</Button>
+                <Button Name="BTN_Help">Pomoc</Button>
+            </StackPanel>
+            <Grid Grid.Column="1" Name="UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                
-                <Image Source="{Binding Path=ImagePath}" Height="39"/>
-                <Label Grid.Row="1" Content="{Binding Path=Nickname}"/>
-                
-                <Button Grid.Column="1" Margin="5" Padding="10 5">Wyloguj</Button>
-                <Button Name="BTN_"  Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Moje konto</Button>
+
+                <Image Source="{Binding Path=ImagePath}" HorizontalAlignment="Right" MaxHeight="50px"/>
+                <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
             </Grid>
+            <Grid Grid.Column="2" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Name="BTN_LogOut">Wyloguj</Button>
+                    <Button Grid.Row="1" Name="BTN_Account">Moje konto</Button>
+                </Grid>
         </Grid>
 
         <Grid Grid.Row="1" Background="#ddd" Name="GD_Content">
