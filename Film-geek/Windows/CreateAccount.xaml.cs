@@ -54,13 +54,17 @@ namespace Film_geek.Windows
 
         private void BTN_setPhoto_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            if (openFileDialog.ShowDialog() == true)
+            OpenFileDialog AvatarPicker = new OpenFileDialog
             {
-                File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\" + NewUser.Nickname + ".jpg");
-                NewUser.ImagePath = openFileDialog.FileName;
+                Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
+            if (AvatarPicker.ShowDialog() == true)
+            {
+                string dir = @"..\..\Resources\Avatars\" + NewUser.Nickname + ".jpg";
+                
+                File.Copy(AvatarPicker.FileName, dir);
+                NewUser.ImagePath = dir;
             }
         }
 
@@ -68,6 +72,12 @@ namespace Film_geek.Windows
         {
             us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
             DataGrid.DataContext = NewUser;
+        }
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
         }
     }
 }

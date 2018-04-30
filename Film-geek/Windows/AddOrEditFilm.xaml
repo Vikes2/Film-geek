@@ -93,7 +93,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_Image" Grid.Column="0" Content="Zdjęcie"/>
-                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}"/>
+                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}" Click="BTN_ImagePicker_Click"/>
             </Grid>
             
             <Grid Grid.Row="4">

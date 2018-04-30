@@ -17,7 +17,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image x:Name="filmImage" Source="/resources/Avatars/Default.png" Grid.RowSpan="4"/>
+            <Image x:Name="IMG_FilmImage" Source="/resources/Avatars/Default.png" Grid.RowSpan="4"/>
             <Label Content="Film title" Grid.Column="1"/>
             <TextBlock x:Name="filmGenres" Grid.Column="1" Grid.Row="1">Film generes</TextBlock>
             <Label Grid.Column="1" Grid.Row="2">Rating</Label>
