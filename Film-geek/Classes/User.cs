@@ -17,6 +17,8 @@ namespace Film_geek.Classes
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
 
+        public List<Playlist> Playlists { get; set; }
+
         [XmlIgnore]
         public Dictionary<Film,float> Rating{ get; set; }
         [XmlIgnore]
@@ -25,10 +27,48 @@ namespace Film_geek.Classes
         public User()
         {
             Nickname = "test_user";
+            Playlists = new List<Playlist>();
+
+            // Avatar
             ImagePath = "/resources/Avatars/Default.png";
+            // Hasło
             PasswordEncoder pe = new PasswordEncoder();
             Password = pe.EncryptWithByteArray("1234");
-        
+            // listy
+            Playlist pl = new Playlist();
+            pl.Name = "miłe panie";
+
+            Film f = new Film();
+            f.Title = "Hot Girls Wanted";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "American Pie";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Fifty Shades of Grey";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Fifty Shades Freed";
+            pl.Films.Add(f);
+
+            Playlists.Add(pl);
+
+            pl = new Playlist();
+            pl.Name = "serialowe";
+
+            f = new Film();
+            f.Title = "Hannibal";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Dexter";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "West World";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Suits";
+            pl.Films.Add(f);
+            Playlists.Add(pl);
         }
 
         public User(string nickname, string password, string securityquestion, string securityanswer)
@@ -39,6 +79,49 @@ namespace Film_geek.Classes
             Nickname = nickname;
             SecurityQuestion = securityquestion;
             SecurityAnswer = securityanswer;
+
+            Playlists = new List<Playlist>();
+
+            // Avatar
+            ImagePath = "/resources/Avatars/Default.png";
+            // Hasło
+            PasswordEncoder pe = new PasswordEncoder();
+            Password = pe.EncryptWithByteArray("1234");
+            // listy
+            Playlist pl = new Playlist();
+            pl.Name = "miłe panie";
+
+            Film f = new Film();
+            f.Title = "Hot Girls Wanted";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "American Pie";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Fifty Shades of Grey";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Fifty Shades Freed";
+            pl.Films.Add(f);
+
+            Playlists.Add(pl);
+
+            pl = new Playlist();
+            pl.Name = "serialowe";
+
+            f = new Film();
+            f.Title = "Hannibal";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Dexter";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "West World";
+            pl.Films.Add(f);
+            f = new Film();
+            f.Title = "Suits";
+            pl.Films.Add(f);
+            Playlists.Add(pl);
         }
     }
 }

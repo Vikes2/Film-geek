@@ -39,9 +39,6 @@ namespace Film_geek.Windows
             ((App)Application.Current).Overview = this;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            UserDetails.DataContext = LoggedUser;
-        }
+
     }
 }

@@ -48,7 +48,7 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
-                <ComboBox  DockPanel.Dock="Left"/>
+                <ComboBox Name="CB_Playlists"  />
 
                 <Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
                 <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />

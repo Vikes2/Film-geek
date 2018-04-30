@@ -31,8 +31,7 @@ namespace Film_geek
                 listUsers = value;
             }
         }
-
-       
+        public List<Playlist>  UsersPlaylists{ get; set; }
 
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 
