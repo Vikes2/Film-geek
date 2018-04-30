@@ -56,10 +56,12 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="Classes\Director.cs" />
-    <Compile Include="Classes\ListSerializer.cs" />
+    <Compile Include="Classes\Serializer\ListSerializer.cs" />
     <Compile Include="Classes\PasswordEncoder.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Playlist.cs" />
+    <Compile Include="Classes\Serializer\PlaylistSerializer.cs" />
+    <Compile Include="Classes\Serializer\ProfileSerializer.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
@@ -93,9 +95,6 @@
     </Compile>
     <Compile Include="Windows\PasswordRemind.xaml.cs">
       <DependentUpon>PasswordRemind.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\PlaylistOverview.xaml.cs">
-      <DependentUpon>PlaylistOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -152,10 +151,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\PlaylistOverview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\SignIn.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +185,9 @@
   <ItemGroup>
     <Resource Include="Resources\Avatars\default.png" />
     <Resource Include="Resources\Images\LogoTest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FilmTest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

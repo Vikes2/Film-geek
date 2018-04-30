@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Serialization;
 
-namespace Film_geek.Classes
+namespace Film_geek.Classes.Serializer
 {
     public class ListSerializer<T>
     {
@@ -24,9 +24,11 @@ namespace Film_geek.Classes
 
         public List<T> PullData()
         {
-            XmlRootAttribute oRootAttr = new XmlRootAttribute();
-            oRootAttr.ElementName = header;
-            oRootAttr.IsNullable = true;
+            XmlRootAttribute oRootAttr = new XmlRootAttribute
+            {
+                ElementName = header,
+                IsNullable = true
+            };
             XmlSerializer oSerializer = new XmlSerializer(typeof(List<T>), oRootAttr);
             StreamReader oStreamReader = null;
 
@@ -59,9 +61,11 @@ namespace Film_geek.Classes
         **/
         public void PushData()
         {
-            XmlRootAttribute oRootAttr = new XmlRootAttribute();
-            oRootAttr.ElementName = header;
-            oRootAttr.IsNullable = true;
+            XmlRootAttribute oRootAttr = new XmlRootAttribute
+            {
+                ElementName = header,
+                IsNullable = true
+            };
             XmlSerializer oSerializer = new XmlSerializer(typeof(List<T>), oRootAttr);
             StreamWriter oStreamWriter = null;
 
@@ -86,7 +90,7 @@ namespace Film_geek.Classes
          * <summary>
          * Zwraca listę.
          * </summary>
-         * <returns>Zwraca liste]ę</returns>
+         * <returns>Zwraca listę</returns>
          **/
         public List<T> getList()
         {

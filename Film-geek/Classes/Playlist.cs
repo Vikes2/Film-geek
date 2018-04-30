@@ -13,7 +13,14 @@ namespace Film_geek.Classes
 
         public Playlist()
         {
-
+            Films = new List<Film>();
         }
+        
+        public override string ToString()
+        {
+            return Name;
+        }
+
+
     }
 }

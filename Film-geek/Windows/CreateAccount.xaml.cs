@@ -1,5 +1,6 @@
-﻿using Film_geek.Classes;
+using Film_geek.Classes;
 using Microsoft.Win32;
+using Film_geek.Classes.Serializer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,8 @@ namespace Film_geek.Windows
     public partial class CreateAccount : Window
     {
         public User inputUser;
+        private ProfileSerializer<User> us;
+        
         public CreateAccount()
         {
             InitializeComponent();
@@ -63,6 +66,28 @@ namespace Film_geek.Windows
                 File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\"+inputUser.Nickname+".jpg");
                 inputUser.ImagePath = openFileDialog.FileName;
             }
+
+        private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void B_ok_Click(object sender, RoutedEventArgs e)
+        {
+            //if (TB_passwd.Password != TB_passwd2.Password)
+            //    MessageBox.Show("XD");
+            //tu bedzie walidacja
+            us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
+            User u = new User(TB_login.Text, TB_passwd.Password, TB_question.Text, TB_answer.Text);
+            SignIn window = new SignIn();
+            ((App)Application.Current).ListUsers.Add(u);
+            us.PushData();
+            us.CreateProfileDirectory(u.Nickname);
+            u.PushData();
+            var w = Utilities.GetWindowRef("CreateAccountWindow");
+            //w.Close();
+           
+            window.Show();
         }
     }
 }
