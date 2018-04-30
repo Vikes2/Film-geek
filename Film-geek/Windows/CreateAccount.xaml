@@ -11,6 +11,8 @@
         SizeToContent="Height">
     <Window.Resources>
         <classes:BoolToOppositeBoolConverter x:Key="oppositeConverter" />
+        <classes:StringToBoolConverter x:Key="stbConverter" />
+
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
@@ -26,7 +28,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
                 <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
-                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click">Chcę ustawić zdjęcie</Button>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" IsEnabled="{Binding Path= Nickname, Converter={StaticResource stbConverter}}">Chcę ustawić zdjęcie</Button>
             </Grid>
         <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -112,7 +114,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Button  Margin="10,10,10,5">Anuluj</Button>
-            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}}">OK</Button>
+            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}">OK</Button>
 
         </Grid>
     </Grid>

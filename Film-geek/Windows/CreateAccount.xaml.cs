@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,9 +59,10 @@ namespace Film_geek.Windows
             openFileDialog.Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             if (openFileDialog.ShowDialog() == true)
+            {
+                File.Copy(openFileDialog.FileName, @"..\..\Resources\Avatars\"+inputUser.Nickname+".jpg");
                 inputUser.ImagePath = openFileDialog.FileName;
-
-
+            }
         }
     }
 }

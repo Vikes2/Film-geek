@@ -46,4 +46,24 @@ namespace Film_geek.Classes
         }
         #endregion
     }
+    public class StringToBoolConverter : IValueConverter
+    {
+        
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            if (targetType != typeof(bool))
+                throw new InvalidOperationException("The target must be a boolean");
+            if((string)value != String.Empty)
+                return true;
+            return false;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+        #endregion
+    }
 }
