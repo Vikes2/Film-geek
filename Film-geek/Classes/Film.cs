@@ -20,7 +20,12 @@ namespace Film_geek.Classes
 
         public Film()
         {
+            ImagePath = "/resources/Images/FilmTest.png";
+        }
 
+        public override string ToString()
+        {
+            return Title;
         }
 
 
