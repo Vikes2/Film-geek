@@ -86,7 +86,7 @@ namespace Film_geek.Classes
          * <summary>
          * Zwraca listę.
          * </summary>
-         * <returns>Zwraca liste]ę</returns>
+         * <returns>Zwraca listę</returns>
          **/
         public List<T> getList()
         {

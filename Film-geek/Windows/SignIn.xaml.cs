@@ -22,6 +22,7 @@ namespace Film_geek.Windows
     public partial class SignIn : Window
     {
         private static bool loaduser = false; //zmienna ladowania testowego usera
+        private ListSerializer<User> us;
 
         //private List<User> listUsers;
         //public List<User> ListUsers
@@ -42,25 +43,31 @@ namespace Film_geek.Windows
         public SignIn()
         {
             InitializeComponent();
-            ((App)Application.Current).SignIn = this;
-            //ListUsers = new List<User>();
 
-            #region test_user_definition
-            if (loaduser == false)
-            {
-                User u = new User();
-                ((App)Application.Current).ListUsers.Add(u);
-                loaduser = true;
-            }
-            #endregion
+            //us = new ListSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
+            //us.PullData();
+            ((App)Application.Current).SignIn = this;
+            ////ListUsers = new List<User>();
+
+            //#region test_user_definition
+            //if (loaduser == false)
+            //{
+            //    User u = new User();
+            //    ((App)Application.Current).ListUsers.Add(u);
+            //    loaduser = true;
+            //}
+            //#endregion
 
 
             ProfilesView = new ProfilesView();
             PasswordView = new PasswordInputView();
             GD_SignInContent.Children.Add(ProfilesView);
-
-
         }
 
+        private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            us = new ListSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
+            ((App)Application.Current).ListUsers = us.PullData();
+        }
     }
 }

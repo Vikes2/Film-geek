@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="CreateAccount" Height="350" Width="600"
-        SizeToContent="Height">
+        SizeToContent="Height"
+        Loaded="CreateAccountWindow_Loaded">
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>

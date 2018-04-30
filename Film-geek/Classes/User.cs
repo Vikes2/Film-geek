@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Film_geek.Classes
 {
@@ -16,7 +17,9 @@ namespace Film_geek.Classes
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
 
+        [XmlIgnore]
         public Dictionary<Film,float> Rating{ get; set; }
+        [XmlIgnore]
         public Dictionary<Film,bool> WatchStatus { get; set; }
 
         public User()
