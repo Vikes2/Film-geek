@@ -21,32 +21,32 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-      
-    <DockPanel Height="auto">
+
+        <DockPanel Height="auto">
             <Grid Margin="10" DockPanel.Dock="Left" Height="auto" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
                 <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" IsEnabled="{Binding Path= Nickname, Converter={StaticResource stbConverter}}">Chcę ustawić zdjęcie</Button>
             </Grid>
-        <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
-            <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
+            <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
+                <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
                 <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname,ValidatesOnDataErrors=True}">
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
@@ -63,7 +63,7 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-            <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
+                <Label Content="Pytanie użytkownika" Grid.Row="2" Margin="5"></Label>
                 <TextBox x:Name="TB_question" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Path=SecurityQuestion, ValidatesOnDataErrors=True}">
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
@@ -80,7 +80,7 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-            <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
+                <Label Content="Odpowiedź" Grid.Row="3" Margin="5"></Label>
                 <TextBox x:Name="TB_answer" Grid.Row="3" Grid.Column="2" Margin="5" Text="{Binding Path=SecurityAnswer, ValidatesOnDataErrors=True}">
                     <Validation.ErrorTemplate>
                         <ControlTemplate>
@@ -97,14 +97,14 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-            <Label Content="Wpisz hasło" Grid.Row="4" Margin="5"></Label>
+                <Label Content="Wpisz hasło" Grid.Row="4" Margin="5"></Label>
                 <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" >
 
                 </PasswordBox>
-            <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
+                <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
                 <PasswordBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5"></PasswordBox>
-        </Grid>
-    </DockPanel>
+            </Grid>
+        </DockPanel>
 
         <Grid Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -114,9 +114,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Button  Margin="10,10,10,5">Anuluj</Button>
-            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}">OK</Button>
-
+            <Button  Margin="10,10,10,5" IsCancel="True">Anuluj</Button>
+            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}" IsDefault="True">OK</Button>
         </Grid>
     </Grid>
 

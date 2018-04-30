@@ -19,6 +19,7 @@ namespace Film_geek
         public User LoggedUser { get; set; }
         public Overview Overview { get; set; }
         public SignIn SignIn { get; set; }
+
         private List<User> listUsers = new List<User>();
         public List<User> ListUsers
         {

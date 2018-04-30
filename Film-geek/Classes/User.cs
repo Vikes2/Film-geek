@@ -45,6 +45,7 @@ namespace Film_geek.Classes
             // Hasło
             PasswordEncoder pe = new PasswordEncoder();
             Password = pe.EncryptWithByteArray("1234");
+
             #region playlists
             // listy
             Playlist pl = new Playlist();
@@ -95,8 +96,6 @@ namespace Film_geek.Classes
 
             Playlists = new List<Playlist>();
 
-            ps = new PlaylistSerializer<Playlist>(nickname, "playlists", Playlists);
-
             #region playlists
             // listy
             Playlist pl = new Playlist();
@@ -138,6 +137,7 @@ namespace Film_geek.Classes
 
         public void PushData()
         {
+            ps = new PlaylistSerializer<Playlist>(Nickname, "playlists", Playlists);
             ps.PushData();
         }
         //Koniec konstruktorów

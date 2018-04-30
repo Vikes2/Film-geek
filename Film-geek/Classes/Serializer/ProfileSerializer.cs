@@ -13,7 +13,7 @@ namespace Film_geek.Classes.Serializer
 
         public ProfileSerializer(string fileName, string header, List<T> list) : base(fileName, header, list)
         {
-            string DirectoryName = Path.GetDirectoryName(fileName);
+            string DirectoryName = Path.GetDirectoryName(Path.Combine(defaultPath, fileName));
             if (!Directory.Exists(DirectoryName))
             {
                 Directory.CreateDirectory(DirectoryName);
