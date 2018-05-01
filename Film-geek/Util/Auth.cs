@@ -3,6 +3,7 @@ using Film_geek.Classes.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Film_geek.Util
         {
             users = new ObservableCollection<User>();
             profileSerializer = new ProfileSerializer<User>("users", "users", users);
+            CreateDefaultDirectories();
             LoadUsersFromFile();
         }
 
@@ -31,6 +33,22 @@ namespace Film_geek.Util
             {
                 PlaylistSerializer<Playlist> ps = new PlaylistSerializer<Playlist>(user.Nickname, "playlists", user.Playlists);
                 user.Playlists = ps.PullData();
+            }
+        }
+
+        private void CreateDefaultDirectories()
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
             }
         }
 

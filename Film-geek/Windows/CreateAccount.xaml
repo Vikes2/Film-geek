@@ -23,16 +23,16 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <DockPanel Height="auto">
+        <DockPanel Height="auto" Name="DataGrid">
             <Grid Margin="10" DockPanel.Dock="Left" Height="auto" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Converter= {StaticResource imageConverter}, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
-                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content=" Własny avatar " IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Mode=TwoWay}" Width="100" Height="100"/>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content="Chcę ustawić avatar" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
+            <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>

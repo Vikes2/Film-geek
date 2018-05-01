@@ -13,13 +13,27 @@ using System.Xml.Serialization;
 namespace Film_geek.Classes
 {
 
-    public class User : IDataErrorInfo
+    public class User : IDataErrorInfo, INotifyPropertyChanged
     {
         //to do
         private PlaylistSerializer<Playlist> ps;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         
         public string Nickname { get; set; }
-        public string ImagePath { get; set; }
+        private string imagePath;
+        public string ImagePath
+        {
+            get
+            {
+                return imagePath;
+            }
+            set
+            {
+                imagePath = value;
+                OnPropertyChanged("");
+            }
+        }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
         private string password;
@@ -28,9 +42,9 @@ namespace Film_geek.Classes
             {
                 return password;
             }
-            set {
-                PasswordEncoder pe = new PasswordEncoder();
-                password = pe.EncryptWithByteArray(value);
+            set
+            {
+                password = value;
             }
         }
         [XmlIgnore]
@@ -39,7 +53,7 @@ namespace Film_geek.Classes
         public Dictionary<Film,float> Rating{ get; set; }
         [XmlIgnore]
         public Dictionary<Film,bool> WatchStatus { get; set; }
-        
+
         public User()
         {
             Playlists = new ObservableCollection<Playlist>();
@@ -68,23 +82,30 @@ namespace Film_geek.Classes
 
             Playlists.Add(pl);
 
-            pl = new Playlist();
-            pl.Name = "serialowe";
+            Playlist pl1 = new Playlist();
+            pl1.Name = "serialowe";
 
             f = new Film();
             f.Title = "Hannibal";
-            pl.Films.Add(f);
+            pl1.Films.Add(f);
             f = new Film();
             f.Title = "Dexter";
-            pl.Films.Add(f);
+            pl1.Films.Add(f);
             f = new Film();
             f.Title = "West World";
-            pl.Films.Add(f);
+            pl1.Films.Add(f);
             f = new Film();
             f.Title = "Suits";
-            pl.Films.Add(f);
-            Playlists.Add(pl); 
+            pl1.Films.Add(f);
+            Playlists.Add(pl1);
             #endregion
+
+            Playlist all = new Playlist()
+            {
+                Name = "Wszystko",
+                Films = pl.Films.Concat(pl1.Films).ToList()
+            };
+            Playlists.Insert(0, all);
         }
 
         // We don't use this anymore.
@@ -144,6 +165,11 @@ namespace Film_geek.Classes
             ps = new PlaylistSerializer<Playlist>(Nickname, "playlists", Playlists);
             ps.PushData();
         }
+
+        public void OnPropertyChanged(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
         //Koniec konstruktorów
 
 
@@ -183,7 +209,7 @@ namespace Film_geek.Classes
                         break;
                 }
 
-                return string.Empty;
+                return null;
             }
         }
         //Koniec obsługi walidacji

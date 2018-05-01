@@ -23,6 +23,8 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class CreateAccount : Window
     {
+        private OpenFileDialog avatarPicker;
+
         public User NewUser { get; set; }
         
         public CreateAccount()
@@ -30,21 +32,33 @@ namespace Film_geek.Windows
             InitializeComponent();
             NewUser = new User();
         }
+
+        public void SaveAvatar()
+        {
+            if(avatarPicker != null)
+            {
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                File.Copy(avatarPicker.FileName, path);
+                NewUser.ImagePath = path;
+            }
+        }
         
         private void BTN_ok_Click(object sender, RoutedEventArgs e)
         {
             #region setPassword
-            if (TB_passwd.Password == null || TB_passwd.Password.Length < 4)
+            if (TB_passwd.Password.Length < 4)
             {
                 MessageBox.Show("Hasło musi mieć minimum 4 znaki!");
                 return;
             }
-            else if (TB_passwd.Password != TB_passwd2.Password)
+
+            if (TB_passwd.Password != TB_passwd2.Password)
             {
                 MessageBox.Show("Hasła się nie zgadzają!");
                 return;
             }
-            NewUser.Password = TB_passwd.Password;
+
+            NewUser.Password = (new PasswordEncoder()).EncryptWithByteArray(TB_passwd.Password);
             #endregion
             DialogResult = true;
             Close();
@@ -52,28 +66,27 @@ namespace Film_geek.Windows
 
         private void BTN_setPhoto_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog AvatarPicker = new OpenFileDialog
+            avatarPicker = new OpenFileDialog
             {
                 Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             };
-            if (AvatarPicker.ShowDialog() == true)
+            if (avatarPicker.ShowDialog() == true)
             {
-                string dir = @"..\..\Resources\Avatars\" + NewUser.Nickname + ".jpg";
-                
-                File.Copy(AvatarPicker.FileName, dir);
-                NewUser.ImagePath = dir;
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                NewUser.ImagePath = avatarPicker.FileName;
             }
+
         }
 
         private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DataGrid.DataContext = NewUser;
+            TB_login.Focus();
         }
 
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
             Close();
         }
     }
