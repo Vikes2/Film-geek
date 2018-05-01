@@ -13,23 +13,24 @@
     <Window.Resources>
         <classes:BoolToOppositeBoolConverter x:Key="oppositeConverter" />
         <classes:StringToBoolConverter x:Key="stbConverter" />
+        <classes:ImageConverter x:Key="imageConverter"/>
 
     </Window.Resources>
+    
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <DockPanel Height="auto">
             <Grid Margin="10" DockPanel.Dock="Left" Height="auto" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Image  Margin="20,10,10,10" Source="/resources/Avatars/Default.png" Width="100" Height="100"></Image>
-                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" IsEnabled="{Binding Path= Nickname, Converter={StaticResource stbConverter}}">Chcę ustawić zdjęcie</Button>
+                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Converter= {StaticResource imageConverter}, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content=" Własny avatar " IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <Grid x:Name="DataGrid" DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
@@ -97,15 +98,12 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </TextBox>
-                <Label Content="Wpisz hasło" Grid.Row="4" Margin="5"></Label>
-                <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" >
-
-                </PasswordBox>
-                <Label Content="Powtórz" Grid.Row="5" Margin="5"></Label>
-                <PasswordBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5"></PasswordBox>
+                <Label Content="Wpisz hasło" Grid.Row="4" Margin="5"/>
+                <PasswordBox x:Name="TB_passwd" Grid.Row="4" Grid.Column="1" Margin="5" />
+                <Label Content="Powtórz" Grid.Row="5" Margin="5"/>
+                <PasswordBox x:Name="TB_passwd2" Grid.Row="5" Grid.Column="1" Margin="5" />
             </Grid>
         </DockPanel>
-
         <Grid Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -114,9 +112,24 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Button  Margin="10,10,10,5" IsCancel="True">Anuluj</Button>
-            <Button x:Name="BTN_ok"  Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}" IsDefault="True">OK</Button>
+            <Button x:Name="BTN_Cancel"  Margin="10,10,10,5" IsCancel="True" Click="BTN_Cancel_Click">Anuluj</Button>
+            <Button x:Name="BTN_ok"  Content="  OK  " Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="false" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=TB_login, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=TB_question, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=TB_answer, Path=(Validation.HasError)}" Value="false" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="true" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
-
 </Window>

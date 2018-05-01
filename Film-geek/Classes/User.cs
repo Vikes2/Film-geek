@@ -172,7 +172,7 @@ namespace Film_geek.Classes
                             return "Nazwa użytkownika zajęta.";
                         if (this.Nickname == String.Empty || this.Nickname == null)
                             return "Nazwa użytkownika nie może być pusta.";
-                        break;;
+                        break;
                     case "SecurityQuestion":
                         if (SecurityQuestion == null || SecurityQuestion == String.Empty)
                             return "Pytanie zabezpieczające zbyt krótkie.";

@@ -1,6 +1,8 @@
 ﻿using Film_geek.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,5 +69,20 @@ namespace Film_geek.Windows
 
         public Film ActiveFilm;
         private FilmGenre film;
+
+        private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog imagePickerDialog = new OpenFileDialog
+            {
+                Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
+            if (imagePickerDialog.ShowDialog() == true)
+            {
+                string dir = @"..\..\Resources\Images\" + ActiveFilm.Title + ".jpg";
+                File.Copy(imagePickerDialog.FileName, dir);
+                ActiveFilm.ImagePath = dir;
+            }
+        }
     }
 }
