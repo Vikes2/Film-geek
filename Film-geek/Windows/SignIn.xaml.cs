@@ -22,8 +22,6 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class SignIn : Window
     {
-        private ProfileSerializer<User> us;
-
         public ProfilesView ProfilesView { get; set; }
         public PasswordInputView PasswordView { get; set; }
 
@@ -39,8 +37,7 @@ namespace Film_geek.Windows
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
-            //((App)Application.Current).ListUsers = us.PullData();
+            
         }
     }
 }

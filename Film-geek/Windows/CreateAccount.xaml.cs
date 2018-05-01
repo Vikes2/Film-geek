@@ -24,8 +24,6 @@ namespace Film_geek.Windows
     public partial class CreateAccount : Window
     {
         public User NewUser { get; set; }
-
-        private ProfileSerializer<User> us;
         
         public CreateAccount()
         {
@@ -66,7 +64,6 @@ namespace Film_geek.Windows
 
         private void CreateAccountWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //us = new ProfileSerializer<User>("profiles/users", "users", ((App)Application.Current).ListUsers);
             DataGrid.DataContext = NewUser;
         }
     }

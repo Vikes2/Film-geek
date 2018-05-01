@@ -86,56 +86,58 @@ namespace Film_geek.Classes
             Playlists.Add(pl); 
             #endregion
         }
+
+        // We don't use this anymore.
        
-        public User(string nickname, string password, string securityquestion, string securityanswer)
-        {
-            ImagePath = "/resources/Avatars/Default.png";
-            PasswordEncoder pe = new PasswordEncoder();
-            Password = pe.EncryptWithByteArray(password);
-            Nickname = nickname;
-            SecurityQuestion = securityquestion;
-            SecurityAnswer = securityanswer;
+        //public User(string nickname, string password, string securityquestion, string securityanswer)
+        //{
+        //    ImagePath = "/resources/Avatars/Default.png";
+        //    PasswordEncoder pe = new PasswordEncoder();
+        //    Password = pe.EncryptWithByteArray(password);
+        //    Nickname = nickname;
+        //    SecurityQuestion = securityquestion;
+        //    SecurityAnswer = securityanswer;
 
-            Playlists = new ObservableCollection<Playlist>();
+        //    Playlists = new ObservableCollection<Playlist>();
 
-            #region playlists
-            // listy
-            Playlist pl = new Playlist();
-            pl.Name = "miłe panie";
+        //    #region playlists
+        //    // listy
+        //    Playlist pl = new Playlist();
+        //    pl.Name = "miłe panie";
 
-            Film f = new Film();
-            f.Title = "Hot Girls Wanted";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "American Pie";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Fifty Shades of Grey";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Fifty Shades Freed";
-            pl.Films.Add(f);
+        //    Film f = new Film();
+        //    f.Title = "Hot Girls Wanted";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "American Pie";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "Fifty Shades of Grey";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "Fifty Shades Freed";
+        //    pl.Films.Add(f);
 
-            Playlists.Add(pl);
+        //    Playlists.Add(pl);
 
-            pl = new Playlist();
-            pl.Name = "serialowe";
+        //    pl = new Playlist();
+        //    pl.Name = "serialowe";
 
-            f = new Film();
-            f.Title = "Hannibal";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Dexter";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "West World";
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Suits";
-            pl.Films.Add(f);
-            Playlists.Add(pl); 
-            #endregion
-        }
+        //    f = new Film();
+        //    f.Title = "Hannibal";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "Dexter";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "West World";
+        //    pl.Films.Add(f);
+        //    f = new Film();
+        //    f.Title = "Suits";
+        //    pl.Films.Add(f);
+        //    Playlists.Add(pl); 
+        //    #endregion
+        //}
 
         public void PushData()
         {

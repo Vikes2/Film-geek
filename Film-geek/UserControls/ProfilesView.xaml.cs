@@ -25,7 +25,6 @@ namespace Film_geek.UserControls
     public partial class ProfilesView : UserControl
     {
         private SignIn signInWindow;
-        private ProfileSerializer<User> ps;
 
         public ProfilesView()
         {
@@ -45,7 +44,6 @@ namespace Film_geek.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //ps = new ProfileSerializer<User>("users", "users", ((App)Application.Current).ListUsers);
             LB_Users.ItemsSource = Auth.Instance.users;
             signInWindow.LB_InfoBar.Content = "Witaj w aplikacji. Wybierz profil.";
 
