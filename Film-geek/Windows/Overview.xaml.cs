@@ -23,18 +23,18 @@ namespace Film_geek.Windows
     {
         public User LoggedUser { get; set; }
 
-        public OverviewUC oUC { get; }
-        public PlaylistView pUC { get; }
+        public OverviewUC OUC{ get; }
+        public PlaylistView PUC { get; }
 
         public Overview()
         {
             InitializeComponent();
             LoggedUser = ((App)Application.Current).LoggedUser;
 
-            oUC = new OverviewUC();
-            pUC = new PlaylistView();
+            OUC = new OverviewUC();
+            PUC = new PlaylistView();
 
-            GD_Content.Children.Add(oUC);
+            GD_Content.Children.Add(OUC);
 
             ((App)Application.Current).Overview = this;
         }

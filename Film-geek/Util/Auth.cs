@@ -17,6 +17,7 @@ namespace Film_geek.Util
         private PlaylistSerializer<Playlist> playlistSerializer;
 
         public ObservableCollection<User> users;
+        public User LoggedUser { get; set; }
 
         private Auth()
         {
@@ -62,6 +63,16 @@ namespace Film_geek.Util
                 playlistSerializer = new PlaylistSerializer<Playlist>(user.Nickname, "playlists", user.Playlists);
                 playlistSerializer.PushData();
             }
+        }
+
+        public void LogIn(User user)
+        {
+            LoggedUser = user;
+        }
+
+        public void LogOut()
+        {
+            LoggedUser = null;
         }
 
         public static Auth Instance

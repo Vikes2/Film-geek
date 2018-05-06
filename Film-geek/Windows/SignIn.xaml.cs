@@ -1,6 +1,7 @@
 ﻿using Film_geek.Classes;
 using Film_geek.Classes.Serializer;
 using Film_geek.UserControls;
+using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,8 @@ namespace Film_geek.Windows
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            Auth.Instance.LoggedUser = Auth.Instance.users[0];
+            (new Overview()).Show();
         }
     }
 }

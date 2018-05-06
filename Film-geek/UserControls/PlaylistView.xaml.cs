@@ -1,4 +1,5 @@
-﻿using Film_geek.Windows;
+﻿using Film_geek.Util;
+using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,9 @@ namespace Film_geek.UserControls
         public PlaylistView()
         {
             InitializeComponent();
-            CB_Playlists.ItemsSource = ((App)Application.Current).LoggedUser.Playlists;
+            CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
-            UserDetails.DataContext = ((App)Application.Current).LoggedUser;
+            UserDetails.DataContext = Auth.Instance.LoggedUser;
 
         }
 
@@ -40,7 +41,7 @@ namespace Film_geek.UserControls
         {
             Overview overview = ((App)Application.Current).Overview;
             overview.GD_Content.Children.Clear();
-            overview.GD_Content.Children.Add(overview.oUC);
+            overview.GD_Content.Children.Add(overview.OUC);
         }
     }
 }

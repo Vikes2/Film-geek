@@ -4,28 +4,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Film_geek.UserControls"
+             xmlns:app="clr-namespace:Film_geek.Classes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1040"
+             Loaded="OverviewUC_Loaded"
+             UseLayoutRounding="True">
+    <UserControl.Resources>
+        <app:ImageConverter x:Key="ImageConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox Name="LB_Notifications" Margin="10 5">
-            <ListBoxItem>Powiadomienie 1</ListBoxItem>
-            <ListBoxItem>Powiadomienie 2</ListBoxItem>
-            <ListBoxItem>Powiadomienie 3</ListBoxItem>
-        </ListBox>
-        <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="Gray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">Przegladaj listy</Button>
-            <Viewbox Grid.Row="1" Margin="20">
-                <Calendar SelectionMode="MultipleRange">
-                </Calendar>
-            </Viewbox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Name="BTN_FilmsView">Przeglądaj filmy</Button>
+                <Button Name="BTN_AddFilm">Dodaj film</Button>
+                <Button Name="BTN_Help">Pomoc</Button>
+            </StackPanel>
+            <Grid Grid.Column="1" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" MaxHeight="64" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center" />
+                <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="2" VerticalAlignment="Center">
+                <StackPanel>
+                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch">Wyloguj</Button>
+                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch">Moje konto</Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Name="LB_Notifications" Margin="10 5">
+                <ListBoxItem>Powiadomienie 1</ListBoxItem>
+                <ListBoxItem>Powiadomienie 2</ListBoxItem>
+                <ListBoxItem>Powiadomienie 3</ListBoxItem>
+            </ListBox>
+            <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">Przegladaj listy</Button>
+                <Viewbox Grid.Row="1" Margin="20">
+                    <Calendar SelectionMode="MultipleRange">
+                    </Calendar>
+                </Viewbox>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

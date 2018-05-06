@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Util;
 using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Film_geek.UserControls
             PasswordEncoder pe = new PasswordEncoder();
             if (User.Password == pe.EncryptWithByteArray(TB_Password.Password))
             {
-                ((App)Application.Current).LoggedUser = User;
+                Auth.Instance.LogIn(User);
                 signInWindow.Hide();
                 Overview overview = new Overview();
                 ((App)Application.Current).Overview = overview;

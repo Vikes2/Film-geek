@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Film_geek.Classes
@@ -74,7 +75,6 @@ namespace Film_geek.Classes
         public object Convert(object value, Type targetType,
                               object parameter, CultureInfo culture)
         {
-            MessageBox.Show("XD");
             try
             {
                 return new BitmapImage(new Uri((string)value));

@@ -1,4 +1,5 @@
-﻿using Film_geek.Windows;
+﻿using Film_geek.Util;
+using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,12 @@ namespace Film_geek.UserControls
         {
             Overview overview = ((App)Application.Current).Overview;
             overview.GD_Content.Children.Clear();
-            overview.GD_Content.Children.Add(overview.pUC);
+            overview.GD_Content.Children.Add(overview.PUC);
+        }
+
+        private void OverviewUC_Loaded(object sender, RoutedEventArgs e)
+        {
+            GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
         }
     }
 }

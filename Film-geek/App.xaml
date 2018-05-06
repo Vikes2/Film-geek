@@ -5,6 +5,10 @@
              StartupUri="Windows/SignIn.xaml">
     <Application.Resources>
 
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="Aqua"></Setter>
+        </Style>
+
         <Style x:Key="LightBackground" TargetType="{x:Type Grid}">
             <Setter Property="Background" Value="#ddd">
             </Setter>
@@ -191,6 +195,7 @@
             <Setter Property="FontFamily" Value="Sans-Serif"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Padding" Value="5"/>
+            <!--<Setter Property="Background" Value="Transparent"/>-->
         </Style>
 
         <!--Możliwe jest stworzenie neistosowanego stylu z dziedziczeniem, zamiast stylu z targettype framework element-->
