@@ -16,11 +16,9 @@ namespace Film_geek
     public partial class App : Application
     {
 
-        public User LoggedUser { get; set; }
         public Overview Overview { get; set; }
         public SignIn SignIn { get; set; }
 
-        public List<Playlist>  UsersPlaylists{ get; set; }
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 
         public List<FilmGenre> AllGenres
@@ -34,5 +32,7 @@ namespace Film_geek
                 allGenres = value;
             }
         }
+
+
     }
 }

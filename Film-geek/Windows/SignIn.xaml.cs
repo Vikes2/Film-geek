@@ -36,10 +36,5 @@ namespace Film_geek.Windows
             GD_SignInContent.Children.Add(ProfilesView);
         }
 
-        private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            Auth.Instance.LoggedUser = Auth.Instance.users[0];
-            (new Overview()).Show();
-        }
     }
 }

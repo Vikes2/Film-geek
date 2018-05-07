@@ -44,6 +44,9 @@ namespace Film_geek.UserControls
                 Overview overview = new Overview();
                 ((App)Application.Current).Overview = overview;
                 overview.Show();
+
+                signInWindow.GD_SignInContent.Children.Clear();
+                signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
             }
             else
             {
@@ -54,10 +57,8 @@ namespace Film_geek.UserControls
 
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
-
             signInWindow.GD_SignInContent.Children.Clear();
             signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
-
         }
 
 

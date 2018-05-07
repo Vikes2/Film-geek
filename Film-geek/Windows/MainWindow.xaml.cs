@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,7 @@ namespace Film_geek.Windows
 
         private void overview_Click(object sender, RoutedEventArgs e)
         {
+            Auth.Instance.LoggedUser = Auth.Instance.users[0];
             Overview window = new Overview();
             window.Show();
         }

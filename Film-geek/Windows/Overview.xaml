@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:comm="clr-namespace:Film_geek.Classes"
         mc:Ignorable="d"
         Title="Overview" Height="600" Width="1040">
+    <Window.CommandBindings>
+        <CommandBinding Command="comm:AddFilmCommand.Add" Executed="AddFilm_Executed" CanExecute="AddFilm_CanExecute" />
+        <CommandBinding Command="comm:LogOutCommand.LogOut" Executed="LogOut_Executed" CanExecute="LogOut_CanExecute" />
+    </Window.CommandBindings>
+    
     <Window.Resources>
         
     </Window.Resources>
