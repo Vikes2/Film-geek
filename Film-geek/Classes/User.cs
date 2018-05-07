@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +20,19 @@ namespace Film_geek.Classes
         private PlaylistSerializer<Playlist> ps;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
+        private string id;
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
         public string Nickname { get; set; }
         private string imagePath;
         public string ImagePath
@@ -69,15 +82,19 @@ namespace Film_geek.Classes
 
             Film f = new Film();
             f.Title = "Hot Girls Wanted";
+            f.Playlists.Add(pl);
             pl.Films.Add(f);
             f = new Film();
             f.Title = "American Pie";
+            f.Playlists.Add(pl);
             pl.Films.Add(f);
             f = new Film();
             f.Title = "Fifty Shades of Grey";
+            f.Playlists.Add(pl);
             pl.Films.Add(f);
             f = new Film();
             f.Title = "Fifty Shades Freed";
+            f.Playlists.Add(pl);
             pl.Films.Add(f);
 
             Playlists.Add(pl);
@@ -87,15 +104,19 @@ namespace Film_geek.Classes
 
             f = new Film();
             f.Title = "Hannibal";
+            f.Playlists.Add(pl1);
             pl1.Films.Add(f);
             f = new Film();
             f.Title = "Dexter";
+            f.Playlists.Add(pl1);
             pl1.Films.Add(f);
             f = new Film();
             f.Title = "West World";
+            f.Playlists.Add(pl1);
             pl1.Films.Add(f);
             f = new Film();
             f.Title = "Suits";
+            f.Playlists.Add(pl1);
             pl1.Films.Add(f);
             Playlists.Add(pl1);
             #endregion
@@ -103,7 +124,7 @@ namespace Film_geek.Classes
             Playlist all = new Playlist()
             {
                 Name = "Wszystko",
-                Films = pl.Films.Concat(pl1.Films).ToList()
+                Films = pl.Films
             };
             Playlists.Insert(0, all);
         }
@@ -162,7 +183,7 @@ namespace Film_geek.Classes
 
         public void PushData()
         {
-            ps = new PlaylistSerializer<Playlist>(Nickname, "playlists", Playlists);
+            ps = new PlaylistSerializer<Playlist>(Id, "playlists", Playlists);
             ps.PushData();
         }
 
@@ -196,7 +217,7 @@ namespace Film_geek.Classes
                     case "Nickname":
                         if (IsUserNameOccupied(this.Nickname))
                             return "Nazwa użytkownika zajęta.";
-                        if (this.Nickname == String.Empty || this.Nickname == null)
+                        if (Nickname == String.Empty || Nickname == null)
                             return "Nazwa użytkownika nie może być pusta.";
                         break;
                     case "SecurityQuestion":

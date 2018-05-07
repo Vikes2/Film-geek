@@ -21,6 +21,7 @@ namespace Film_geek.Classes
         public Film()
         {
             ImagePath = "/resources/Images/FilmTest.png";
+            Playlists = new List<Playlist>();
         }
 
         public override string ToString()
