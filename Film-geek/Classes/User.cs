@@ -108,6 +108,7 @@ namespace Film_geek.Classes
             Playlists.Insert(0, all);
         }
 
+
         // We don't use this anymore.
        
         //public User(string nickname, string password, string securityquestion, string securityanswer)
