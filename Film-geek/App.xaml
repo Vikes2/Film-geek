@@ -152,6 +152,11 @@
             <Setter Property="Padding" Value="5"/>
         </Style>
 
+        <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
         <!--Możliwe jest stworzenie neistosowanego stylu z dziedziczeniem, zamiast stylu z targettype framework element-->
     </Application.Resources>
 </Application>

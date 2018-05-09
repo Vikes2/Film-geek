@@ -22,8 +22,6 @@ namespace Film_geek.Classes
         {
 
         }
-
-
     }
 
 }

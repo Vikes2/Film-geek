@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Film_geek.Windows
     /// <summary>
     /// Logika interakcji dla klasy AddOrEditFilm.xaml
     /// </summary>
+    /// 
+
     public partial class AddOrEditFilm : Window
     {
         private Dictionary<FilmGenre, bool> filmGenres = new Dictionary<FilmGenre, bool>();
@@ -31,31 +34,37 @@ namespace Film_geek.Windows
                 filmGenres = value;
             }
         }
+        
         public AddOrEditFilm()
         {
             InitializeComponent();
-            FilmGenre a = new FilmGenre() { Name = "horror" };
-            FilmGenre b = new FilmGenre() { Name = "cartoon" };
-            FilmGenre c = new FilmGenre() { Name = "drama" };
-            ((App)Application.Current).AllGenres.Add(a);
-            ((App)Application.Current).AllGenres.Add(b);
+            //FilmGenre a = new FilmGenre() { Name = "horror" };
+            //FilmGenre b = new FilmGenre() { Name = "cartoon" };
+            //FilmGenre c = new FilmGenre() { Name = "drama" };
+            //((App)Application.Current).AllGenres.Add(a);
+            //((App)Application.Current).AllGenres.Add(b);
 
-            ActiveFilm = new Film()
-            {
-                Genres = new List<FilmGenre>(((App)Application.Current).AllGenres)
-            };
+            //ActiveFilm = new Film()
+            //{
+            //    Genres = new List<FilmGenre>(((App)Application.Current).AllGenres)
+            //};
 
-            ((App)Application.Current).AllGenres.Add(c);
+            //((App)Application.Current).AllGenres.Add(c);
 
-            List<FilmGenre> genres = ((App)Application.Current).AllGenres;
+            //List<FilmGenre> genres = ((App)Application.Current).AllGenres;
+
+
+            //foreach(var genre in genres)
+            //{
+            //    filmGenres[genre] = ActiveFilm.Genres.Contains(genre);
+            //}
+
+            //CB_Genre.ItemsSource = filmGenres;
+            ActiveFilm = new Film();
+            ActiveFilm.Directors = new List<Director>();
+            ActiveFilm.Directors.Add(new Director("Marian", "Kowlaski"));
             
-
-            foreach(var genre in genres)
-            {
-                filmGenres[genre] = ActiveFilm.Genres.Contains(genre);
-            }
-            //GD_ValuesGrid.DataContext = ActiveFilm;
-            CB_Genre.ItemsSource = filmGenres;
+            GD_ValuesGrid.DataContext = ActiveFilm;
         }
         
         public AddOrEditFilm(Film NewFilm)
@@ -67,5 +76,12 @@ namespace Film_geek.Windows
 
         public Film ActiveFilm;
         private FilmGenre film;
+
+        private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+                ActiveFilm.ImagePath = openFileDialog.FileName;
+        }
     }
 }

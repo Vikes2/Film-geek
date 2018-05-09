@@ -3,18 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:local="clr-namespace:Film_geek.Classes.Converters"
         mc:Ignorable="d"
         Title="AddOrEditFilm" Height="500" Width="300">
+    <!-- lekki edit xmlns:local, do poprawki-->
     <Window.Resources>
-        <!--Potrzebne do zaimportowania stylu z App.xaml-->
+        <local:DirectorConverter x:Key="DirectorConverter"/>
+        <local:ActorConverter x:Key="ActorConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Name="GD_ValuesGrid">
+        <Grid Grid.Row="0" Name="GD_ValuesGrid" DataContext="">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -35,16 +37,18 @@
             <Label Content="Reżyser:" Grid.Row="2" Grid.Column="1"/>
             <Label Content="Aktorzy:" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Ocena:" Grid.Row="4" Grid.Column="1"/>
-            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Content="{Binding Path=Key.Name}" IsChecked="{Binding Path=Value}"></CheckBox>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}"/>
-            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" />
+            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title}"/>
+            <Grid Grid.Row="1"  Grid.Column="2" >
+                <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Path=Key.Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
+            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>
             <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         <Grid Grid.Row="1">
@@ -64,7 +68,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton Name="RB_Watched_Y" Grid.Column="0" Content="Tak"/>
+                    <RadioButton Name="RB_Watched_Y" Grid.Column="0" Content="Tak" IsChecked="{Binding Path=IsChecked, ElementName=RB_Watched_Y}"/><!--???-->
                     <RadioButton Name="RB_Watched_N" Grid.Column="1" IsChecked="True" Content="Nie"/>
                 </Grid>
             </GroupBox>
@@ -75,7 +79,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_ReleaseDate" Grid.Column="0" Content="Data Premiery:"/>
-                <Button Name="BTN_ReleaseDatePicker" Grid.Column="1" Content="Wybierz datę..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}"/>
+                <DatePicker Name="DP_ReleaseDate" Grid.Column="1" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}"/>
             </Grid>
             <!--???-->
             <Grid Grid.Row="2">
@@ -93,7 +97,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_Image" Grid.Column="0" Content="Zdjęcie"/>
-                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}"/>
+                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}" Click="BTN_ImagePicker_Click"/>
             </Grid>
             
             <Grid Grid.Row="4">
