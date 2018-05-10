@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
         Title="FilmDetails" Height="600" Width="450" SizeToContent="Height">
-    <DockPanel Style="{StaticResource LightBackground2}">
+    <DockPanel Style="{StaticResource LightBackground2}" Name="ContentContainer">
         <Grid DockPanel.Dock="Top" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -45,8 +45,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BTN_FilmEdit" Grid.Column="0" Click="BTN_FilmEdit_Click">Edytuj</Button>
-            <Button x:Name="BTN_Cancel" Grid.Column="1" Click="BTN_Cancel_Click">Wyjdź</Button>
+            <Button x:Name="BTN_FilmEdit" Grid.Column="0" Click="BTN_FilmEdit_Click">
+                <AccessText>
+                    _Edytuj
+                </AccessText>
+            </Button>
+            <Button x:Name="BTN_Cancel" Grid.Column="1" Click="BTN_Cancel_Click">
+                <AccessText>
+                    _Wyjdź
+                </AccessText>
+            </Button>
         </Grid>
     </DockPanel>
 </Window>

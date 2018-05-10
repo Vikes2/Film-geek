@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,9 @@ namespace Film_geek.Windows
             window.Show();
         }
 
-
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            Print.PrintFilmDetails();
+        }
     }
 }

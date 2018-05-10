@@ -32,8 +32,16 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Margin="5" Padding="10 5">Wyloguj</Button>
-                <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">Menu</Button>
+                <Button Grid.Column="1" Margin="5" Padding="10 5">
+                    <AccessText>
+                        _Wyloguj
+                    </AccessText>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">
+                    <AccessText>
+                        _Menu
+                    </AccessText>
+                </Button>
             </Grid>
         </Grid>
         <StackPanel Grid.Row="1" Style="{StaticResource LightBackground3 }">
