@@ -56,6 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="Classes\Director.cs" />
+    <Compile Include="Classes\Print.cs" />
     <Compile Include="Classes\Serializer\ListSerializer.cs" />
     <Compile Include="Classes\PasswordEncoder.cs" />
     <Compile Include="Classes\Person.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
     <Compile Include="Classes\Utilities.cs" />
+    <Compile Include="printDialog\ShowDialog.cs" />
     <Compile Include="UserControls\OverviewUC.xaml.cs">
       <DependentUpon>OverviewUC.xaml</DependentUpon>
     </Compile>

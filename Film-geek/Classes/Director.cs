@@ -12,5 +12,11 @@ namespace Film_geek.Classes
         {
 
         }
+
+        public Director(string name, string surname)
+        {
+            this.FirstName = name;
+            this.LastName = surname;
+        }
     }
 }

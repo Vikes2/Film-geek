@@ -66,5 +66,15 @@ namespace Film_geek.UserControls
             GD_userContext.DataContext = User;
             signInWindow.LB_InfoBar.Content = "Podaj hasło. Hasło: 1234.";
         }
+
+        private void LBL_PasswordRemind_LeftButtonDown(object sender, MouseEventArgs e)
+        {
+            PasswordRemind passwordRemindWindow = new PasswordRemind(User);
+            if (passwordRemindWindow.ShowDialog() == true)
+            {
+                //kod powodzenia
+                MessageBox.Show("XD");
+            }
+        }
     }
 }
