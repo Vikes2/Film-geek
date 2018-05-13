@@ -10,6 +10,7 @@ namespace Film_geek.Classes
 {
     public class Playlist
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         [XmlIgnore]
         public ObservableCollection<Film> Films { get; set; }
@@ -23,7 +24,5 @@ namespace Film_geek.Classes
         {
             return Name;
         }
-
-
     }
 }

@@ -16,12 +16,12 @@ namespace Film_geek.Classes
 
     public class User : IDataErrorInfo, INotifyPropertyChanged
     {
-        //to do
-        private PlaylistSerializer<Playlist> ps;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private string id;
+        private string imagePath;
+        private string password;
+
         public string Id
         {
             get
@@ -34,7 +34,6 @@ namespace Film_geek.Classes
             }
         }
         public string Nickname { get; set; }
-        private string imagePath;
         public string ImagePath
         {
             get
@@ -49,7 +48,6 @@ namespace Film_geek.Classes
         }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
-        private string password;
         public string Password {
             get
             {
@@ -60,6 +58,7 @@ namespace Film_geek.Classes
                 password = value;
             }
         }
+
         [XmlIgnore]
         public ObservableCollection<Playlist> Playlists { get; set; }
         [XmlIgnore]
@@ -71,128 +70,14 @@ namespace Film_geek.Classes
         {
             Playlists = new ObservableCollection<Playlist>();
             ImagePath = "/resources/Avatars/Default.png";
-            // Hasło
-            PasswordEncoder pe = new PasswordEncoder();
-            Password = pe.EncryptWithByteArray("1234");
-
-            #region playlists
-            // listy
-            Playlist pl = new Playlist();
-            pl.Name = "miłe panie";
-
-            Film f = new Film();
-            f.Title = "Hot Girls Wanted";
-            f.Playlists.Add(pl);
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "American Pie";
-            f.Playlists.Add(pl);
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Fifty Shades of Grey";
-            f.Playlists.Add(pl);
-            pl.Films.Add(f);
-            f = new Film();
-            f.Title = "Fifty Shades Freed";
-            f.Playlists.Add(pl);
-            pl.Films.Add(f);
-
-            Playlists.Add(pl);
-
-            Playlist pl1 = new Playlist();
-            pl1.Name = "serialowe";
-
-            f = new Film();
-            f.Title = "Hannibal";
-            f.Playlists.Add(pl1);
-            pl1.Films.Add(f);
-            f = new Film();
-            f.Title = "Dexter";
-            f.Playlists.Add(pl1);
-            pl1.Films.Add(f);
-            f = new Film();
-            f.Title = "West World";
-            f.Playlists.Add(pl1);
-            pl1.Films.Add(f);
-            f = new Film();
-            f.Title = "Suits";
-            f.Playlists.Add(pl1);
-            pl1.Films.Add(f);
-            Playlists.Add(pl1);
-            #endregion
-
-            Playlist all = new Playlist()
-            {
-                Name = "Wszystko",
-                Films = pl.Films
-            };
-            Playlists.Insert(0, all);
-        }
-
-        // We don't use this anymore.
-       
-        //public User(string nickname, string password, string securityquestion, string securityanswer)
-        //{
-        //    ImagePath = "/resources/Avatars/Default.png";
-        //    PasswordEncoder pe = new PasswordEncoder();
-        //    Password = pe.EncryptWithByteArray(password);
-        //    Nickname = nickname;
-        //    SecurityQuestion = securityquestion;
-        //    SecurityAnswer = securityanswer;
-
-        //    Playlists = new ObservableCollection<Playlist>();
-
-        //    #region playlists
-        //    // listy
-        //    Playlist pl = new Playlist();
-        //    pl.Name = "miłe panie";
-
-        //    Film f = new Film();
-        //    f.Title = "Hot Girls Wanted";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "American Pie";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "Fifty Shades of Grey";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "Fifty Shades Freed";
-        //    pl.Films.Add(f);
-
-        //    Playlists.Add(pl);
-
-        //    pl = new Playlist();
-        //    pl.Name = "serialowe";
-
-        //    f = new Film();
-        //    f.Title = "Hannibal";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "Dexter";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "West World";
-        //    pl.Films.Add(f);
-        //    f = new Film();
-        //    f.Title = "Suits";
-        //    pl.Films.Add(f);
-        //    Playlists.Add(pl); 
-        //    #endregion
-        //}
-
-        public void PushData()
-        {
-            ps = new PlaylistSerializer<Playlist>(Id, "playlists", Playlists);
-            ps.PushData();
         }
 
         public void OnPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
-        //Koniec konstruktorów
 
+        //Koniec konstruktorów
 
         bool IsUserNameOccupied(string username)
         {

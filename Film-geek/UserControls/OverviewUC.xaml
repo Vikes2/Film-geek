@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Name="BTN_FilmsView">Przeglądaj filmy</Button>
-                <Button Name="BTN_AddFilm">Dodaj film</Button>
+                <Button Name="BTN_AddFilm" Click="BTN_AddFilm_Click">Dodaj film</Button>
                 <Button Name="BTN_Help">Pomoc</Button>
             </StackPanel>
             <Grid Grid.Column="1" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">

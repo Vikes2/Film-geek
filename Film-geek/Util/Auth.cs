@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Film_geek.Util
 {
@@ -39,41 +40,6 @@ namespace Film_geek.Util
             LoadUsersFromFile();
         }
 
-        private void LoadUsersFromFile()
-        {
-            users = profileSerializer.PullData();
-        }
-
-        private void LoadFilms()
-        {
-            ObservableCollection<Film> films = new ObservableCollection<Film>();
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
-            films = filmSerializer.PullData();
-
-            foreach(Film film in films)
-            {
-                foreach(Playlist playlist in film.Playlists)
-                {
-                    foreach (Playlist userPlaylist in LoggedUser.Playlists)
-                    {
-                        if (userPlaylist.Name == playlist.Name)
-                        {
-                            AddFilmToPlaylist(userPlaylist, film);
-                            break;
-                        }
-                    }
-                }
-            }
-
-        }
-
-        private void AddFilmToPlaylist(Playlist playlist, Film film)
-        {
-            playlist.Films.Add(film);
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", playlist.Films);
-            filmSerializer.PushData();
-        }
-
         private void CreateDefaultDirectories()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek");
@@ -90,15 +56,133 @@ namespace Film_geek.Util
             }
         }
 
+        private void LoadUsersFromFile()
+        {
+            users = profileSerializer.PullData();
+        }
+
+        private void LoadFilms()
+        {
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            List<Film> films = new List<Film>(LoggedUser.Playlists[0].Films);
+
+            foreach(var film in films)
+            {
+                foreach (var userPlaylist in LoggedUser.Playlists)
+                {
+                    if (film.Playlists.Contains(userPlaylist.Id))
+                    {
+                        AddFilmToPlaylist(film, userPlaylist);
+                    }
+                }
+            }
+        }
+
+        private void AddFilmToPlaylist(Film film, Playlist playlist = null)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            if (playlist != null)
+            {
+                playlist.Films.Add(film);
+            }
+
+            if (!LoggedUser.Playlists[0].Films.Contains(film))
+            {
+                LoggedUser.Playlists[0].Films.Add(film);
+            }
+
+            filmSerializer.PushData();
+            playlistSerializer.PushData();
+        }
+
+        private int GetPlaylistLastId()
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            LoggedUser.Playlists = playlistSerializer.PullData();
+
+            int id = 0;
+            foreach(var playlist in LoggedUser.Playlists)
+            {
+                id = Math.Max(id, playlist.Id);
+            }
+
+            return ++id;
+        }
+
+        private int GetFilmLastId()
+        {
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+            LoggedUser.Playlists[0].Films = filmSerializer.PullData();
+
+            int id = 0;
+            foreach(var film in LoggedUser.Playlists[0].Films)
+            {
+                id = Math.Max(id, film.Id);
+            }
+
+            return ++id;
+        }
+
+        public void AddNewPlaylist(string name)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+
+            Playlist newPlaylist = new Playlist()
+            {
+                Id = GetPlaylistLastId(),
+                Name = name
+            };
+
+            LoggedUser.Playlists.Add(newPlaylist);
+            playlistSerializer.PushData();
+        }
+
+        public void AddNewFilm(Film film)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            LoggedUser.Playlists = playlistSerializer.PullData();
+
+            film.Id = GetFilmLastId();
+
+            foreach (var playlistId in film.Playlists)
+            {
+                foreach (var playlist in LoggedUser.Playlists)
+                {
+                    if (playlist.Id == playlistId)
+                    {
+                        playlist.Films.Add(film);
+                    }
+                }
+            }
+
+            LoggedUser.Playlists[0].Films.Add(film);
+
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+            filmSerializer.PushData();
+
+        }
+
         public void AddNewUser(User user)
         {
             if(user.Nickname.Length > 0)
             {
+                //Create default playlist.
+                user.Playlists.Add(
+                    new Playlist()
+                    {
+                        Id = 1,
+                        Name = "Wszystko"
+                    });
                 users.Add(user);
+
                 using (MD5 md5Hash = MD5.Create())
                 {
                     user.Id = GetMd5Hash(md5Hash, (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond).ToString());
                 }
+
                 profileSerializer.PushData();
                 profileSerializer.CreateProfileDirectory(user.Id);
                 playlistSerializer = new PlaylistSerializer<Playlist>(user.Id, "playlists", user.Playlists);
@@ -111,8 +195,11 @@ namespace Film_geek.Util
         public void LogIn(User user)
         {
             LoggedUser = user;
+
             playlistSerializer = new PlaylistSerializer<Playlist>(user.Id, "playlists", user.Playlists);
             LoggedUser.Playlists = playlistSerializer.PullData();
+            filmSerializer = new FilmSerializer<Film>(user.Id, "films", user.Playlists[0].Films);
+            LoggedUser.Playlists[0].Films = filmSerializer.PullData();
             LoadFilms();
         }
 
