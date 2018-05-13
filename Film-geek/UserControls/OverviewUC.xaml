@@ -37,11 +37,11 @@
                         _Dodaj film
                     </AccessText>
                 </Button>
-                <Button Name="BTN_Help">
-                    <AccessText>
-                        _Pomoc
-                    </AccessText>
-                </Button>
+                    <Button Name="BTN_Help">
+                        <AccessText>
+                            _Pomoc
+                        </AccessText>
+                    </Button>
             </StackPanel>
             <Grid Grid.Column="1" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>

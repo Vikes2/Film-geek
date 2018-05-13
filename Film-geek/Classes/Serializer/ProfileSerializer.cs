@@ -12,7 +12,7 @@ namespace Film_geek.Classes.Serializer
     {
         private string defaultPath = "profiles/";
 
-        public ProfileSerializer(string fileName, string header, ObservableCollection<T> list) : base(fileName, header, list)
+        public ProfileSerializer(string fileName, string header, ObservableCollection<T> list) : base(Path.Combine("profiles", fileName), header, list)
         {
             string DirectoryName = Path.GetDirectoryName(Path.Combine(defaultPath, fileName));
             if (!Directory.Exists(DirectoryName))

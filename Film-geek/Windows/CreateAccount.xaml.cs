@@ -38,6 +38,8 @@ namespace Film_geek.Windows
             if(avatarPicker != null)
             {
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                if (File.Exists(path))
+                    File.Delete(path);
                 File.Copy(avatarPicker.FileName, path);
                 NewUser.ImagePath = path;
             }

@@ -21,21 +21,13 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class AddOrEditFilm : Window
     {
-        private Dictionary<FilmGenre, bool> filmGenres = new Dictionary<FilmGenre, bool>();
-        public Dictionary<FilmGenre, bool> FilmGenres
-        {
-            get
-            {
-                return filmGenres;
-            }
-            set
-            {
-                filmGenres = value;
-            }
-        }
+        private List<GenreDic> genres;
+
         public AddOrEditFilm()
         {
             InitializeComponent();
+
+            #region Testowe dane
             FilmGenre a = new FilmGenre() { Name = "horror" };
             FilmGenre b = new FilmGenre() { Name = "cartoon" };
             FilmGenre c = new FilmGenre() { Name = "drama" };
@@ -47,17 +39,17 @@ namespace Film_geek.Windows
                 Genres = new List<FilmGenre>(((App)Application.Current).AllGenres)
             };
 
-            ((App)Application.Current).AllGenres.Add(c);
+            ((App)Application.Current).AllGenres.Add(c); 
+            #endregion
 
-            List<FilmGenre> genres = ((App)Application.Current).AllGenres;
-            
+            List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
+            genres = new List<GenreDic>();
 
-            foreach(var genre in genres)
+            foreach(var genre in allGenres)
             {
-                filmGenres[genre] = ActiveFilm.Genres.Contains(genre);
+                genres.Add(new GenreDic() { Name = genre.Name, Value = ActiveFilm.Genres.Contains(genre) });
             }
-            //GD_ValuesGrid.DataContext = ActiveFilm;
-            CB_Genre.ItemsSource = filmGenres;
+            CB_Genre.ItemsSource = genres;
         }
         
         public AddOrEditFilm(Film NewFilm)
@@ -68,7 +60,6 @@ namespace Film_geek.Windows
         }
 
         public Film ActiveFilm;
-        private FilmGenre film;
 
         private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
         {
@@ -84,5 +75,11 @@ namespace Film_geek.Windows
                 ActiveFilm.ImagePath = dir;
             }
         }
+    }
+
+    public class GenreDic
+    {
+        public string Name { get; set; }
+        public bool Value { get; set; }
     }
 }

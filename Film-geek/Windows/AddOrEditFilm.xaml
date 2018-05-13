@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:app="clr-namespace:Film_geek.Classes"
         mc:Ignorable="d"
         Title="AddOrEditFilm" Height="500" Width="300">
     <Window.Resources>
@@ -48,7 +49,7 @@
             <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding Path=Key.Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                        <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Value}"></CheckBox>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
                 <ComboBox.ToolTip>

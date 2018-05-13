@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Film_geek.Classes
 {
     public class Playlist
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public List<Film> Films { get; set; }
+        [XmlIgnore]
+        public ObservableCollection<Film> Films { get; set; }
 
         public Playlist()
         {
-            Films = new List<Film>();
+            Films = new ObservableCollection<Film>();
         }
         
         public override string ToString()
         {
             return Name;
         }
-
-
     }
 }
