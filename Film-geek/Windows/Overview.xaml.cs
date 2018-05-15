@@ -68,5 +68,21 @@ namespace Film_geek.Windows
         {
             e.CanExecute = true;
         }
+
+        private void Profile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Profile Window = new Profile();
+            if (Window.ShowDialog() == true)
+            {
+                Window.SaveAvatar();
+                Auth.Instance.LoggedUser.Nickname = Window.Name;
+                Auth.Instance.LoggedUser.ImagePath = Window.ImagePath;
+            }
+        }
+
+        private void Profile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

@@ -49,4 +49,24 @@ namespace Film_geek.Classes
 
     }
 
+    public class ProfileSettings
+    {
+        private static RoutedUICommand profile;
+
+        static ProfileSettings()
+        {
+            profile = new RoutedUICommand("Profile edit", "profileSettings", typeof(ProfileSettings));
+            profile.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Control));
+        }
+
+        public static RoutedUICommand Profile
+        {
+            get
+            {
+                return profile;
+            }
+        }
+
+    }
+
 }

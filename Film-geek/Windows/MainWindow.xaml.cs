@@ -53,6 +53,13 @@ namespace Film_geek.Windows
             window.Show();
         }
 
+        private void profil_Click(object sender, RoutedEventArgs e)
+        {
+            Auth.Instance.LoggedUser = Auth.Instance.users[0];
+            Profile window = new Profile();
+            window.Show();
+        }
+
 
     }
 }

@@ -25,7 +25,7 @@
                     <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
                     <Slider Grid.Column="2" ></Slider>
                     <DockPanel Grid.Column="3" >
-                        <Button DockPanel.Dock="Right" > cos1</Button>
+                        <Button DockPanel.Dock="Right" >Szczegóły</Button>
                         <Button DockPanel.Dock="Right" >cos2</Button>
                         <Button DockPanel.Dock="Right" >cos3</Button>
                         <Button DockPanel.Dock="Right" >cos4</Button>

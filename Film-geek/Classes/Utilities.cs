@@ -25,10 +25,8 @@ namespace Film_geek.Classes
                     break;
                 }
             }
-
             return retVal;
         }
-
     }
 
     public class BoolToOppositeBoolConverter : IValueConverter
