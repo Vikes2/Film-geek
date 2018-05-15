@@ -21,6 +21,8 @@ namespace Film_geek.Util
 
         public ObservableCollection<User> users;
         public User LoggedUser { get; set; }
+        public List<Playlist> UsersPlaylists { get; set; }
+
 
         public static Auth Instance
         {
@@ -205,6 +207,7 @@ namespace Film_geek.Util
 
         public void LogOut()
         {
+            // set nulls 
             LoggedUser = null;
         }
 

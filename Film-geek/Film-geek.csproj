@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Actor.cs" />
+    <Compile Include="Classes\Commands.cs" />
     <Compile Include="Classes\Director.cs" />
     <Compile Include="Classes\Print.cs" />
     <Compile Include="Classes\Serializer\FilmSerializer.cs" />
@@ -99,6 +100,9 @@
     </Compile>
     <Compile Include="Windows\PasswordRemind.xaml.cs">
       <DependentUpon>PasswordRemind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -154,6 +158,10 @@
     <Page Include="Windows\PasswordRemind.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SignIn.xaml">
       <Generator>MSBuild:Compile</Generator>

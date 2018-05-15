@@ -13,6 +13,7 @@
         <Button Click="overview_Click" Padding="10" Margin="15" Name="overview">overview</Button>
         <Button Click="AOEFilm_Click" Padding="10" Margin="15" Name="AOEFilm">Add or Edit Film</Button>
         <Button  Padding="10" Margin="15" Name="PrintB" Click="Print_Click">Print some shit</Button>
+        <Button Click="profil_Click" Padding="10" Margin="15" Name="profil">profil</Button>
     </StackPanel>
 
     

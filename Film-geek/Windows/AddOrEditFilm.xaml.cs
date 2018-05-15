@@ -59,7 +59,9 @@ namespace Film_geek.Windows
             GD_ValuesGrid.DataContext = ActiveFilm;
         }
 
-        public Film ActiveFilm;
+
+        public Film ActiveFilm { get; set; }
+        private FilmGenre film;
 
         private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
         {
@@ -74,6 +76,18 @@ namespace Film_geek.Windows
                 File.Copy(imagePickerDialog.FileName, dir);
                 ActiveFilm.ImagePath = dir;
             }
+        }
+
+        private void BTN_Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            // walidacja 
+            DialogResult = true;
+            Close();
+        }
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 

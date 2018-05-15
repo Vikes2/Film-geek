@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Film_geek.UserControls"
              xmlns:app="clr-namespace:Film_geek.Classes"
+             xmlns:comm="clr-namespace:Film_geek.Classes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -24,7 +25,7 @@
                     <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
                     <Slider Grid.Column="2" ></Slider>
                     <DockPanel Grid.Column="3" >
-                        <Button DockPanel.Dock="Right" >cos1</Button>
+                        <Button DockPanel.Dock="Right" >Szczegóły</Button>
                         <Button DockPanel.Dock="Right" >cos2</Button>
                         <Button DockPanel.Dock="Right" >cos3</Button>
                         <Button DockPanel.Dock="Right" >cos4</Button>
@@ -85,6 +86,7 @@
             <DockPanel Grid.Row="0">
                 <ComboBox Name="CB_Playlists"  SelectionChanged="CB_Playlists_SelectionChanged" />
 
+<!--<<<<<<< HEAD
                 <Button DockPanel.Dock="Right" Command="New">
                     <AccessText>
                         _Sortuj
@@ -100,6 +102,10 @@
                         _Dodaj film
                     </AccessText>
                 </Button>
+=======-->
+                <Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
+                <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />
+                <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
             </DockPanel>
 
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">

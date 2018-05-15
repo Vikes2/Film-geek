@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Film_geek.UserControls"
              xmlns:app="clr-namespace:Film_geek.Classes"
+             xmlns:comm="clr-namespace:Film_geek.Classes"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1040"
              Loaded="OverviewUC_Loaded"
@@ -12,6 +13,7 @@
     <UserControl.Resources>
         <app:ImageConverter x:Key="ImageConverter"/>
     </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -32,16 +34,17 @@
                         _Przeglądaj filmy
                     </AccessText>
                 </Button>
-                <Button Name="BTN_AddFilm">
+                <Button Name="BTN_AddFilm" Command="comm:AddFilmCommand.Add">
                     <AccessText>
                         _Dodaj film
                     </AccessText>
                 </Button>
-                    <Button Name="BTN_Help">
-                        <AccessText>
-                            _Pomoc
-                        </AccessText>
-                    </Button>
+                <Button Name="BTN_Help">
+                    <AccessText>
+                        _Pomoc
+                    </AccessText>
+                </Button>
+
             </StackPanel>
             <Grid Grid.Column="1" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>
@@ -54,12 +57,12 @@
             </Grid>
             <Grid Grid.Column="2" VerticalAlignment="Center">
                 <StackPanel>
-                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch">
+                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch" Command="comm:LogOutCommand.LogOut">
                         <AccessText>
                             _Wyloguj
                         </AccessText>
                     </Button>
-                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch">
+                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch" Command="comm:ProfileSettings.Profile">
                         <AccessText>
                             _Moje konto
                         </AccessText>

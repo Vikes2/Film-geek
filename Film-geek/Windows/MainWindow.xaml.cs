@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+﻿using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace Film_geek.Windows
 
         private void overview_Click(object sender, RoutedEventArgs e)
         {
+            Auth.Instance.LoggedUser = Auth.Instance.users[0];
             Overview window = new Overview();
             window.Show();
         }
@@ -52,9 +54,20 @@ namespace Film_geek.Windows
             window.Show();
         }
 
+
         private void Print_Click(object sender, RoutedEventArgs e)
         {
             Print.PrintFilmDetails();
         }
+
+        private void profil_Click(object sender, RoutedEventArgs e)
+        {
+            Auth.Instance.LoggedUser = Auth.Instance.users[0];
+            Profile window = new Profile();
+            window.Show();
+        }
+
+
+
     }
 }

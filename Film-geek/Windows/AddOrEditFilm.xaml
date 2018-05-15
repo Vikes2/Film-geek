@@ -164,6 +164,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+
+                <!--IsDefault="True" , IsCancel="True" DOOOOOOOODAJ JAK YTRZZEBA -->
+
                 <Button Name="BTN_Confirm" Grid.Column="0">
                     <AccessText>
                         O_K    
