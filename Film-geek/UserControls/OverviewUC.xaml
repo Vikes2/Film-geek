@@ -39,7 +39,7 @@
                         _Dodaj film
                     </AccessText>
                 </Button>
-                <Button Name="BTN_Help">
+                <Button Name="BTN_Help" Click="BTN_Help_Click">
                     <AccessText>
                         _Pomoc
                     </AccessText>

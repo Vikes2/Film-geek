@@ -62,9 +62,11 @@ namespace Film_geek.Windows
 
         private void profil_Click(object sender, RoutedEventArgs e)
         {
-            Auth.Instance.LoggedUser = Auth.Instance.users[0];
-            Profile window = new Profile();
-            window.Show();
+            //Auth.Instance.LoggedUser = Auth.Instance.users[0];
+            //Profile window = new Profile();
+            //window.Show();
+            FilmDetails f = new FilmDetails();
+            f.Show();
         }
 
 

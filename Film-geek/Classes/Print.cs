@@ -11,21 +11,12 @@ namespace Film_geek.Classes
 {
     class Print
     {
-        public static void Func()
-        {
-            PrintDialog printDialog = new PrintDialog();
-            Label a = new Label();
-            a.Content = "rucham psa jak sra";
-            if(printDialog.ShowDialog() == true)
-                printDialog.PrintVisual(a,"aaa");
-        }
-
         public static void PrintFilmDetails()
         {
             FilmDetails filmWindow = new FilmDetails();
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
-                printDialog.PrintVisual(filmWindow.ContentContainer, "aaa");
+                printDialog.PrintVisual(filmWindow.ContentContainer, "Film Details");
 
         }
     }

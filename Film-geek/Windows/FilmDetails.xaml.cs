@@ -25,8 +25,8 @@ namespace Film_geek.Windows
             InitializeComponent();
             //  bajzel do testowania
             FilmGenre a = new FilmGenre() { Name = "horror" };
-            FilmGenre b = new FilmGenre() { Name = "cartoon" };
-            FilmGenre c = new FilmGenre() { Name = "drama" };
+            FilmGenre b = new FilmGenre() { Name = "kreskówka" };
+            FilmGenre c = new FilmGenre() { Name = "czarna komedia" };
             ((App)Application.Current).AllGenres.Add(a);
             ((App)Application.Current).AllGenres.Add(b);
 
@@ -35,7 +35,7 @@ namespace Film_geek.Windows
             Actor act = new Actor("Stiwen", "Sigal");
             film.Genres = new List<FilmGenre>(((App)Application.Current).AllGenres);
             film.Title = "Potwór w pokoju pracy";
-            film.Description = "straszny film o strasznie obrazonym wojtku";
+            film.Description = "Ingrygująca produkcja niezależnego kina informatycznego";
           //  film.Directors.Add(d);
             film.Actors.Add(act);
             DateTime dat = new DateTime(2001, 09, 11);
@@ -102,6 +102,11 @@ namespace Film_geek.Windows
         private void BTN_FilmEdit_Click(object sender, RoutedEventArgs e)
         {
             // addOrEditFilm(film)
+        }
+
+        private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

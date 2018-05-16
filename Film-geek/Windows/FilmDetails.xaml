@@ -44,13 +44,19 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BTN_FilmEdit" Grid.Column="0" Click="BTN_FilmEdit_Click">
+            <Button x:Name="BTN_FilmPrint" Grid.Column="0" Click="BTN_FilmPrint_Click" >
+                <AccessText>
+                    _Drukuj szczegóły
+                </AccessText>
+            </Button>
+            <Button x:Name="BTN_FilmEdit" Grid.Column="1" Click="BTN_FilmEdit_Click">
                 <AccessText>
                     _Edytuj
                 </AccessText>
             </Button>
-            <Button x:Name="BTN_Cancel" Grid.Column="1" Click="BTN_Cancel_Click">
+            <Button x:Name="BTN_Cancel" Grid.Column="2" Click="BTN_Cancel_Click">
                 <AccessText>
                     _Wyjdź
                 </AccessText>
