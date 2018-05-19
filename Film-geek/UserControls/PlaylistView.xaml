@@ -69,10 +69,10 @@
                             _Wyloguj
                         </AccessText>
                     </Button>
-                    <Button Name="BTN_Overview" Click="BTN_Overview_Click" Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5" HorizontalAlignment="Stretch">
-                        <AccessText>
-                            _Moje konto
-                        </AccessText>
+                        <Button Command="comm:ProfileSettings.Profile" Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5" HorizontalAlignment="Stretch">
+                            <AccessText>
+                                _Moje konto
+                            </AccessText>
                     </Button>
                 </StackPanel>
             </Grid>
@@ -86,7 +86,7 @@
             <DockPanel Grid.Row="0">
                 <ComboBox Name="CB_Playlists"  SelectionChanged="CB_Playlists_SelectionChanged" />
 
-<!--<<<<<<< HEAD
+<!--
                 <Button DockPanel.Dock="Right" Command="New">
                     <AccessText>
                         _Sortuj
@@ -102,10 +102,12 @@
                         _Dodaj film
                     </AccessText>
                 </Button>
-=======-->
+-->
                 <Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
                 <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />
                 <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
+                <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
+                <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
             </DockPanel>
 
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">

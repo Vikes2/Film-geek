@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,17 +23,31 @@ namespace Film_geek.Windows
     /// <summary>
     /// Logika interakcji dla klasy Profile.xaml
     /// </summary>
-    public partial class Profile : Window
+    public partial class Profile : Window, INotifyPropertyChanged
     {
         // impotr/export playlists, change avatar, change nickname
 
         private OpenFileDialog avatarPicker;  //= new OpenFileDialog();
-        public string Nickname { get; set; }
         public string ImagePath { get; set; }
         public ObservableCollection<Playlist> Playlists { get; set; }
         public Dictionary<Film, float> Rating { get; set; }
 
+        //public event PropertyChangedEventHandler PropertyChanged;
 
+        private string nickname;
+
+        public string Nickname
+        {
+            get { return nickname; }
+            set
+            {
+                if (value != nickname)
+                {
+                    nickname = value;
+                    OnPropertyChanged("Nickname");
+                }
+            }
+        }
 
         public Profile()
         {
@@ -80,6 +95,7 @@ namespace Film_geek.Windows
         private void ProfileWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Nickname = Auth.Instance.LoggedUser.Nickname;
+            MessageBox.Show(Nickname);
             ImagePath = Auth.Instance.LoggedUser.ImagePath;
             //avatarPicker.FileName = ImagePath;
             //IMG_UserImage.Source = ImagePath;
@@ -89,5 +105,28 @@ namespace Film_geek.Windows
         {
 
         }
+
+        private void BTN_PasswdoChanger_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordRemind window = new PasswordRemind();
+            if(window.ShowDialog() == true)
+            {
+
+            }
+            else
+            {
+
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this,
+                new PropertyChangedEventArgs(property));
+        }
+
     }
 }

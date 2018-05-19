@@ -69,4 +69,26 @@ namespace Film_geek.Classes
 
     }
 
+    public class HelpManual
+    {
+        private static RoutedUICommand help;
+
+        static HelpManual()
+        {
+            help = new RoutedUICommand("Help", "Help man", typeof(ProfileSettings));
+            help.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control));
+        }
+
+        public static RoutedUICommand Help
+        {
+            get
+            {
+                return help;
+            }
+        }
+
+
+
+
+    }
 }
