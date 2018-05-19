@@ -37,9 +37,8 @@ namespace Film_geek.UserControls
         private void BTN_LogIn_Click(object sender, RoutedEventArgs e)
         {
             PasswordEncoder pe = new PasswordEncoder();
-            if (User.Password == pe.EncryptWithByteArray(TB_Password.Password))
+            if (Auth.Instance.LogIn(User, TB_Password.Password))
             {
-                Auth.Instance.LogIn(User);
                 signInWindow.Hide();
                 Overview overview = new Overview();
                 ((App)Application.Current).Overview = overview;

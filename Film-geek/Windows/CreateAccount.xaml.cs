@@ -37,7 +37,7 @@ namespace Film_geek.Windows
         {
             if(avatarPicker != null)
             {
-                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Id + System.IO.Path.GetExtension(avatarPicker.FileName));
                 if (File.Exists(path))
                     File.Delete(path);
                 File.Copy(avatarPicker.FileName, path);
@@ -59,8 +59,7 @@ namespace Film_geek.Windows
                 MessageBox.Show("Hasła się nie zgadzają!");
                 return;
             }
-
-            NewUser.Password = (new PasswordEncoder()).EncryptWithByteArray(TB_passwd.Password);
+            NewUser.Password = TB_passwd.Password;
             #endregion
             DialogResult = true;
             Close();
@@ -75,7 +74,7 @@ namespace Film_geek.Windows
             };
             if (avatarPicker.ShowDialog() == true)
             {
-                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                //string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
                 NewUser.ImagePath = avatarPicker.FileName;
             }
 

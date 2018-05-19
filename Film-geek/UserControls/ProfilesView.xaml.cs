@@ -56,8 +56,8 @@ namespace Film_geek.UserControls
             if (createAccountWindow.ShowDialog() == true)
             {
                 newUser = createAccountWindow.NewUser;
-                createAccountWindow.SaveAvatar();
                 Auth.Instance.AddNewUser(newUser);
+                createAccountWindow.SaveAvatar();
             }
         }
     }

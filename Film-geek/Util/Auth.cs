@@ -181,6 +181,9 @@ namespace Film_geek.Util
                 using (MD5 md5Hash = MD5.Create())
                 {
                     user.Id = GetMd5Hash(md5Hash, (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond).ToString());
+                    MessageBox.Show("Haslo " + user.Password);
+                    user.Password = GetMd5Hash(md5Hash, user.Id + user.Password);
+                    user.SecurityAnswer = GetMd5Hash(md5Hash, user.Id + user.Password);
                 }
 
                 profileSerializer.PushData();
@@ -192,15 +195,28 @@ namespace Film_geek.Util
             }
         }
 
-        public void LogIn(User user)
+        public bool LogIn(User user, string password)
         {
-            LoggedUser = user;
+            using (MD5 md5Hash = MD5.Create())
+            {
+                MessageBox.Show(GetMd5Hash(md5Hash, user.Id + password));
+            }
+            using (MD5 md5Hash = MD5.Create())
+            {
+                MessageBox.Show(GetMd5Hash(md5Hash, user.Id + password));
+                if(GetMd5Hash(md5Hash, user.Id + password) == user.Password)
+                {
+                    LoggedUser = user;
 
-            playlistSerializer = new PlaylistSerializer<Playlist>(user.Id, "playlists", user.Playlists);
-            LoggedUser.Playlists = playlistSerializer.PullData();
-            filmSerializer = new FilmSerializer<Film>(user.Id, "films", user.Playlists[0].Films);
-            LoggedUser.Playlists[0].Films = filmSerializer.PullData();
-            LoadFilms();
+                    playlistSerializer = new PlaylistSerializer<Playlist>(user.Id, "playlists", user.Playlists);
+                    LoggedUser.Playlists = playlistSerializer.PullData();
+                    filmSerializer = new FilmSerializer<Film>(user.Id, "films", user.Playlists[0].Films);
+                    LoggedUser.Playlists[0].Films = filmSerializer.PullData();
+                    LoadFilms();
+                    return true;
+                }
+                return false;
+            }
         }
 
         public void LogOut()
