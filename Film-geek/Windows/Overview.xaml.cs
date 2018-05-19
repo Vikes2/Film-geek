@@ -1,5 +1,6 @@
 ﻿using Film_geek.Classes;
 using Film_geek.UserControls;
+using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Film_geek.Windows
         public Overview()
         {
             InitializeComponent();
-            LoggedUser = ((App)Application.Current).LoggedUser;
+            LoggedUser = Auth.Instance.LoggedUser;
 
             OUC = new OverviewUC();
             PUC = new PlaylistView();
@@ -39,6 +40,60 @@ namespace Film_geek.Windows
             ((App)Application.Current).Overview = this;
         }
 
+        private void AddFilm_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            AddOrEditFilm window = new AddOrEditFilm();
+            window.ActiveFilm = new Film();
+            if (window.ShowDialog() == true)
+            {
 
+                //window.ActiveFilm - to add to selected playlists
+            }
+        }
+
+        private void AddFilm_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+
+        private void LogOut_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+            Auth.Instance.LogOut();
+            ((App)Application.Current).SignIn.Show();
+        }
+
+        private void LogOut_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Profile_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Profile Window = new Profile();
+            if (Window.ShowDialog() == true)
+            {
+                Window.SaveAvatar();
+                Auth.Instance.LoggedUser.Nickname = Window.Name;
+                Auth.Instance.LoggedUser.ImagePath = Window.ImagePath;
+            }
+        }
+
+        private void Profile_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Help_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Help window = new Help();
+            window.Show();
+        }
+
+        private void Help_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

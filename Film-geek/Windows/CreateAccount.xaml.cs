@@ -69,7 +69,7 @@ namespace Film_geek.Windows
         {
             avatarPicker = new OpenFileDialog
             {
-                Filter = "Zdjęcia (*.png;*.jpeg)|*.png;*.jpeg",
+                Filter = "Zdjęcia (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*jpg",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
             };
             if (avatarPicker.ShowDialog() == true)
@@ -89,6 +89,11 @@ namespace Film_geek.Windows
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Grid_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

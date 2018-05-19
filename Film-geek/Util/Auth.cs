@@ -21,6 +21,8 @@ namespace Film_geek.Util
 
         public ObservableCollection<User> users;
         public User LoggedUser { get; set; }
+        public List<Playlist> UsersPlaylists { get; set; }
+
 
         public static Auth Instance
         {
@@ -181,7 +183,6 @@ namespace Film_geek.Util
                 using (MD5 md5Hash = MD5.Create())
                 {
                     user.Id = GetMd5Hash(md5Hash, (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond).ToString());
-                    MessageBox.Show("Haslo " + user.Password);
                     user.Password = GetMd5Hash(md5Hash, user.Id + user.Password);
                     user.SecurityAnswer = GetMd5Hash(md5Hash, user.Id + user.Password);
                 }
@@ -199,11 +200,6 @@ namespace Film_geek.Util
         {
             using (MD5 md5Hash = MD5.Create())
             {
-                MessageBox.Show(GetMd5Hash(md5Hash, user.Id + password));
-            }
-            using (MD5 md5Hash = MD5.Create())
-            {
-                MessageBox.Show(GetMd5Hash(md5Hash, user.Id + password));
                 if(GetMd5Hash(md5Hash, user.Id + password) == user.Password)
                 {
                     LoggedUser = user;
@@ -221,6 +217,7 @@ namespace Film_geek.Util
 
         public void LogOut()
         {
+            // set nulls 
             LoggedUser = null;
         }
 

@@ -43,6 +43,9 @@ namespace Film_geek.UserControls
                 Overview overview = new Overview();
                 ((App)Application.Current).Overview = overview;
                 overview.Show();
+
+                signInWindow.GD_SignInContent.Children.Clear();
+                signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
             }
             else
             {
@@ -53,10 +56,8 @@ namespace Film_geek.UserControls
 
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
-
             signInWindow.GD_SignInContent.Children.Clear();
             signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
-
         }
 
 
@@ -64,6 +65,16 @@ namespace Film_geek.UserControls
         {
             GD_userContext.DataContext = User;
             signInWindow.LB_InfoBar.Content = "Podaj hasło. Hasło: 1234.";
+        }
+
+        private void LBL_PasswordRemind_LeftButtonDown(object sender, MouseEventArgs e)
+        {
+            PasswordRemind passwordRemindWindow = new PasswordRemind(User);
+            if (passwordRemindWindow.ShowDialog() == true)
+            {
+                //kod powodzenia
+                MessageBox.Show("XD");
+            }
         }
     }
 }

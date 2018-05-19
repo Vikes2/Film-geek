@@ -39,29 +39,19 @@ namespace Film_geek.UserControls
         {
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
 
-            #region Testowanie list i filmów
-            //Auth.Instance.AddNewPlaylist("Dupa");
-            //Auth.Instance.AddNewPlaylist("Cipa");
-            //Auth.Instance.AddNewPlaylist("Cycki");
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "American Pie",
-            //    Playlists = new List<int>() { 3, 4 }
-            //});
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "Piła 5",
-            //    Playlists = new List<int>() { 2, 3, 5 }
-            //}); 
-            #endregion
+            
 
         }
 
         private void BTN_AddFilm_Click(object sender, RoutedEventArgs e)
         {
             AddOrEditFilm window = new AddOrEditFilm();
+            window.Show();
+        }
+
+        private void BTN_Help_Click(object sender, RoutedEventArgs e)
+        {
+            Help window = new Help();
             window.Show();
         }
     }
