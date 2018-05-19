@@ -32,7 +32,7 @@
                 <Button Name="BTN_FilmsView">Przeglądaj filmy</Button>
                 <Button Name="BTN_AddFilm" Command="comm:AddFilmCommand.Add">Dodaj film
                 </Button>
-                <Button Name="BTN_Help">Pomoc</Button>
+                <Button Name="BTN_Help" Command="comm:HelpManual.Help" >Pomoc</Button>
             </StackPanel>
             <Grid Grid.Column="1" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>

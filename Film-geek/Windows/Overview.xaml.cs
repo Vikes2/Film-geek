@@ -84,5 +84,16 @@ namespace Film_geek.Windows
         {
             e.CanExecute = true;
         }
+
+        private void Help_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Help window = new Help();
+            window.Show();
+        }
+
+        private void Help_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

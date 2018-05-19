@@ -10,10 +10,7 @@
         Loaded="ProfileWindow_Loaded">
 
     <Window.Resources>
-        <classes:BoolToOppositeBoolConverter x:Key="oppositeConverter" />
-        <classes:StringToBoolConverter x:Key="stbConverter" />
         <classes:ImageConverter x:Key="imageConverter"/>
-
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
@@ -28,7 +25,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Mode=TwoWay}" Width="100" Height="100"/>
-                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content="Chcę ustawić avatar" IsEnabled="{Binding ElementName = TB_login, Path=(Validation.HasError), Converter={StaticResource oppositeConverter}, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content="Chcę ustawić avatar" />
             </Grid>
             <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
@@ -43,24 +40,9 @@
                 </Grid.RowDefinitions>
                 <Label Content="Profil" Style ="{StaticResource h1}" Margin="5"></Label>
                 <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
-                <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname}" TextChanged="TB_login_TextChanged" >
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <StackPanel>
-                                <AdornedElementPlaceholder x:Name="textBox"/>
-                                <ItemsControl ItemsSource="{Binding}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
-                </TextBox>
+                <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname}" TextChanged="TB_login_TextChanged" ></TextBox>
                 <Label Content="Zmień hasło" Grid.Row="2" Margin="5"></Label>
-                <Button Name="BTN_PasswdoChanger" Grid.Row="2" Grid.Column="1" Margin="5">
+                <Button Name="BTN_PasswdoChanger" Click="BTN_PasswdoChanger_Click" Grid.Row="2" Grid.Column="1" Margin="5">
                     Zmień hasło
                 </Button>
                 

@@ -65,7 +65,7 @@
             <Grid Grid.Column="3">
                 <StackPanel>
                     <Button Grid.Column="1" Margin="5" Padding="10 5" HorizontalAlignment="Stretch">Wyloguj</Button>
-                    <Button Name="BTN_Overview" Click="BTN_Overview_Click" Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5" HorizontalAlignment="Stretch">Moje konto</Button>
+                    <Button  Command="comm:ProfileSettings.Profile" Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5" HorizontalAlignment="Stretch">Moje konto</Button>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -81,6 +81,8 @@
                 <Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
                 <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />
                 <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
+                <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
+                <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
             </DockPanel>
 
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">
