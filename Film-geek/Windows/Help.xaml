@@ -1,0 +1,54 @@
+﻿<Window x:Class="Film_geek.Windows.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Film_geek.Windows"
+        mc:Ignorable="d"
+        Title="Help" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Style="{StaticResource DarkBackground}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="5" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
+            <StackPanel Grid.Column="1" Margin="10 5">
+                <Label>Powiadomienie 1</Label>
+                <Label>Powiadomienie 2</Label>
+                <Label>Powiadomienie 3</Label>
+            </StackPanel>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Margin="5" Padding="10 5">
+                    <AccessText>
+                        _Wyloguj
+                    </AccessText>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" Margin="5" Padding="10 5">
+                    <AccessText>
+                        _Menu
+                    </AccessText>
+                </Button>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="1" Style="{StaticResource LightBackground3 }">
+            
+            <TextBlock Margin="30" FontWeight="Bold">Pomoc jest tutaj</TextBlock>
+            <TextBlock Margin="30" Grid.Row="1" VerticalAlignment="Top">Dalszy opis pomocy</TextBlock>
+
+        </StackPanel>
+    </Grid>
+</Window>

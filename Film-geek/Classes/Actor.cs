@@ -13,10 +13,10 @@ namespace Film_geek.Classes
 
         }
 
-        public Actor(string fn, string ln)
+        public Actor(string name, string surname)
         {
-            this.FirstName = fn;
-            this.LastName = ln;
+            this.FirstName = name;
+            this.LastName = surname;
         }
     }
 }

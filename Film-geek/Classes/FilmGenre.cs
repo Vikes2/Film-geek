@@ -13,5 +13,10 @@ namespace Film_geek.Classes
         {
 
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

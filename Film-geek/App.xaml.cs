@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Film_geek
 {
@@ -14,6 +16,10 @@ namespace Film_geek
     /// </summary>
     public partial class App : Application
     {
+
+        public Overview Overview { get; set; }
+        public SignIn SignIn { get; set; }
+
         private List<FilmGenre> allGenres = new List<FilmGenre>();
 
         public List<FilmGenre> AllGenres
@@ -27,6 +33,7 @@ namespace Film_geek
                 allGenres = value;
             }
         }
+
 
     }
 }

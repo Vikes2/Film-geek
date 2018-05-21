@@ -57,19 +57,45 @@
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="Classes\Converters\ActorConverter.cs" />
     <Compile Include="Classes\Converters\DirectorConverter.cs" />
+    <Compile Include="Classes\Commands.cs" />
     <Compile Include="Classes\Director.cs" />
-    <Compile Include="Classes\ListSerializer.cs" />
+    <Compile Include="Classes\Print.cs" />
+    <Compile Include="Classes\Serializer\FilmSerializer.cs" />
+    <Compile Include="Classes\Serializer\ListSerializer.cs" />
     <Compile Include="Classes\PasswordEncoder.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Playlist.cs" />
+    <Compile Include="Classes\Serializer\PlaylistSerializer.cs" />
+    <Compile Include="Classes\Serializer\ProfileSerializer.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\FilmGenre.cs" />
+    <Compile Include="Classes\Utilities.cs" />
+    <Compile Include="printDialog\ShowDialog.cs" />
+    <Compile Include="UserControls\OverviewUC.xaml.cs">
+      <DependentUpon>OverviewUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PasswordInputView.xaml.cs">
+      <DependentUpon>PasswordInputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PlaylistView.xaml.cs">
+      <DependentUpon>PlaylistView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProfilesView.xaml.cs">
+      <DependentUpon>ProfilesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Auth.cs" />
     <Compile Include="Windows\AddOrEditFilm.xaml.cs">
       <DependentUpon>AddOrEditFilm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FilmDetails.xaml.cs">
+      <DependentUpon>FilmDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
@@ -77,9 +103,28 @@
     <Compile Include="Windows\PasswordRemind.xaml.cs">
       <DependentUpon>PasswordRemind.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\OverviewUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PasswordInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ProfilesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AddOrEditFilm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,6 +132,14 @@
     <Page Include="Windows\CreateAccount.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\FilmDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +160,10 @@
     <Page Include="Windows\PasswordRemind.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SignIn.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +199,9 @@
   <ItemGroup>
     <Resource Include="Resources\Avatars\default.png" />
     <Resource Include="Resources\Images\LogoTest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\FilmTest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

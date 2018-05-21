@@ -1,0 +1,79 @@
+﻿<Window x:Class="Film_geek.Windows.Profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:classes="clr-namespace:Film_geek.Classes"
+        mc:Ignorable="d"
+        Title="Profile" Height="350" Width="600"
+        Loaded="ProfileWindow_Loaded">
+
+    <Window.Resources>
+        <classes:ImageConverter x:Key="ImageConverter"/>
+    </Window.Resources>
+    <Grid ScrollViewer.CanContentScroll="True"
+       ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="auto" Name="DataGrid">
+            <Grid Margin="10" DockPanel.Dock="Left" Height="auto" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" MaxHeight="64" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="Fant" Width="100" Height="100"/>
+                <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content="Chcę ustawić avatar" />
+            </Grid>
+            <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Profil" Style ="{StaticResource h1}" Margin="5"></Label>
+                <Label Content="Nazwa użytkownika" Grid.Row="1" Margin="5"/>
+                <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname}" TextChanged="TB_login_TextChanged" ></TextBox>
+                <Label Content="Zmień hasło" Grid.Row="2" Margin="5"></Label>
+                <Button Name="BTN_PasswdoChanger" Click="BTN_PasswdoChanger_Click" Grid.Row="2" Grid.Column="1" Margin="5">
+                    Zmień hasło
+                </Button>
+                
+            </Grid>
+        </DockPanel>
+        <Grid Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="BTN_Cancel"  Margin="10,10,10,5" IsCancel="True" Click="BTN_Cancel_Click">Anuluj</Button>
+            <Button x:Name="BTN_ok"  Content="  OK  " Grid.Column="1"  Margin="10,10,10,5" Click="BTN_ok_Click" IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="false" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=TB_login, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=TB_question, Path=(Validation.HasError)}" Value="false" />
+                                    <Condition Binding="{Binding ElementName=TB_answer, Path=(Validation.HasError)}" Value="false" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="true" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Grid> 
+</Window>

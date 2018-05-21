@@ -3,15 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
         xmlns:local="clr-namespace:Film_geek.Classes.Converters"
+
+        
+        xmlns:app="clr-namespace:Film_geek.Classes"
+
         mc:Ignorable="d"
         Title="AddOrEditFilm" Height="500" Width="300">
+    <!--xmlns:local="clr-namespace:Film_geek.Windows"-->
     <!-- lekki edit xmlns:local, do poprawki-->
     <Window.Resources>
         <local:DirectorConverter x:Key="DirectorConverter"/>
         <local:ActorConverter x:Key="ActorConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
@@ -50,6 +56,67 @@
             <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
             <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>
             <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--<Label Content="_Tytuł:" Target="{Binding ElementName=TB_Name}" Grid.Row="0" Grid.Column="1" />
+            <Label Content="_Gatunek:" Target="{Binding ElementName=CB_Genre}" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="_Reżyser:" Target="{Binding ElementName=TB_Directors}" Grid.Row="2" Grid.Column="1"/>
+            <Label Content="_Aktorzy:" Target="{Binding ElementName=TB_Actors}" Grid.Row="3" Grid.Column="1"/>
+            <Label Content="_Ocena:" Target="{Binding ElementName=SL_Rating}" Grid.Row="4" Grid.Column="1"/>
+            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Tytuł filmu</TextBlock>
+                            <TextBlock>Tytuł filmu, który chcesz dodać. Pole jest obowiązkowe.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <ComboBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Gatunki</TextBlock>
+                            <TextBlock>Wybierz conajmniej jeden gatunek odpowiadający filmowi.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ComboBox.ToolTip>
+            </ComboBox>
+            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Reżyser</TextBlock>
+                            <TextBlock>Wpisz reżyser(ów). Pole nie jest obowiązkowe.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}">
+                <TextBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Aktorzy</TextBlock>
+                            <TextBlock>Wpisz aktora(ów). Pole nie jest obowiązkowe.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
+            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <Slider.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Ocena</TextBlock>
+                            <TextBlock>Oceń film. Ocenę w każdej chwili możesz zmienić.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Slider.ToolTip>
+            </Slider>-->
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -80,6 +147,16 @@
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_ReleaseDate" Grid.Column="0" Content="Data Premiery:"/>
                 <DatePicker Name="DP_ReleaseDate" Grid.Column="1" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}"/>
+                <!--<Button Name="BTN_ReleaseDatePicker" Grid.Column="1" Content="Wybierz datę..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">Data premiery</TextBlock>
+                                <TextBlock>Możesz wpisać datę premiery filmu. Nie jest to obowiązkowe.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>-->
             </Grid>
             <!--???-->
             <Grid Grid.Row="2">
@@ -87,7 +164,7 @@
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="14*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Opis:" Margin="0"/>
+                <Label Grid.Row="0" Target="{Binding ElementName=TB_Description}" Content="O_pis:" Margin="0"/>
                 <TextBox Name="TB_Description" Grid.Row="2" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"/>
             </Grid>
             
@@ -97,7 +174,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox Name="CHB_Image" Grid.Column="0" Content="Zdjęcie"/>
-                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}" Click="BTN_ImagePicker_Click"/>
+                <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Image}" Click="BTN_ImagePicker_Click">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">Zdjęcie</TextBlock>
+                                <TextBlock>Dodaj zdjęcie okładki bądź dowolne inne. Nie jest to obowiązkowe.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
             
             <Grid Grid.Row="4">
@@ -105,8 +191,19 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Name="BTN_Confirm" Grid.Column="0" Content="OK"/>
-                <Button Name="BTN_Cancel" Grid.Column="1" Content="Anuluj"/>
+
+                <!--IsDefault="True" , IsCancel="True" DOOOOOOOODAJ JAK YTRZZEBA -->
+
+                <Button Name="BTN_Confirm" Grid.Column="0">
+                    <AccessText>
+                        O_K    
+                    </AccessText>
+                </Button>
+                <Button Name="BTN_Cancel" Grid.Column="1">
+                    <AccessText>
+                        A_nuluj
+                    </AccessText>
+                </Button>
             </Grid>
         </Grid>
     </Grid>
