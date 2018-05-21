@@ -73,7 +73,6 @@ namespace Film_geek.UserControls
             if (passwordRemindWindow.ShowDialog() == true)
             {
                 //kod powodzenia
-                MessageBox.Show("XD");
             }
         }
     }

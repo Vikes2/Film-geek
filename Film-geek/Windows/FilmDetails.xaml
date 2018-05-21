@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="FilmDetails" Height="600" Width="450" SizeToContent="Height">
+        Title="FilmDetails" Height="600" Width="450" SizeToContent="Height"
+        Loaded="Window_Loaded">
     <DockPanel Style="{StaticResource LightBackground2}" Name="ContentContainer">
         <Grid DockPanel.Dock="Top" Margin="10">
             <Grid.ColumnDefinitions>

@@ -95,5 +95,24 @@ namespace Film_geek.Windows
         {
             e.CanExecute = true;
         }
+
+        private void Detail_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Parameter is Film film)
+            {
+                FilmDetails window = new FilmDetails();
+                window.Film = film;
+                window.Show();
+            }else
+            {
+                MessageBox.Show("film jest nullem");
+            }
+
+        }
+
+        private void Detail_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }

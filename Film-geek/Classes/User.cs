@@ -81,6 +81,8 @@ namespace Film_geek.Classes
         public User()
         {
             Playlists = new ObservableCollection<Playlist>();
+            Rating = new Dictionary<Film, float>();
+            WatchStatus = new Dictionary<Film, bool>();
             ImagePath = "/resources/Avatars/Default.png";
         }
 

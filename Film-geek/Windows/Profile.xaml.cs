@@ -99,8 +99,7 @@ namespace Film_geek.Windows
             //Nickname = Auth.Instance.LoggedUser.Nickname;
             //MessageBox.Show(Nickname);
             //ImagePath = Auth.Instance.LoggedUser.ImagePath;
-            //avatarPicker.FileName = ImagePath;
-            //IMG_UserImage.Source = ImagePath;
+
         }
 
         private void TB_login_TextChanged(object sender, TextChangedEventArgs e)
@@ -110,14 +109,10 @@ namespace Film_geek.Windows
 
         private void BTN_PasswdoChanger_Click(object sender, RoutedEventArgs e)
         {
-            PasswordRemind window = new PasswordRemind();
-            if(window.ShowDialog() == true)
+            PasswordRemind passwordRemindWindow = new PasswordRemind(Auth.Instance.LoggedUser);
+            if (passwordRemindWindow.ShowDialog() == true)
             {
-
-            }
-            else
-            {
-
+                //kod powodzenia
             }
 
         }

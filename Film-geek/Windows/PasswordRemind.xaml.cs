@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,9 +68,19 @@ namespace Film_geek.Windows
                 MessageBox.Show("Hasła się nie zgadzają!");
                 return;
             }
-            DialogResult = true;
-            Close();
-            contextUser.Password = (new PasswordEncoder()).EncryptWithByteArray(TB_passwd.Password);
+
+            MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz zmienic ?",
+                                          "Potwierdzenie",
+                                          MessageBoxButton.YesNo,
+                                          MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                DialogResult = true;
+                Close();
+                Auth.Instance.SetPassword(contextUser, TB_passwd.Password);
+            }
+
+            
         }
 
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)

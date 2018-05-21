@@ -196,6 +196,14 @@ namespace Film_geek.Util
                 filmSerializer.PushData();
             }
         }
+        public void SetPassword(User u, string newPassword)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                u.Password = GetMd5Hash(md5Hash, u.Id + newPassword);
+            }
+            profileSerializer.PushData();
+        }
 
         public bool LogIn(User user, string password)
         {
