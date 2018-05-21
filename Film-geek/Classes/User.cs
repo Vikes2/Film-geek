@@ -21,6 +21,7 @@ namespace Film_geek.Classes
         private string id;
         private string imagePath;
         private string password;
+        private ObservableCollection<Playlist> playlists;
 
         public string Id
         {
@@ -60,7 +61,18 @@ namespace Film_geek.Classes
         }
 
         [XmlIgnore]
-        public ObservableCollection<Playlist> Playlists { get; set; }
+        public ObservableCollection<Playlist> Playlists
+        {
+            get
+            {
+                return playlists;
+            }
+            set
+            {
+                playlists = value;
+                OnPropertyChanged("");
+            }
+        }
         [XmlIgnore]
         public Dictionary<Film,float> Rating{ get; set; }
         [XmlIgnore]
@@ -70,6 +82,11 @@ namespace Film_geek.Classes
         {
             Playlists = new ObservableCollection<Playlist>();
             ImagePath = "/resources/Avatars/Default.png";
+        }
+
+        public void AddPlaylist(Playlist playlist)
+        {
+            Playlists.Add(playlist);
         }
 
         public void OnPropertyChanged(string property)

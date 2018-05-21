@@ -10,7 +10,7 @@
         Loaded="ProfileWindow_Loaded">
 
     <Window.Resources>
-        <classes:ImageConverter x:Key="imageConverter"/>
+        <classes:ImageConverter x:Key="ImageConverter"/>
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="True"
        ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}">
@@ -24,7 +24,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Mode=TwoWay}" Width="100" Height="100"/>
+                <Image x:Name="IMG_UserImage"  Margin="20,10,10,10" Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" MaxHeight="64" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="Fant" Width="100" Height="100"/>
                 <Button x:Name="BTN_setPhoto"   Grid.Row="1"  Margin="5" FontSize="10" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" Click="BTN_setPhoto_Click" Content="Chcę ustawić avatar" />
             </Grid>
             <Grid DockPanel.Dock="Right" Margin="10" VerticalAlignment="Top">

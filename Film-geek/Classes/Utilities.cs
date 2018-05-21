@@ -75,7 +75,7 @@ namespace Film_geek.Classes
         {
             try
             {
-                return new BitmapImage(new Uri((string)value));
+                return new BitmapImage(new Uri((string)value, UriKind.Relative));
             }
             catch
             {

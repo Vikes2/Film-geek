@@ -28,7 +28,6 @@ namespace Film_geek.UserControls
             CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
             UserDetails.DataContext = Auth.Instance.LoggedUser;
-
         }
 
 

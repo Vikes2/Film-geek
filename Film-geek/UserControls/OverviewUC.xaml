@@ -29,9 +29,9 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Name="BTN_FilmsView">
+                <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">
                     <AccessText>
-                        _Przeglądaj filmy
+                        Przegladaj _listy
                     </AccessText>
                 </Button>
                 <Button Name="BTN_AddFilm" Command="comm:AddFilmCommand.Add">
@@ -81,16 +81,7 @@
                 <ListBoxItem>Powiadomienie 3</ListBoxItem>
             </ListBox>
             <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">
-                    <AccessText>
-                        Przegladaj _listy
-                    </AccessText>
-                </Button>
-                <Viewbox Grid.Row="1" Margin="20">
+                <Viewbox Margin="20">
                     <Calendar SelectionMode="MultipleRange">
                     </Calendar>
                 </Viewbox>

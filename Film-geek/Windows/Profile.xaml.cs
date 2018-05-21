@@ -32,6 +32,8 @@ namespace Film_geek.Windows
         public ObservableCollection<Playlist> Playlists { get; set; }
         public Dictionary<Film, float> Rating { get; set; }
 
+        public User User { get; set; }
+
         //public event PropertyChangedEventHandler PropertyChanged;
 
         private string nickname;
@@ -90,13 +92,13 @@ namespace Film_geek.Windows
             Close();
         }
 
-
-
         private void ProfileWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Nickname = Auth.Instance.LoggedUser.Nickname;
-            MessageBox.Show(Nickname);
-            ImagePath = Auth.Instance.LoggedUser.ImagePath;
+            User = Auth.Instance.LoggedUser;
+            DataGrid.DataContext = User;
+            //Nickname = Auth.Instance.LoggedUser.Nickname;
+            //MessageBox.Show(Nickname);
+            //ImagePath = Auth.Instance.LoggedUser.ImagePath;
             //avatarPicker.FileName = ImagePath;
             //IMG_UserImage.Source = ImagePath;
         }

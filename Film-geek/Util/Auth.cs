@@ -138,7 +138,8 @@ namespace Film_geek.Util
                 Name = name
             };
 
-            LoggedUser.Playlists.Add(newPlaylist);
+            LoggedUser.AddPlaylist(newPlaylist);
+            //LoggedUser.Playlists.Add(newPlaylist);
             playlistSerializer.PushData();
         }
 
