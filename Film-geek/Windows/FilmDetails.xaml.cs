@@ -20,48 +20,42 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class FilmDetails : Window
     {
+        private Film film;
+        public Film Film
+        {
+            get
+            {
+                return film;
+            }
+          set
+            {
+                film = value;
+            }
+        }
         public FilmDetails()
         {
             InitializeComponent();
-            //  bajzel do testowania
-            FilmGenre a = new FilmGenre() { Name = "horror" };
-            FilmGenre b = new FilmGenre() { Name = "kreskówka" };
-            FilmGenre c = new FilmGenre() { Name = "czarna komedia" };
-            ((App)Application.Current).AllGenres.Add(a);
-            ((App)Application.Current).AllGenres.Add(b);
 
-            Film film = new Film();
-            Director d = new Director("Kłentin", "Tarantino");
-            Actor act = new Actor("Stiwen", "Sigal");
-            film.Genres = new List<FilmGenre>(((App)Application.Current).AllGenres);
-            film.Title = "Potwór w pokoju pracy";
-            film.Description = "Ingrygująca produkcja niezależnego kina informatycznego";
-          //  film.Directors.Add(d);
-            film.Actors.Add(act);
-            DateTime dat = new DateTime(2001, 09, 11);
-            film.ReleaseDate = dat;
-
-
-            ((App)Application.Current).AllGenres.Add(c);
-            BitmapImage bimage = new BitmapImage();
-            bimage.BeginInit();
-            bimage.UriSource = new Uri(film.ImagePath, UriKind.Relative);
-            bimage.EndInit();
-
-            IMG_FilmImage.Source = bimage;
-            LBL_FilmTitle.Content = film.Title;
-            TBL_FilmGenres.Text = film.GenresDetails();
-            //  SL_Rating.Value = (double)((App)Application.Current).Overview.LoggedUser.Rating[film];
-            // CHB_IsWatched.IsChecked = ((App)Application.Current).Overview.LoggedUser.WatchStatus[film];
-            LBL_FilmDirector.Content = film.DirectorsDetails();
-            LBL_FilmActors.Content = film.ActorsDetails();
-            LBL_FilmRelease.Content = String.Format("{0:MM/dd/yyyy}", film.ReleaseDate); //a to nie wiem czy zadziala
-            TBL_FilmDescription.Text = film.Description;
         }
 
-        public FilmDetails(Film film)
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            Close();
+        }
+
+        private void BTN_FilmEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // addOrEditFilm(film)
+        }
+
+        private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             #region setImage
             BitmapImage bimage = new BitmapImage();
             bimage.BeginInit();
@@ -71,9 +65,25 @@ namespace Film_geek.Windows
             #endregion
             LBL_FilmTitle.Content = film.Title;
             TBL_FilmGenres.Text = film.GenresDetails();
-            SL_Rating.Value = (double)((App)Application.Current).Overview.LoggedUser.Rating[film];
+            if(((App)Application.Current).Overview.LoggedUser.Rating.Keys.Contains<Film>(film) == true)
+            {
+                SL_Rating.Value = (double)((App)Application.Current).Overview.LoggedUser.Rating[film];
+            }
+            else
+            {
+                SL_Rating.Value = 0;
+            }
             #region setIsWatched
-            CHB_IsWatched.IsChecked = ((App)Application.Current).Overview.LoggedUser.WatchStatus[film];
+            if(((App)Application.Current).Overview.LoggedUser.WatchStatus.Keys.Contains(film) == true)
+            {
+                CHB_IsWatched.IsChecked = ((App)Application.Current).Overview.LoggedUser.WatchStatus[film];
+
+            }
+            else
+            {
+                CHB_IsWatched.IsChecked = false;
+            }
+
             if (CHB_IsWatched.IsChecked == true)
                 CHB_IsWatched.Content = "Obejrzane";
             else
@@ -93,20 +103,6 @@ namespace Film_geek.Windows
             else
                 TBL_FilmDescription.Text = film.Description;
             #endregion
-        }
-        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void BTN_FilmEdit_Click(object sender, RoutedEventArgs e)
-        {
-            // addOrEditFilm(film)
-        }
-
-        private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

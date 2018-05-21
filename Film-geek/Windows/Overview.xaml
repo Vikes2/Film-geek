@@ -12,6 +12,7 @@
         <CommandBinding Command="comm:LogOutCommand.LogOut" Executed="LogOut_Executed" CanExecute="LogOut_CanExecute" />
         <CommandBinding Command="comm:ProfileSettings.Profile" Executed="Profile_Executed" CanExecute="Profile_CanExecute" />
         <CommandBinding Command="comm:HelpManual.Help" Executed="Help_Executed" CanExecute="Help_CanExecute" />
+        <CommandBinding Command="comm:FilmDetailCommand.Detail" Executed="Detail_Executed" CanExecute="Detail_CanExecute" />
     </Window.CommandBindings>
     
     <Window.Resources>

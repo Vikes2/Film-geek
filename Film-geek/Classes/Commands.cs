@@ -86,9 +86,25 @@ namespace Film_geek.Classes
                 return help;
             }
         }
-
-
-
-
     }
+
+    public class FilmDetailCommand
+    {
+        private static RoutedUICommand detail;
+
+        static FilmDetailCommand()
+        {
+            detail = new RoutedUICommand("Film Detail", "Film Detail", typeof(ProfileSettings));
+            detail.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+        }
+
+        public static RoutedUICommand Detail
+        {
+            get
+            {
+                return detail;
+            }
+        }
+    }
+
 }

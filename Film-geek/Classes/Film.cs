@@ -63,7 +63,14 @@ namespace Film_geek.Classes
             {
                 genrelist += g.ToString() + ", ";
             }
-            return genrelist.Remove(genrelist.Length- 2);
+            if (genrelist.Length == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return genrelist.Remove(genrelist.Length - 2);
+            }
         }
 
 
