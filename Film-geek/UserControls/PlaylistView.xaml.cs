@@ -124,12 +124,17 @@ namespace Film_geek.UserControls
                 {
 
                     Auth.Instance.AddFilmToPlaylist(selectedFilm, playlist);
-                    //selectedFilm.Playlists.Add(playlist.Id);
                 }
             }
             POP_list.IsOpen = false;
 
 
+        }
+
+        private void deleteFilm(object sender, RoutedEventArgs e)
+        {
+            Film film = (Film)((Button)sender).Tag;
+            Auth.Instance.DeleteFilm(film);
         }
     }
 }

@@ -104,6 +104,25 @@ namespace Film_geek.Util
             playlistSerializer.PushData();
         }
 
+        public void DeleteFilm(Film film)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            ObservableCollection<Playlist> playlists = new ObservableCollection<Playlist>();
+            playlists = LoggedUser.Playlists;
+            foreach (Playlist p in playlists)
+            {
+                if (p.Films.Contains(film))
+                {
+                    p.Films.Remove(film);
+                }
+            }
+
+            filmSerializer.PushData();
+            playlistSerializer.PushData();
+        }
+
         private int GetPlaylistLastId()
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);

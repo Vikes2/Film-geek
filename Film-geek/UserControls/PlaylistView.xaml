@@ -29,10 +29,10 @@
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmDetailCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
                         <Button>Edytuj</Button>
-                        <Button >Dodaj do listy</Button>
-                        <Button DockPanel.Dock="Right" Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="TESTOWY" />
+                        <Button >Test</Button>
+                        <Button DockPanel.Dock="Right" Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="Dodaj do listy" />
                         
-                        <Button>Usuń</Button>
+                        <Button Tag="{Binding}" Click="deleteFilm" >Usuń</Button>
                     </StackPanel>
 
                 </Grid>
