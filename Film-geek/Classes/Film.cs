@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Film_geek.Classes
 {
-
     public class Film
     {
         public int Id { get; set; }

@@ -81,14 +81,18 @@ namespace Film_geek.Util
             }
         }
 
-        private void AddFilmToPlaylist(Film film, Playlist playlist = null)
+        public void AddFilmToPlaylist(Film film, Playlist playlist = null)
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
             filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
             if (playlist != null)
             {
-                playlist.Films.Add(film);
+                if (!playlist.Films.Contains(film))
+                {
+                    playlist.Films.Add(film);
+                    film.Playlists.Add(playlist.Id);
+                }
             }
 
             if (!LoggedUser.Playlists[0].Films.Contains(film))

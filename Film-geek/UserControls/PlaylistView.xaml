@@ -7,7 +7,8 @@
              xmlns:app="clr-namespace:Film_geek.Classes"
              xmlns:comm="clr-namespace:Film_geek.Classes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <app:ImageConverter x:Key="ImageConverter"/>
         <DataTemplate x:Key="FilmTemplate">
@@ -28,13 +29,24 @@
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmDetailCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
                         <Button>Edytuj</Button>
-                        <Button>Dodaj do listy</Button>
+                        <Button >Dodaj do listy</Button>
+                        <Button DockPanel.Dock="Right" Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="TESTOWY" />
+                        
                         <Button>Usuń</Button>
                     </StackPanel>
 
                 </Grid>
             </Border>
         </DataTemplate>
+
+        <DataTemplate x:Key="ButtonTemplate">
+            <Border Margin="5" Padding="3" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch">
+                <Grid HorizontalAlignment="Stretch" >
+                    <Button Click="AddToPlaylist" Tag="{Binding}" Content="{Binding Path=Name}" ></Button>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
     </UserControl.Resources>
 
     <Grid>
@@ -107,6 +119,7 @@
 -->
                 <Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
                 <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />
+
                 <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                 <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
                 <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
@@ -115,6 +128,27 @@
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">
 
             </ListView>
+            <Popup x:Name="POP_list"  PopupAnimation="Fade" Placement="Mouse" AllowsTransparency="True" StaysOpen="False">
+                <Grid Background="WhiteSmoke">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0">
+
+                        <Button DockPanel.Dock="Right" Name="BTN_exit" Click="BTN_exit_Click" >X</Button>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" >
+                        <ListView Name="LB_ButtonsView" ItemTemplate="{StaticResource ButtonTemplate}" >
+
+                        </ListView>
+
+                    </DockPanel>
+
+                </Grid>
+            </Popup>
+
+
         </Grid>
     </Grid>
 </UserControl>
