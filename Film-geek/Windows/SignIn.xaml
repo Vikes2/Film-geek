@@ -1,22 +1,22 @@
-﻿<Window x:Name="SignInWindow" x:Class="Film_geek.Windows.SignIn"
+﻿<Window x:Name="SignInWindow" x:Class="Film_geek.Windows.SignIn" Style="{StaticResource DefaultWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="SignIn" Height="300" Width="300">
-
-    <Grid Style="{StaticResource LightBackground}">
+        Title="Logowanie" ResizeMode="NoResize" Loaded="SignInWindow_Loaded" Width="720" Height="470">
+    <Grid Style="{StaticResource StandardContainer}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <DockPanel>
-            <Image DockPanel.Dock="Left" Source="/resources/images/logotest.png" HorizontalAlignment="Left"/>
-            <Label Name="LB_InfoBar" VerticalAlignment="Center" HorizontalAlignment="Center" ></Label>
+            <Image DockPanel.Dock="Left" Source="/resources/images/logo.png" HorizontalAlignment="Left" MaxHeight="100" RenderOptions.BitmapScalingMode="Fant"/>
+            <Label Name="LB_InfoBar" VerticalAlignment="Center" HorizontalAlignment="Center"  Style="{StaticResource Header-1}"></Label>
+            <Label Name="test"></Label>
         </DockPanel>
-        <Grid Grid.Row="1" Background="#ddd" Name="GD_SignInContent">
+        <Grid Grid.Row="1" Name="GD_SignInContent">
 
         </Grid>
 

@@ -38,9 +38,13 @@ namespace Film_geek.Windows
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show(MinWidth.ToString());
             //Auth.Instance.LoggedUser = Auth.Instance.users[0];
             //(new Overview()).Show();
+            //MessageBox.Show(this.Height.ToString() + "x" + this.Width.ToString());
         }
+
+
 
     }
 }

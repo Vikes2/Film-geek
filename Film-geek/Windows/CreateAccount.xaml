@@ -18,7 +18,7 @@
     </Window.Resources>
     
     <Grid ScrollViewer.CanContentScroll="True"
-       ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource LightBackground}" UIElement.KeyUp="Grid_KeyUp">
+       ScrollViewer.HorizontalScrollBarVisibility="Auto" UIElement.KeyUp="Grid_KeyUp">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -57,7 +57,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="Zakładanie konta" Style ="{StaticResource h1}" Margin="5"></Label>
+                <Label Content="Zakładanie konta" Margin="5"></Label>
                 <Label Content="_Nazwa użytkownika" Target="{Binding ElementName=TB_Login}" Grid.Row="1" Margin="5"/>
                 <TextBox x:Name="TB_login" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Nickname,ValidatesOnDataErrors=True}">
                     <Validation.ErrorTemplate>

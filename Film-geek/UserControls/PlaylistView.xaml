@@ -98,7 +98,7 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
-                <ComboBox Name="CB_Playlists"  SelectionChanged="CB_Playlists_SelectionChanged" />
+                <ComboBox Name="CB_Playlists" />
 
 <!--
                 <Button DockPanel.Dock="Right" Command="New">

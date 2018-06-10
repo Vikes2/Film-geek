@@ -36,12 +36,6 @@ namespace Film_geek.UserControls
             UserDetails.DataContext = Auth.Instance.LoggedUser;
         }
 
-
-        private void CB_Playlists_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LB_PlaylistsView.Items.Refresh();
-        }
-
         private void BTN_Overview_Click(object sender, RoutedEventArgs e)
         {
             Overview overview = ((App)Application.Current).Overview;

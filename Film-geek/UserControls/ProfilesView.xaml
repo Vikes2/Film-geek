@@ -10,18 +10,23 @@
              >
     <UserControl.Resources>
         <DataTemplate x:Key="UserTemplate">
-            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4">
-                <Grid MouseLeftButtonDown="User_MouseLeftButtonDown" Tag="{Binding}" Margin="3" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+            <Grid MouseLeftButtonDown="User_MouseLeftButtonDown" Tag="{Binding}" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="profile"/>
+                </Grid.ColumnDefinitions>
+                <Border Margin="15" BorderThickness="1.2" BorderBrush="SteelBlue" CornerRadius="5" Grid.IsSharedSizeScope="True">
+                    <Grid Margin="10 20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
+                        <Image Grid.Row="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}" RenderOptions.BitmapScalingMode="Fant" />
 
-                    <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalContentAlignment="Center"></Label>
-                </Grid>
-            </Border>
+                        <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalContentAlignment="Center"></Label>
+                    </Grid>
+                </Border>
+            </Grid>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -33,18 +38,20 @@
 
         <ListBox Name="LB_Users" HorizontalContentAlignment="Center"
                  ItemTemplate="{StaticResource UserTemplate}"
-                 ScrollViewer.CanContentScroll="False" >
+                 ScrollViewer.CanContentScroll="False"
+                 Grid.IsSharedSizeScope="True">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" IsItemsHost="True" />
-                    <!--<WrapPanel IsItemsHost="True"/>-->
+                    <!--<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" IsItemsHost="True" />-->
+                    <WrapPanel IsItemsHost="True"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
 
         </ListBox>
 
         <Button Name="BTN_NewUser" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BTN_NewUser_Click">
-            <AccessText>_NOWY UZYTKOWNIK</AccessText></Button>
+            <AccessText>_Nowy użytkownik</AccessText>
+        </Button>
 
     </Grid>
 </UserControl>

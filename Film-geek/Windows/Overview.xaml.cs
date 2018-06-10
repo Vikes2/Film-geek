@@ -42,9 +42,9 @@ namespace Film_geek.Windows
 
         private void AddFilm_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            AddOrEditFilm window = new AddOrEditFilm();
-            window.ActiveFilm = new Film();
-            if (window.ShowDialog() == true)
+            AddOrEditFilm addWindow = new AddOrEditFilm();
+            addWindow.ActiveFilm = new Film();
+            if (addWindow.ShowDialog() == true)
             {
 
                 //window.ActiveFilm - to add to selected playlists

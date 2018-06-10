@@ -1,5 +1,7 @@
 ﻿using Film_geek.Classes;
 using Film_geek.Classes.Serializer;
+using Film_geek.UserControls;
+using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -142,6 +144,9 @@ namespace Film_geek.Util
                 Name = name
             };
 
+            Overview overview = ((App)Application.Current).Overview;
+            overview.PUC.CB_Playlists.ItemsSource = null;
+            overview.PUC.CB_Playlists.ItemsSource = LoggedUser.Playlists;
             LoggedUser.AddPlaylist(newPlaylist);
             //LoggedUser.Playlists.Add(newPlaylist);
             playlistSerializer.PushData();
