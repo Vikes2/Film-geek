@@ -123,6 +123,17 @@ namespace Film_geek.Util
             playlistSerializer.PushData();
         }
 
+        public void DeletePlaylist(Playlist playlist)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            LoggedUser.Playlists.Remove(playlist);
+
+            filmSerializer.PushData();
+            playlistSerializer.PushData();
+        }
+
         private int GetPlaylistLastId()
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);

@@ -136,5 +136,11 @@ namespace Film_geek.UserControls
             Film film = (Film)((Button)sender).Tag;
             Auth.Instance.DeleteFilm(film);
         }
+
+        private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
+        {
+            PlaylistManager window = new PlaylistManager();
+            window.Show();
+        }
     }
 }
