@@ -53,6 +53,7 @@ namespace Film_geek.UserControls
         {
             User newUser;
             CreateAccount createAccountWindow = new CreateAccount();
+            createAccountWindow.Owner = signInWindow;
             if (createAccountWindow.ShowDialog() == true)
             {
                 newUser = createAccountWindow.NewUser;

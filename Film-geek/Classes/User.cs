@@ -21,6 +21,7 @@ namespace Film_geek.Classes
         private string id;
         private string imagePath;
         private string password;
+        private string securityAnswer;
         private ObservableCollection<Playlist> playlists;
 
         public string Id
@@ -48,7 +49,17 @@ namespace Film_geek.Classes
             }
         }
         public string SecurityQuestion { get; set; }
-        public string SecurityAnswer { get; set; }
+        public string SecurityAnswer
+        {
+            get
+            {
+                return securityAnswer;
+            }
+            set
+            {
+                securityAnswer = value.ToLower();
+            }
+        }
         public string Password {
             get
             {
