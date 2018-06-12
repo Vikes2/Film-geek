@@ -23,33 +23,14 @@ namespace Film_geek.Windows
     /// <summary>
     /// Logika interakcji dla klasy Profile.xaml
     /// </summary>
-    public partial class Profile : Window, INotifyPropertyChanged
+    public partial class Profile : Window
     {
         // impotr/export playlists, change avatar, change nickname
 
         private OpenFileDialog avatarPicker;  //= new OpenFileDialog();
-        public string ImagePath { get; set; }
-        public ObservableCollection<Playlist> Playlists { get; set; }
-        public Dictionary<Film, float> Rating { get; set; }
+        private string imagePath;
 
         public User User { get; set; }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        private string nickname;
-
-        public string Nickname
-        {
-            get { return nickname; }
-            set
-            {
-                if (value != nickname)
-                {
-                    nickname = value;
-                    OnPropertyChanged("Nickname");
-                }
-            }
-        }
 
         public Profile()
         {
@@ -60,9 +41,20 @@ namespace Film_geek.Windows
         {
             if (avatarPicker != null)
             {
-                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
+                // to do: plik w uzyciu
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", User.Id + System.IO.Path.GetExtension(avatarPicker.FileName));
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    } catch(IOException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
                 File.Copy(avatarPicker.FileName, path);
-                ImagePath = path;
+                User.ImagePath = path;
             }
         }
 
@@ -75,8 +67,8 @@ namespace Film_geek.Windows
             };
             if (avatarPicker.ShowDialog() == true)
             {
-                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
-                ImagePath = avatarPicker.FileName;
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", User.Id + System.IO.Path.GetExtension(avatarPicker.FileName));
+                IMG_UserImage.Source = new BitmapImage(new Uri(avatarPicker.FileName, UriKind.RelativeOrAbsolute));
             }
 
         }
@@ -84,6 +76,8 @@ namespace Film_geek.Windows
         private void BTN_ok_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+            BindingExpression binding = TB_login.GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
             Close();
         }
 
@@ -96,10 +90,6 @@ namespace Film_geek.Windows
         {
             User = Auth.Instance.LoggedUser;
             DataGrid.DataContext = User;
-            //Nickname = Auth.Instance.LoggedUser.Nickname;
-            //MessageBox.Show(Nickname);
-            //ImagePath = Auth.Instance.LoggedUser.ImagePath;
-
         }
 
         private void TB_login_TextChanged(object sender, TextChangedEventArgs e)
@@ -110,20 +100,12 @@ namespace Film_geek.Windows
         private void BTN_PasswdoChanger_Click(object sender, RoutedEventArgs e)
         {
             PasswordRemind passwordRemindWindow = new PasswordRemind(Auth.Instance.LoggedUser);
+            passwordRemindWindow.Owner = this;
             if (passwordRemindWindow.ShowDialog() == true)
             {
                 //kod powodzenia
             }
 
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this,
-                new PropertyChangedEventArgs(property));
-        }
-
     }
 }

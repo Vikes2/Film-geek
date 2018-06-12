@@ -20,6 +20,7 @@ namespace Film_geek.Classes
 
         private string id;
         private string imagePath;
+        private string nickname;
         private string password;
         private string securityAnswer;
         private ObservableCollection<Playlist> playlists;
@@ -35,7 +36,18 @@ namespace Film_geek.Classes
                 id = value;
             }
         }
-        public string Nickname { get; set; }
+        public string Nickname
+        {
+            get
+            {
+                return nickname;
+            }
+            set
+            {
+                nickname = value;
+                OnPropertyChanged("Nickname");
+            }
+        }
         public string ImagePath
         {
             get
@@ -113,7 +125,7 @@ namespace Film_geek.Classes
         {
             foreach (User u in (Auth.Instance.users))
             {
-                if (username == u.Nickname)
+                if (username == u.Nickname && id != u.Id)
                 {
                     return true;
                 }

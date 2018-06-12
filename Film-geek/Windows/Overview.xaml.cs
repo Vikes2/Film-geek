@@ -72,11 +72,12 @@ namespace Film_geek.Windows
         private void Profile_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Profile Window = new Profile();
+            Window.Owner = this;
+            Window.User = Auth.Instance.LoggedUser;
             if (Window.ShowDialog() == true)
             {
                 Window.SaveAvatar();
-                Auth.Instance.LoggedUser.Nickname = Window.Name;
-                Auth.Instance.LoggedUser.ImagePath = Window.ImagePath;
+                Auth.Instance.SaveUsers();
             }
         }
 

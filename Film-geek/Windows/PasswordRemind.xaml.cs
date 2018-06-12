@@ -41,7 +41,7 @@ namespace Film_geek.Windows
 
         private void TB_answer_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TB_answer.Text == contextUser.SecurityAnswer)
+            if (Auth.Instance.CheckSecurityAnswer(contextUser, TB_answer.Text))
             {
                 TB_passwd.IsEnabled = true;
                 TB_passwd2.IsEnabled = true;
@@ -76,8 +76,8 @@ namespace Film_geek.Windows
             if (result == MessageBoxResult.Yes)
             {
                 DialogResult = true;
-                Close();
                 Auth.Instance.SetPassword(contextUser, TB_passwd.Password);
+                Close();
             }
 
             

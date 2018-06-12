@@ -194,7 +194,7 @@ namespace Film_geek.Util
                 {
                     user.Id = GetMd5Hash(md5Hash, (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond).ToString());
                     user.Password = GetMd5Hash(md5Hash, user.Id + user.Password);
-                    user.SecurityAnswer = GetMd5Hash(md5Hash, user.Id + user.Password);
+                    user.SecurityAnswer = GetMd5Hash(md5Hash, user.Id + user.SecurityAnswer);
                 }
 
                 profileSerializer.PushData();
@@ -205,6 +205,22 @@ namespace Film_geek.Util
                 filmSerializer.PushData();
             }
         }
+
+        public void SaveUsers()
+        {
+            profileSerializer.PushData();
+        }
+
+        public bool CheckSecurityAnswer(User user, string securityAnswer)
+        {
+            using(MD5 md5Hash = MD5.Create())
+            {
+                //MessageBox.Show(user.SecurityAnswer);
+                //MessageBox.Show(GetMd5Hash(md5Hash, user.Id + securityAnswer));
+                return (user.SecurityAnswer == GetMd5Hash(md5Hash, user.Id + securityAnswer));
+            }
+        }
+        
         public void SetPassword(User u, string newPassword)
         {
             using (MD5 md5Hash = MD5.Create())
