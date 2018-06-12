@@ -90,4 +90,31 @@ namespace Film_geek.Classes
         }
     }
 
+
+
+    public class FilmIdToBoolConverter : IValueConverter
+    {
+        #region FilmToBoolConverter 
+        public object Convert(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            if (targetType != typeof(int))
+                throw new InvalidOperationException("The target must be a boolean");
+            if ((int)value != 0 && (int)value != null)
+            {
+
+
+
+            }
+                
+        }
+        public object ConvertBack(object value, Type targetType, object parameter,
+            System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+        #endregion
+    }
+
+
 }

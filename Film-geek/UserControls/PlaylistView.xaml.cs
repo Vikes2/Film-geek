@@ -34,6 +34,8 @@ namespace Film_geek.UserControls
             CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
             UserDetails.DataContext = Auth.Instance.LoggedUser;
+            ((App)Application.Current).PlaylistView = this;
+
         }
 
 
@@ -140,6 +142,7 @@ namespace Film_geek.UserControls
         private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
         {
             PlaylistManager window = new PlaylistManager();
+            window.Owner = ((App)Application.Current).Overview;
             window.Show();
         }
     }

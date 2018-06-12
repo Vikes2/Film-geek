@@ -9,11 +9,10 @@
         Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="PlaylistTemplate">
-            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch">
-                <Grid HorizontalAlignment="Stretch" >
+            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch" >
+                <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
@@ -22,9 +21,8 @@
                     <Label Grid.Column="0"  Content="{Binding Path=Name}" HorizontalContentAlignment="Center"></Label>
 
 
-                    <Button Click="BTN_back_Click" Grid.Column="1" Content="Przegladaj"/>
-                    <Button Click="BTN_edit_Click" Grid.Column="2" Content="Edytuj"/>
-                    <Button Click="BTN_del_Click" Tag="{Binding}" Grid.Column="3" Content="Usuń"/>
+                    <Button Click="BTN_edit_Click" Tag="{Binding}" Grid.Column="1" Content="Edytuj"/>
+                    <Button Click="BTN_del_Click" Tag="{Binding}" Grid.Column="2" Content="Usuń"/>
 
 
                 </Grid>
@@ -32,12 +30,15 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-
-        <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource PlaylistTemplate}"  HorizontalContentAlignment="Stretch">
+        <ListView Name="LB_PlaylistsView" Grid.Row="0" ItemTemplate="{StaticResource PlaylistTemplate}"  HorizontalContentAlignment="Stretch">
 
         </ListView>
 
-
+        <Button Click="BTN_back_Click" Grid.Row="1" Content="Przegladaj playlisty"/>
     </Grid>
 </Window>

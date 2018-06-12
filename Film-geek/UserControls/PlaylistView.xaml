@@ -123,7 +123,7 @@
                 <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                 <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
                 <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
-                <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="Help" />
+                <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
             </DockPanel>
 
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">

@@ -22,6 +22,7 @@ namespace Film_geek.Windows
     /// </summary>
     public partial class PlaylistManager : Window
     {
+
         public PlaylistManager()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace Film_geek.Windows
 
         private void BTN_del_Click(object sender, RoutedEventArgs e)
         {
+
             MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć listę?\nObiekt zostanie trwale usuniety.",
                                           "Confirmation",
                                           MessageBoxButton.YesNo,
@@ -37,12 +39,24 @@ namespace Film_geek.Windows
             {
                 Playlist playlist = (Playlist)((Button)sender).Tag;
                 Auth.Instance.DeletePlaylist(playlist);
+                ((App)Application.Current).Playlists.Remove(playlist);
+                ((App)Application.Current).PlaylistView.CB_Playlists.SelectedIndex = 0;
+
             }
         }
 
         private void BTN_edit_Click(object sender, RoutedEventArgs e)
         {
+            ObservableCollection<Film> films = ((Playlist)(((Button)sender).Tag)).Films;
+            EditPlaylist window = new EditPlaylist(films);
+            if(window.ShowDialog() == true)
+            {
 
+            }
+            else
+            {
+
+            }
         }
 
         private void BTN_back_Click(object sender, RoutedEventArgs e)
@@ -52,10 +66,19 @@ namespace Film_geek.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<Playlist> playlists = Auth.Instance.LoggedUser.Playlists;
-            playlists.RemoveAt(0);
+            ((App)Application.Current).Playlists.Clear();
+            foreach (Playlist p in Auth.Instance.LoggedUser.Playlists)
+            {
+                if(p.Id != 1)
+                {
+                    ((App)Application.Current).Playlists.Add(p);
+                }
 
-            LB_PlaylistsView.ItemsSource = playlists;
+            }
+
+            LB_PlaylistsView.ItemsSource = ((App)Application.Current).Playlists;
+
+            
         }
     }
 }

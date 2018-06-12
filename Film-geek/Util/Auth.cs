@@ -3,6 +3,7 @@ using Film_geek.Classes.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,7 +13,7 @@ using System.Windows;
 
 namespace Film_geek.Util
 {
-    public class Auth
+    public class Auth : INotifyPropertyChanged
     {
         private static Auth singleton = null;
         private ProfileSerializer<User> profileSerializer;
@@ -20,7 +21,14 @@ namespace Film_geek.Util
         private FilmSerializer<Film> filmSerializer;
 
         public ObservableCollection<User> users;
-        public User LoggedUser { get; set; }
+        private User loggedUser;
+        
+        public User LoggedUser
+        {
+            get { return loggedUser; }
+            set { loggedUser = value; ; OnPropertyChanged("LoggedUser"); }
+
+        }
         public List<Playlist> UsersPlaylists { get; set; }
 
 
@@ -109,9 +117,8 @@ namespace Film_geek.Util
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
             filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
-            ObservableCollection<Playlist> playlists = new ObservableCollection<Playlist>();
-            playlists = LoggedUser.Playlists;
-            foreach (Playlist p in playlists)
+
+            foreach (Playlist p in LoggedUser.Playlists)
             {
                 if (p.Films.Contains(film))
                 {
@@ -285,5 +292,13 @@ namespace Film_geek.Util
             return sBuilder.ToString();
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this,
+                new PropertyChangedEventArgs(property));
+        }
     }
 }
