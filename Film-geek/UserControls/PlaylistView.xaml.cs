@@ -33,7 +33,7 @@ namespace Film_geek.UserControls
             InitializeComponent();
             CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
-            UserDetails.DataContext = Auth.Instance.LoggedUser;
+            GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
         }
 
         private void BTN_Overview_Click(object sender, RoutedEventArgs e)

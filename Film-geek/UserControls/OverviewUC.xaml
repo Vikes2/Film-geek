@@ -18,10 +18,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Style="{StaticResource UserPanel}" Name="GD_UserPanel">
-            
-        </Grid>
-        <!--<Grid Style="{StaticResource UserPanel}">
+        <Grid Style="{StaticResource UserPanel}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
@@ -71,7 +68,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
-        </Grid>-->
+        </Grid>
         <Grid Grid.Row="1" Style="{StaticResource StandardContainer}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

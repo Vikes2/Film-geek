@@ -37,8 +37,7 @@ namespace Film_geek.UserControls
 
         private void OverviewUC_Loaded(object sender, RoutedEventArgs e)
         {
-            //GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
-            GD_UserPanel.Children.Add(new UserPanel());
+            GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
 
             #region testowy
             //Auth.Instance.AddNewPlaylist("Na wieczory przy winie");
