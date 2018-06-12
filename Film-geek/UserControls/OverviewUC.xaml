@@ -13,13 +13,15 @@
     <UserControl.Resources>
         <app:ImageConverter x:Key="ImageConverter"/>
     </UserControl.Resources>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Background="Gray">
+        <Grid Style="{StaticResource UserPanel}" Name="GD_UserPanel">
+            
+        </Grid>
+        <!--<Grid Style="{StaticResource UserPanel}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
@@ -53,7 +55,7 @@
                 </Grid.RowDefinitions>
 
                 <Image Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" MaxHeight="64" RenderOptions.EdgeMode="Aliased" RenderOptions.BitmapScalingMode="Fant" HorizontalAlignment="Center" />
-                <Label Grid.Row="1" Content="{Binding Path=Nickname}" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label Grid.Row="1" Content="{Binding Path=Nickname}" Foreground="Wheat" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
             </Grid>
             <Grid Grid.Column="2" VerticalAlignment="Center">
                 <StackPanel>
@@ -69,8 +71,8 @@
                     </Button>
                 </StackPanel>
             </Grid>
-        </Grid>
-        <Grid Grid.Row="1">
+        </Grid>-->
+        <Grid Grid.Row="1" Style="{StaticResource StandardContainer}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

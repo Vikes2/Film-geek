@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Film_geek.UserControls"
              xmlns:app="clr-namespace:Film_geek.Classes"
              xmlns:comm="clr-namespace:Film_geek.Classes"
+             xmlns:inputToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
@@ -24,9 +25,10 @@
                     <Image Grid.Column="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
 
                     <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
-                    <Slider Grid.Column="2" ></Slider>
+                    <!--<Slider Grid.Column="2" ></Slider>-->
+                        <inputToolkit:Rating Grid.Column="2" ItemCount="5" />
 
-                    <StackPanel Grid.Column="3" Orientation="Horizontal">
+                        <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmDetailCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
                         <Button>Edytuj</Button>
                         <Button >Dodaj do listy</Button>
