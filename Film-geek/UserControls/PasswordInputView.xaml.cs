@@ -46,6 +46,7 @@ namespace Film_geek.UserControls
 
                 signInWindow.GD_SignInContent.Children.Clear();
                 signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
+                TB_Password.Password = String.Empty;
             }
             else
             {

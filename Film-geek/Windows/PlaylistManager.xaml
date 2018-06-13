@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="PlaylistManager" Height="400" Width="400"
+        Title="Zarządzanie listą" Height="400" Width="400"
         Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="PlaylistTemplate">

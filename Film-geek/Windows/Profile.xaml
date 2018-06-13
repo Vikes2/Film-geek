@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         xmlns:classes="clr-namespace:Film_geek.Classes"
         mc:Ignorable="d"
-        Title="Profile" Height="350" Width="600"
+        Title="Profil" Height="350" Width="600"
         Loaded="ProfileWindow_Loaded">
 
     <Window.Resources>

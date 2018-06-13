@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         xmlns:comm="clr-namespace:Film_geek.Classes"
         mc:Ignorable="d"
-        Title="Overview" Height="600" Width="1040">
+        Title="Film Geek" Height="600" Width="1040">
     <Window.CommandBindings>
         <CommandBinding Command="comm:FilmCommand.Add" Executed="AddFilm_Executed" CanExecute="AddFilm_CanExecute" />
         <CommandBinding Command="comm:FilmCommand.Edit" Executed="EditFilm_Executed" CanExecute="EditFilm_CanExecute"/>
