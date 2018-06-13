@@ -5,6 +5,7 @@ using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,7 +15,7 @@ using System.Windows;
 
 namespace Film_geek.Util
 {
-    public class Auth
+    public class Auth : INotifyPropertyChanged
     {
         private static Auth singleton = null;
         private ProfileSerializer<User> profileSerializer;
@@ -22,7 +23,14 @@ namespace Film_geek.Util
         private FilmSerializer<Film> filmSerializer;
 
         public ObservableCollection<User> users;
-        public User LoggedUser { get; set; }
+        private User loggedUser;
+        
+        public User LoggedUser
+        {
+            get { return loggedUser; }
+            set { loggedUser = value; ; OnPropertyChanged("LoggedUser"); }
+
+        }
         public List<Playlist> UsersPlaylists { get; set; }
 
 
@@ -104,6 +112,35 @@ namespace Film_geek.Util
             {
                 LoggedUser.Playlists[0].Films.Add(film);
             }
+
+            filmSerializer.PushData();
+            playlistSerializer.PushData();
+        }
+
+        public void DeleteFilm(Film film)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+
+            foreach (Playlist p in LoggedUser.Playlists)
+            {
+                if (p.Films.Contains(film))
+                {
+                    p.Films.Remove(film);
+                }
+            }
+
+            filmSerializer.PushData();
+            playlistSerializer.PushData();
+        }
+
+        public void DeletePlaylist(Playlist playlist)
+        {
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            LoggedUser.Playlists.Remove(playlist);
 
             filmSerializer.PushData();
             playlistSerializer.PushData();
@@ -279,5 +316,13 @@ namespace Film_geek.Util
             return sBuilder.ToString();
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this,
+                new PropertyChangedEventArgs(property));
+        }
     }
 }

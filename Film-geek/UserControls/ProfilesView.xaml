@@ -14,7 +14,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="profile"/>
                 </Grid.ColumnDefinitions>
-                <Border Margin="15" BorderThickness="1.2" BorderBrush="SteelBlue" CornerRadius="5" Grid.IsSharedSizeScope="True">
+                <Border Margin="15" BorderThickness="1.2" BorderBrush="SteelBlue" CornerRadius="5" Grid.IsSharedSizeScope="True" VerticalAlignment="Center">
                     <Grid Margin="10 20">
                         <Grid.RowDefinitions>
                             <RowDefinition/>

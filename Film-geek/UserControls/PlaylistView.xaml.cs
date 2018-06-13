@@ -33,6 +33,7 @@ namespace Film_geek.UserControls
             InitializeComponent();
             CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
             CB_Playlists.SelectedIndex = 0;
+            ((App)Application.Current).PlaylistView = this;
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
         }
 
@@ -118,12 +119,24 @@ namespace Film_geek.UserControls
                 {
 
                     Auth.Instance.AddFilmToPlaylist(selectedFilm, playlist);
-                    //selectedFilm.Playlists.Add(playlist.Id);
                 }
             }
             POP_list.IsOpen = false;
 
 
+        }
+
+        private void deleteFilm(object sender, RoutedEventArgs e)
+        {
+            Film film = (Film)((Button)sender).Tag;
+            Auth.Instance.DeleteFilm(film);
+        }
+
+        private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
+        {
+            PlaylistManager window = new PlaylistManager();
+            window.Owner = ((App)Application.Current).Overview;
+            window.Show();
         }
     }
 }

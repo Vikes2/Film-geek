@@ -1,0 +1,44 @@
+﻿<Window x:Class="Film_geek.Windows.PlaylistManager" Style="{StaticResource DefaultWindow}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Film_geek.Windows"
+        mc:Ignorable="d"
+        Title="PlaylistManager" Height="400" Width="400"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="PlaylistTemplate">
+            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch" >
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Grid.Column="0"  Content="{Binding Path=Name}" HorizontalContentAlignment="Center"></Label>
+
+
+                    <Button Click="BTN_edit_Click" Tag="{Binding}" Grid.Column="1" Content="Edytuj"/>
+                    <Button Click="BTN_del_Click" Tag="{Binding}" Grid.Column="2" Content="Usuń"/>
+
+
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Style="{StaticResource StandardContainer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView Name="LB_PlaylistsView" Grid.Row="0" ItemTemplate="{StaticResource PlaylistTemplate}"  HorizontalContentAlignment="Stretch">
+
+        </ListView>
+
+        <Button Click="BTN_back_Click" Grid.Row="1" Content="Przegladaj playlisty"/>
+    </Grid>
+</Window>

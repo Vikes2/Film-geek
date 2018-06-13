@@ -31,8 +31,8 @@
                         <Button Command="comm:FilmCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
                         <Button Command="comm:FilmCommand.Edit" CommandParameter="{Binding}">Edytuj</Button>
                         <Button>Dodaj do listy</Button>
-                        <Button Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="TESTOWY" />
-                        <Button>Usuń</Button>
+                        <Button Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="Dodaj do listy" />
+                        <Button Tag="{Binding}" Click="deleteFilm">Usuń</Button>
                     </StackPanel>
 
                 </Grid>
@@ -111,6 +111,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                     <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
                     <Button Name="BTN_NewFilm" Command="comm:FilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
+                    <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
                     <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
                     <Button Command="New" Content="Sortuj" />
                     <Button Command="Open" Content="Filtruj" />
