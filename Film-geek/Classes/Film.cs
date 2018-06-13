@@ -17,7 +17,7 @@ namespace Film_geek.Classes
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public List<int> Playlists { get; set; }
-
+        public bool isShowing { get; set; }
         public Film()
         {
             ImagePath = "/resources/Images/FilmTest.png";
