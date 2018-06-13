@@ -8,15 +8,21 @@ using System.Windows.Input;
 namespace Film_geek.Classes
 {
     //
-
-    public class AddFilmCommand
+    public class FilmCommand
     {
         private static RoutedUICommand add;
+        private static RoutedUICommand edit;
+        private static RoutedUICommand detail;
 
-        static AddFilmCommand()
+
+        static FilmCommand()
         {
-            add = new RoutedUICommand("Add film", "Add", typeof(AddFilmCommand));
+            add = new RoutedUICommand("Add a film", "Add", typeof(FilmCommand));
+            edit = new RoutedUICommand("Edit a film", "Edit", typeof(FilmCommand));
+            detail = new RoutedUICommand("Film Detail", "Film Detail", typeof(FilmCommand));
             add.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            edit.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control));
+            detail.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
         }
 
         public static RoutedUICommand Add
@@ -27,6 +33,41 @@ namespace Film_geek.Classes
             }
         }
 
+        public static RoutedUICommand Edit
+        {
+            get
+            {
+                return edit;
+            }
+        }
+
+        public static RoutedUICommand Detail
+        {
+            get
+            {
+                return detail;
+            }
+        }
+
+    }
+
+    public class EditFilmCommand
+    {
+        private static RoutedUICommand edit;
+
+        static EditFilmCommand()
+        {
+            edit = new RoutedUICommand("Edit a film", "Edit", typeof(EditFilmCommand));
+            edit.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control));
+        }
+
+        public static RoutedUICommand Edit
+        {
+            get
+            {
+                return edit;
+            }
+        }
     }
 
     public class LogOutCommand
@@ -84,25 +125,6 @@ namespace Film_geek.Classes
             get
             {
                 return help;
-            }
-        }
-    }
-
-    public class FilmDetailCommand
-    {
-        private static RoutedUICommand detail;
-
-        static FilmDetailCommand()
-        {
-            detail = new RoutedUICommand("Film Detail", "Film Detail", typeof(ProfileSettings));
-            detail.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
-        }
-
-        public static RoutedUICommand Detail
-        {
-            get
-            {
-                return detail;
             }
         }
     }

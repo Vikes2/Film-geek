@@ -11,5 +11,209 @@
                 <ResourceDictionary Source="ResourceDictionaries/GridDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+<!--=======
+
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="Aqua"></Setter>
+        </Style>
+
+        <Style x:Key="LightBackground" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
+        <Style x:Key="LightBackground2" TargetType="{x:Type DockPanel}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
+        <Style x:Key="LightBackground3" TargetType="{x:Type StackPanel}">
+            <Setter Property="Background" Value="#ddd">
+            </Setter>
+        </Style>
+
+        <Style x:Key="DarkBackground" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="Gray">
+            </Setter>
+        </Style>
+
+        <Style TargetType="Image">
+            --><!--tutaj jest styl pod bordera--><!--
+        </Style>
+
+        <Style TargetType="Image" x:Key="ProgramLogo">
+            <Setter Property="Source" Value="/resources/Avatars/Default.png" />
+        </Style>
+
+                --><!--Button podstawowy--><!--
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="3 2">
+                            <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                            <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="LightGray" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="SpecialButton">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontSize" Value="13px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1.5" StartPoint="0.5,0.2" MappingMode="RelativeToBoundingBox">
+                        <GradientStop Color="#FFD19107" Offset="1"/>
+                        <GradientStop Color="#FFF7ED0D" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="3"
+        				Padding="5" 
+        				BorderBrush="DarkGray" 
+        				CornerRadius="7" 
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="1.0" Y="1.0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFF7ED0D" Offset="0.35"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFF7ED0D" Offset="0.35"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        --><!--Koniec buttona podstawowego
+
+        Base Style for all Elements--><!--
+        <Style TargetType="FrameworkElement">
+            --><!--<Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>--><!--
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="h1" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+
+        <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+
+        <Style TargetType="Slider" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style TargetType="Border" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Sans-Serif"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="5"/>
+            --><!--<Setter Property="Background" Value="Transparent"/>--><!--
+        </Style>
+
+        <Style TargetType="DatePicker" BasedOn="{StaticResource {x:Type FrameworkElement}}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        --><!--Możliwe jest stworzenie neistosowanego stylu z dziedziczeniem, zamiast stylu z targettype framework element--><!--
+        
+
+>>>>>>> origin/feat/addoreditwindow+addstyle-->
     </Application.Resources>
 </Application>

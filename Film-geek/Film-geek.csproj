@@ -64,6 +64,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Actor.cs" />
+    <Compile Include="Classes\Converters\ActorConverter.cs" />
+    <Compile Include="Classes\Converters\DirectorConverter.cs" />
     <Compile Include="Classes\Commands.cs" />
     <Compile Include="Classes\Director.cs" />
     <Compile Include="Classes\Print.cs" />

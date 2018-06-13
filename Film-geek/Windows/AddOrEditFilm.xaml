@@ -1,22 +1,28 @@
-﻿<Window x:Class="Film_geek.Windows.AddOrEditFilm"
+﻿<Window x:Class="Film_geek.Windows.AddOrEditFilm" Style="{StaticResource DefaultWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         xmlns:app="clr-namespace:Film_geek.Classes"
+        xmlns:conv="clr-namespace:Film_geek.Classes.Converters"
+        xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
-        Title="AddOrEditFilm" Height="500" Width="300">
+        Title="AddOrEditFilm" SizeToContent="Height" MinWidth="400" Width="400" Loaded="Window_Loaded">
+    <!--xmlns:local="clr-namespace:Film_geek.Windows"-->
+    <!-- lekki edit xmlns:local, do poprawki-->
     <Window.Resources>
-        <!--Potrzebne do zaimportowania stylu z App.xaml-->
+        <conv:DirectorConverter x:Key="DirectorConverter"/>
+        <conv:ActorConverter x:Key="ActorConverter"/>
     </Window.Resources>
-    <Grid>
+    <Grid Style="{StaticResource StandardContainer}">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Name="GD_ValuesGrid">
+        <Grid Grid.Row="0" Name="GD_ValuesGrid" DataContext="">
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -24,14 +30,34 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <CheckBox Name="CHB_Director" Grid.Row="2" Grid.Column="0"/>
-            <CheckBox Name="CHB_Actors" Grid.Row="3" Grid.Column="0"/>
-            <CheckBox Name="CHB_Rating" Grid.Row="4" Grid.Column="0"/>
-            <Label Content="_Tytuł:" Target="{Binding ElementName=TB_Name}" Grid.Row="0" Grid.Column="1" />
+            <Label Style="{StaticResource Header-1}" Grid.ColumnSpan="3">Dodaj nowy film</Label>
+            <CheckBox Name="CHB_Director" Grid.Row="3" Grid.Column="0" Margin="5"/>
+            <CheckBox Name="CHB_Actors" Grid.Row="4" Grid.Column="0" Margin="5"/>
+            <CheckBox Name="CHB_Rating" Grid.Row="5" Grid.Column="0" Margin="5" />
+            <Label Content="Tytuł:" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <Label Content="Gatunek:" Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <Label Content="Reżyser:" Grid.Row="3" Grid.Column="1" Margin="5"/>
+            <Label Content="Aktorzy:" Grid.Row="4" Grid.Column="1" Margin="5"/>
+            <Label Content="Ocena:" Grid.Row="5" Grid.Column="1" Margin="5" />
+            <TextBox Name="TB_Name" Grid.Row="1" Grid.Column="2" Margin="5" Text="{Binding Path=Title}"/>
+            <Grid Grid.Row="2"  Grid.Column="2" Margin="5">
+                <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <TextBox Name="TB_Directors" Grid.Row="3" Grid.Column="2" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
+            <TextBox Name="TB_Actors" Grid.Row="4" Grid.Column="2" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>
+            <inputtoolkit:Rating Name="SL_Rating" Grid.Row="5" Grid.Column="2" Margin="5" ItemCount="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--<Label Content="_Tytuł:" Target="{Binding ElementName=TB_Name}" Grid.Row="0" Grid.Column="1" />
             <Label Content="_Gatunek:" Target="{Binding ElementName=CB_Genre}" Grid.Row="1" Grid.Column="1"/>
             <Label Content="_Reżyser:" Target="{Binding ElementName=TB_Directors}" Grid.Row="2" Grid.Column="1"/>
             <Label Content="_Aktorzy:" Target="{Binding ElementName=TB_Actors}" Grid.Row="3" Grid.Column="1"/>
@@ -90,49 +116,28 @@
                         </StackPanel>
                     </ToolTip>
                 </Slider.ToolTip>
-            </Slider>
+            </Slider>-->
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <GroupBox Grid.Row="0" BorderBrush="Black" BorderThickness="1">
-                <GroupBox.Header>
-                    <Label Content="Obejrzane?"/>
-                </GroupBox.Header>
+            <GroupBox Header="Obejrzane?"  Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="0 5">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <RadioButton Name="RB_Watched_Y" Grid.Column="0" Content="Tak"/>
+                    <RadioButton Name="RB_Watched_Y" Grid.Column="0" Content="Tak" IsChecked="{Binding Path=IsChecked, ElementName=RB_Watched_Y}"/>
+                    <!--???-->
                     <RadioButton Name="RB_Watched_N" Grid.Column="1" IsChecked="True" Content="Nie"/>
                 </Grid>
             </GroupBox>
-
+            
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <CheckBox Name="CHB_ReleaseDate" Grid.Column="0" Content="Data Premiery:"/>
-                <Button Name="BTN_ReleaseDatePicker" Grid.Column="1" Content="Wybierz datę..." IsEnabled="{Binding Path=IsChecked, ElementName=CHB_ReleaseDate}">
-                    <Button.ToolTip>
-                        <ToolTip>
-                            <StackPanel>
-                                <TextBlock FontWeight="Bold">Data premiery</TextBlock>
-                                <TextBlock>Możesz wpisać datę premiery filmu. Nie jest to obowiązkowe.</TextBlock>
-                            </StackPanel>
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button>
-            </Grid>
-            <!--???-->
-            <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="14*"/>
@@ -141,7 +146,7 @@
                 <TextBox Name="TB_Description" Grid.Row="2" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"/>
             </Grid>
             
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -167,7 +172,7 @@
 
                 <!--IsDefault="True" , IsCancel="True" DOOOOOOOODAJ JAK YTRZZEBA -->
 
-                <Button Name="BTN_Confirm" Grid.Column="0">
+                <Button Name="BTN_Confirm" Grid.Column="0" IsDefault="True" Click="BTN_Confirm_Click">
                     <AccessText>
                         O_K    
                     </AccessText>

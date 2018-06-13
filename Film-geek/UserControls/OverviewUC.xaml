@@ -33,7 +33,7 @@
                         Przegladaj _listy
                     </AccessText>
                 </Button>
-                <Button Name="BTN_AddFilm" Command="comm:AddFilmCommand.Add">
+                <Button Name="BTN_AddFilm" Command="comm:FilmCommand.Add">
                     <AccessText>
                         _Dodaj film
                     </AccessText>

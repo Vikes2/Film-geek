@@ -14,7 +14,7 @@
         <app:ImageConverter x:Key="ImageConverter"/>
         <DataTemplate x:Key="FilmTemplate">
             <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch">
-                <Grid HorizontalAlignment="Stretch" >
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
@@ -22,14 +22,14 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Column="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
+                    <Image Grid.Column="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}" VerticalAlignment="Center" />
 
-                    <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
-                    <inputToolkit:Rating Grid.Column="2" ItemCount="5" Value="4" />
+                    <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+                    <inputToolkit:Rating Grid.Column="2" ItemCount="5" Value="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
-                        <Button Command="comm:FilmDetailCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
-                        <Button>Edytuj</Button>
+                        <Button Command="comm:FilmCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
+                        <Button Command="comm:FilmCommand.Edit" CommandParameter="{Binding}">Edytuj</Button>
                         <Button>Dodaj do listy</Button>
                         <Button Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="TESTOWY" />
                         <Button>Usuń</Button>
@@ -110,7 +110,7 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                     <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
-                    <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
+                    <Button Name="BTN_NewFilm" Command="comm:FilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                     <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
                     <Button Command="New" Content="Sortuj" />
                     <Button Command="Open" Content="Filtruj" />

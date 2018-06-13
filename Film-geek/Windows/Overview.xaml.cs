@@ -43,10 +43,9 @@ namespace Film_geek.Windows
         private void AddFilm_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             AddOrEditFilm addWindow = new AddOrEditFilm();
-            addWindow.ActiveFilm = new Film();
             if (addWindow.ShowDialog() == true)
             {
-
+                Auth.Instance.AddNewFilm(addWindow.ActiveFilm);
                 //window.ActiveFilm - to add to selected playlists
             }
         }
@@ -112,6 +111,25 @@ namespace Film_geek.Windows
         }
 
         private void Detail_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void EditFilm_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(e.Parameter is Film film)
+            {
+                AddOrEditFilm addOrEditWindow = new AddOrEditFilm();
+                addOrEditWindow.ActiveFilm = film;
+                
+                if(addOrEditWindow.ShowDialog() == true)
+                {
+
+                }
+            }
+        }
+
+        private void EditFilm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }

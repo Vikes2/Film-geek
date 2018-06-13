@@ -34,6 +34,27 @@ namespace Film_geek.Windows
             ProfilesView = new ProfilesView();
             PasswordView = new PasswordInputView();
             GD_SignInContent.Children.Add(ProfilesView);
+
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Akcja" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Przygoda" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Animacja" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Biografia" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Komedia" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Kryminał" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Dokument" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Dramat" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Familijny" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Fantasy" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Historyczny" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Horror" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Muzyczny" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Tajemniczy" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Romans" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Sci-Fi" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Krótkometrażowy" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Dreszczowiec" });
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Western" });
+
         }
 
         private void SignInWindow_Loaded(object sender, RoutedEventArgs e)

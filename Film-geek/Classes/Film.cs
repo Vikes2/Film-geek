@@ -24,6 +24,7 @@ namespace Film_geek.Classes
             Directors = new List<Director>();
             Actors = new List<Actor>();
             Playlists = new List<int>();
+            Genres = new List<FilmGenre>();
         }
 
         public override string ToString()
@@ -71,8 +72,6 @@ namespace Film_geek.Classes
                 return genrelist.Remove(genrelist.Length - 2);
             }
         }
-
-
     }
 
 }

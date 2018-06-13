@@ -19,49 +19,31 @@ namespace Film_geek.Windows
     /// <summary>
     /// Logika interakcji dla klasy AddOrEditFilm.xaml
     /// </summary>
+    /// 
+
     public partial class AddOrEditFilm : Window
     {
         private List<GenreDic> genres;
+
+        public Film ActiveFilm { get; set; }
 
         public AddOrEditFilm()
         {
             InitializeComponent();
 
-            #region Testowe dane
-            FilmGenre a = new FilmGenre() { Name = "horror" };
-            FilmGenre b = new FilmGenre() { Name = "cartoon" };
-            FilmGenre c = new FilmGenre() { Name = "drama" };
-            ((App)Application.Current).AllGenres.Add(a);
-            ((App)Application.Current).AllGenres.Add(b);
-
-            ActiveFilm = new Film()
-            {
-                Genres = new List<FilmGenre>(((App)Application.Current).AllGenres)
-            };
-
-            ((App)Application.Current).AllGenres.Add(c); 
-            #endregion
+            ActiveFilm = new Film();
+            ActiveFilm.Directors = new List<Director>();
 
             List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
             genres = new List<GenreDic>();
 
-            foreach(var genre in allGenres)
+
+            foreach (var genre in allGenres)
             {
                 genres.Add(new GenreDic() { Name = genre.Name, Value = ActiveFilm.Genres.Contains(genre) });
             }
             CB_Genre.ItemsSource = genres;
         }
-        
-        public AddOrEditFilm(Film NewFilm)
-        {
-            ActiveFilm = NewFilm;
-            InitializeComponent();
-            GD_ValuesGrid.DataContext = ActiveFilm;
-        }
-
-
-        public Film ActiveFilm { get; set; }
-        private FilmGenre film;
 
         private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
         {
@@ -80,7 +62,13 @@ namespace Film_geek.Windows
 
         private void BTN_Confirm_Click(object sender, RoutedEventArgs e)
         {
-            // walidacja 
+            foreach(GenreDic gd in genres)
+            {
+                if (gd.Value == true)
+                {
+                    ActiveFilm.Genres.Add(new FilmGenre() { Name = gd.Name });
+                }
+            }
             DialogResult = true;
             Close();
         }
@@ -89,11 +77,17 @@ namespace Film_geek.Windows
         {
             Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GD_ValuesGrid.DataContext = ActiveFilm;
+        }
     }
 
     public class GenreDic
     {
         public string Name { get; set; }
         public bool Value { get; set; }
+
     }
 }
