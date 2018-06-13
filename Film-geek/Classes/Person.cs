@@ -10,7 +10,6 @@ namespace Film_geek.Classes
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        // maybe add ref to films
         public Person()
         {
 

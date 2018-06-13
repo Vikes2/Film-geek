@@ -35,7 +35,7 @@ namespace Film_geek.Windows
             OUC = new OverviewUC();
             PUC = new PlaylistView();
 
-            GD_Content.Children.Add(OUC);
+            GD_Content.Children.Add(PUC);
 
             ((App)Application.Current).Overview = this;
         }

@@ -72,7 +72,6 @@ namespace Film_geek.UserControls
             PasswordRemind passwordRemindWindow = new PasswordRemind(User);
             if (passwordRemindWindow.ShowDialog() == true)
             {
-                //kod powodzenia
             }
         }
     }

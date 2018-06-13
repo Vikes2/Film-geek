@@ -75,7 +75,6 @@ namespace Film_geek.Windows
             };
             if (avatarPicker.ShowDialog() == true)
             {
-                //string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Avatars", NewUser.Nickname + System.IO.Path.GetExtension(avatarPicker.FileName));
                 NewUser.ImagePath = avatarPicker.FileName;
             }
 

@@ -42,7 +42,6 @@
                  Grid.IsSharedSizeScope="True">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <!--<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" IsItemsHost="True" />-->
                     <WrapPanel IsItemsHost="True"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>

@@ -30,7 +30,6 @@
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
                         <Button Command="comm:FilmCommand.Edit" CommandParameter="{Binding}">Edytuj</Button>
-                        <Button>Dodaj do listy</Button>
                         <Button Name="BTN_pop" Click="BTN_pop_Click" Tag="{Binding}"  Content="Dodaj do listy" />
                         <Button Tag="{Binding}" Click="deleteFilm">Usuń</Button>
                     </StackPanel>
@@ -64,12 +63,8 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="15" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
-            <ListBox Name="LB_Notifications" Grid.Column="1" Margin="10 5">
-                <ListBoxItem>Powiadomienie 1</ListBoxItem>
-                <ListBoxItem>Powiadomienie 2</ListBoxItem>
-                <ListBoxItem>Powiadomienie 3</ListBoxItem>
-            </ListBox>
+            <Image Source="/resources/images/logo.png" HorizontalAlignment="Left" MaxHeight="100" RenderOptions.BitmapScalingMode="Fant"/>
+
             <Grid Grid.Column="2" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -105,45 +100,15 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <ComboBox Name="CB_Playlists" VerticalAlignment="Center" />
 
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
-                    <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
                     <Button Name="BTN_NewFilm" Command="comm:FilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                     <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
-                    <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />
-                    <Button Command="New" Content="Sortuj" />
-                    <Button Command="Open" Content="Filtruj" />
+
                 </StackPanel>
             </Grid>
-            <!--<DockPanel Grid.Row="0">
-                --><!--<ComboBox Name="CB_Playlists" />-->
-
-<!--
-                <Button DockPanel.Dock="Right" Command="New">
-                    <AccessText>
-                        _Sortuj
-                    </AccessText>
-                </Button>
-                <Button DockPanel.Dock="Right" Command="Open">
-                    <AccessText>
-                        _Filtruj
-                    </AccessText>
-                </Button>
-                <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Command="Save">
-                    <AccessText>
-                        _Dodaj film
-                    </AccessText>
-                </Button>
--->
-                <!--<Button DockPanel.Dock="Right" Command="New" Content="Sortuj" />
-                <Button DockPanel.Dock="Right" Command="Open" Content="Filtruj" />
-
-                <Button Name="BTN_NewFilm" Command="comm:AddFilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
-                <Button Name="BTN_Overview" Click="BTN_Overview_Click" DockPanel.Dock="Right"  Content="Przeglądaj wydarzenia" />
-                <Button Name="BTN_Help" Command="comm:HelpManual.Help"  Content="Help" />--><!--
-            </DockPanel>-->
 
             <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">
 
@@ -156,7 +121,7 @@
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
 
-                        <Button DockPanel.Dock="Right" Name="BTN_exit" Click="BTN_exit_Click" >X</Button>
+                        <Button Padding="-2"  HorizontalAlignment="Right" Name="BTN_exit" Click="BTN_exit_Click" >X</Button>
                     </DockPanel>
                     <DockPanel Grid.Row="1" >
                         <ListView Name="LB_ButtonsView" ItemTemplate="{StaticResource ButtonTemplate}" >

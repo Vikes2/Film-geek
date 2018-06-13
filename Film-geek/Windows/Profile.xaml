@@ -80,12 +80,7 @@
                             <DataTrigger Binding="{Binding ElementName=TB_login, Path=(Validation.HasError)}" Value="false">
                                 <Setter Property="IsEnabled" Value="True"/>
                             </DataTrigger>
-                            <!--<MultiDataTrigger>-->
-                                <!--<tri>
-                                    <Condition Binding="{Binding ElementName=TB_login, Path=(Validation.HasError)}" Value="false" />
-                                </tri>
-                                <Setter Property="IsEnabled" Value="true" />
-                            </MultiDataTrigger>-->
+
                         </Style.Triggers>
                     </Style>
                 </Button.Style>

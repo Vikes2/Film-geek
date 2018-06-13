@@ -9,8 +9,7 @@
         xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
         Title="AddOrEditFilm" SizeToContent="Height" MinWidth="400" Width="400" Loaded="Window_Loaded">
-    <!--xmlns:local="clr-namespace:Film_geek.Windows"-->
-    <!-- lekki edit xmlns:local, do poprawki-->
+
     <Window.Resources>
         <conv:DirectorConverter x:Key="DirectorConverter"/>
         <conv:ActorConverter x:Key="ActorConverter"/>
@@ -31,14 +30,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <!--<ColumnDefinition Width="auto"/>-->
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Style="{StaticResource Header-1}" Grid.ColumnSpan="3">Film</Label>
-            <!--<CheckBox Name="CHB_Director" Grid.Row="3" Grid.Column="0" Margin="5"/>
-            <CheckBox Name="CHB_Actors" Grid.Row="4" Grid.Column="0" Margin="5"/>
-            <CheckBox Name="CHB_Rating" Grid.Row="5" Grid.Column="0" Margin="5" />-->
+
             <Label Content="Tytuł:" Grid.Row="1" Margin="5"/>
             <Label Content="Gatunek:" Grid.Row="2" Margin="5"/>
             <Label Content="Reżyser:" Grid.Row="3" Margin="5"/>
@@ -67,102 +63,22 @@
                         </ControlTemplate>
                     </Validation.ErrorTemplate>
                 </ComboBox>
-                <!--<ContentPresenter Content="{Binding ElementName=CB_Genre, Path=(Validation.Errors).CurrentItem}" HorizontalAlignment="Left"/>-->
             </Grid>
             <TextBox Name="TB_Directors" Grid.Row="3" Grid.Column="1" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}, UpdateSourceTrigger=Explicit}"/>
             <TextBox Name="TB_Actors" Grid.Row="4" Grid.Column="1" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}, UpdateSourceTrigger=Explicit}"/>
-            <!--<ComboBox Name="SL_Rating" Grid.Row="5" Grid.Column="2" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" SelectedValue="{Binding Path=Rating, Converter={StaticResource RatingConverter}}">
-                <ComboBoxItem>1</ComboBoxItem>
-                <ComboBoxItem>1.5</ComboBoxItem>
-                <ComboBoxItem>2</ComboBoxItem>
-                <ComboBoxItem>2.5</ComboBoxItem>
-                <ComboBoxItem>3</ComboBoxItem>
-                <ComboBoxItem>3.5</ComboBoxItem>
-                <ComboBoxItem>4</ComboBoxItem>
-                <ComboBoxItem>4.5</ComboBoxItem>
-                <ComboBoxItem>5</ComboBoxItem>
-            </ComboBox>-->
+
             <inputtoolkit:Rating Name="SL_Rating" Grid.Row="5" Grid.Column="1" Margin="5" ItemCount="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <!--<Label Content="_Tytuł:" Target="{Binding ElementName=TB_Name}" Grid.Row="0" Grid.Column="1" />
-            <Label Content="_Gatunek:" Target="{Binding ElementName=CB_Genre}" Grid.Row="1" Grid.Column="1"/>
-            <Label Content="_Reżyser:" Target="{Binding ElementName=TB_Directors}" Grid.Row="2" Grid.Column="1"/>
-            <Label Content="_Aktorzy:" Target="{Binding ElementName=TB_Actors}" Grid.Row="3" Grid.Column="1"/>
-            <Label Content="_Ocena:" Target="{Binding ElementName=SL_Rating}" Grid.Row="4" Grid.Column="1"/>
-            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold">Tytuł filmu</TextBlock>
-                            <TextBlock>Tytuł filmu, który chcesz dodać. Pole jest obowiązkowe.</TextBlock>
-                        </StackPanel>
-                    </ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Value}"></CheckBox>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-                <ComboBox.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold">Gatunki</TextBlock>
-                            <TextBlock>Wybierz conajmniej jeden gatunek odpowiadający filmowi.</TextBlock>
-                        </StackPanel>
-                    </ToolTip>
-                </ComboBox.ToolTip>
-            </ComboBox>
-            <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}">
-                <TextBox.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold">Reżyser</TextBlock>
-                            <TextBlock>Wpisz reżyser(ów). Pole nie jest obowiązkowe.</TextBlock>
-                        </StackPanel>
-                    </ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}">
-                <TextBox.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold">Aktorzy</TextBlock>
-                            <TextBlock>Wpisz aktora(ów). Pole nie jest obowiązkowe.</TextBlock>
-                        </StackPanel>
-                    </ToolTip>
-                </TextBox.ToolTip>
-            </TextBox>
-            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <Slider.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold">Ocena</TextBlock>
-                            <TextBlock>Oceń film. Ocenę w każdej chwili możesz zmienić.</TextBlock>
-                        </StackPanel>
-                    </ToolTip>
-                </Slider.ToolTip>
-            </Slider>-->
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <!--<RowDefinition Height="2*"/>-->
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <!--<GroupBox Header="Obejrzane?"  Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="0 5">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <RadioButton Name="RB_Watched_Y" Grid.Column="0" Content="Tak" IsChecked="{Binding Path=IsWatched, Mode=TwoWay}"/>
-                    <RadioButton Name="RB_Watched_N" Grid.Column="1" Content="Nie"/>
-                </Grid>
-            </GroupBox>-->
+            
             
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -173,21 +89,12 @@
                 <TextBox Name="TB_Description" Grid.Row="2" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=Description, UpdateSourceTrigger=Explicit}"/>
             </Grid>
 
-            <!--<Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Content="Premiera" Margin="5"/>
-                <DatePicker Grid.Column="1" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" SelectedDate="{Binding Path=ReleaseDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
-            </Grid>-->
-            
+           
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <!--<CheckBox Name="CHB_Image" Grid.Column="0" Content="Zdjęcie"/>-->
                 <Button Name="BTN_ImagePicker" Grid.Column="1" Content="Wybierz plik..." Click="BTN_ImagePicker_Click">
                     <Button.ToolTip>
                         <ToolTip>

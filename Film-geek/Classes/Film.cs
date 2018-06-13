@@ -21,16 +21,7 @@ namespace Film_geek.Classes
         public string ImagePath { get; set; }
         public List<int> Playlists { get; set; }
         public double Rating { get; set; }
-        //private bool[] isWatched = new bool[2];
-        //public bool[] IsWatched
-        //{
-        //    get { return isWatched; }
-        //    set { is}
-        //}
-        //public int IsWatchedSelectedMode
-        //{
-        //    get { return Array.IndexOf(isWatched, true); }
-        //}
+
 
         public bool isShowing { get; set; }
         public Film()

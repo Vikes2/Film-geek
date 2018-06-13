@@ -129,37 +129,17 @@ namespace Film_geek.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //LB_FilmViews.ItemsSource = films;
             LB_ExFilmViews.ItemsSource = allFilms;
             CurrentFilms = true;
 
             
-            //ObservableCollection<Film> filmsExcluded = new ObservableCollection<Film>();
 
-            //foreach (Film f in Auth.Instance.LoggedUser.Playlists[0].Films)
-            //{
-            //    filmsExcluded.Add(f);
-
-            //    foreach(Film f1 in films)
-            //    {
-            //        if(f.Id == f1.Id)
-            //        {
-            //            filmsExcluded.Remove(f);
-            //        }
-            //    }
-            //}
-
-            //LB_ExFilmViews.ItemsSource = films;
-
-
-            //MessageBox.Show(films[0].Title);
         }
 
         private void CHKB_isInclude_Checked(object sender, RoutedEventArgs e)
         {
             // adding to playlist
             Film film = (Film)(((CheckBox)sender).Tag);
-            //MessageBox.Show(film.Title);
             films.Add(film);
             diff.Remove(film);
             syncLists();

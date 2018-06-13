@@ -39,44 +39,7 @@ namespace Film_geek.UserControls
         {
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
 
-            #region testowy
-            //Auth.Instance.AddNewPlaylist("Na wieczory przy winie");
-            //Auth.Instance.AddNewPlaylist("Dla dzieci");
-            //Auth.Instance.AddNewPlaylist("Luźne");
-            //Auth.Instance.AddNewPlaylist("Krótkie");
-            //Auth.Instance.AddNewPlaylist("Długie");
 
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "Incepcja",
-            //    Playlists = new List<int>() { 2, 6}
-            //});
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "Opowieść Wigilijna",
-            //    Playlists = new List<int>() { 3, 4, 5 }
-            //});
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "2012",
-            //    Playlists = new List<int>() { 6 }
-            //});
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "Apollo 13",
-            //    Playlists = new List<int>() { 2 }
-            //});
-
-            //Auth.Instance.AddNewFilm(new Classes.Film()
-            //{
-            //    Title = "Pulp Fiction",
-            //    Playlists = new List<int>() { 2, 3, 6 }
-            //});
-
-            #endregion
 
         }
 

@@ -61,10 +61,6 @@ namespace Film_geek.Windows
             ActiveFilm = new Film();
             ActiveFilm.Directors = new List<Director>();            
 
-            //foreach (var genre in allGenres)
-            //{
-            //    genres.Add(new GenreDic() { Genre = genre, Value = ActiveFilm.Genres.Contains(genre.Name) });
-            //}//potrzebny odpowiedni duplikat
         }
 
         private void SaveImage()
