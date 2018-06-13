@@ -57,7 +57,7 @@ namespace Film_geek.Windows
 
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            Print.PrintFilmDetails();
+            Print.PrintFilmDetails(Auth.Instance.users[0].Playlists[0].Films[0]);
         }
 
         private void profil_Click(object sender, RoutedEventArgs e)

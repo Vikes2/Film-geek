@@ -124,6 +124,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <GroupBox Header="Obejrzane?"  Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="0 5">
                 <Grid>
@@ -145,8 +146,17 @@
                 <Label Grid.Row="0" Target="{Binding ElementName=TB_Description}" Content="O_pis:" Margin="0"/>
                 <TextBox Name="TB_Description" Grid.Row="2" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"/>
             </Grid>
-            
+
             <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Premiera" Margin="5"/>
+                <DatePicker Grid.Column="1" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" SelectedDate="{Binding Path=RelaseDate}"></DatePicker>
+            </Grid>
+            
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -170,14 +180,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <!--IsDefault="True" , IsCancel="True" DOOOOOOOODAJ JAK YTRZZEBA -->
-
                 <Button Name="BTN_Confirm" Grid.Column="0" IsDefault="True" Click="BTN_Confirm_Click">
                     <AccessText>
                         O_K    
                     </AccessText>
                 </Button>
-                <Button Name="BTN_Cancel" Grid.Column="1">
+                <Button Name="BTN_Cancel" Grid.Column="1" IsCancel="True" Click="BTN_Cancel_Click">
                     <AccessText>
                         A_nuluj
                     </AccessText>

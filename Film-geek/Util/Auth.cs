@@ -93,7 +93,10 @@ namespace Film_geek.Util
                 if (!playlist.Films.Contains(film))
                 {
                     playlist.Films.Add(film);
-                    film.Playlists.Add(playlist.Id);
+                    if (!film.Playlists.Contains(playlist.Id))
+                    {
+                        film.Playlists.Add(playlist.Id);
+                    }
                 }
             }
 

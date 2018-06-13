@@ -11,9 +11,10 @@ namespace Film_geek.Classes
 {
     class Print
     {
-        public static void PrintFilmDetails()
+        public static void PrintFilmDetails(Film film)
         {
             FilmDetails filmWindow = new FilmDetails();
+            filmWindow.Film = film;
             PrintDialog printDialog = new PrintDialog();
             if (printDialog.ShowDialog() == true)
                 printDialog.PrintVisual(filmWindow.ContentContainer, "Film Details");

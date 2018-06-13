@@ -51,7 +51,7 @@ namespace Film_geek.Windows
 
         private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            Print.PrintFilmDetails(Film);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
