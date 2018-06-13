@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click">
+                <Button Name="BTN_PlaylistView" Click="BTN_PlaylistView_Click" Margin="25 20 10 20">
                     <AccessText>
                         Przegladaj _listy
                     </AccessText>
@@ -56,12 +56,12 @@
             </Grid>
             <Grid Grid.Column="2" VerticalAlignment="Center">
                 <StackPanel>
-                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch" Command="comm:LogOutCommand.LogOut">
+                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch" Command="comm:LogOutCommand.LogOut" Margin="15 3 15 3">
                         <AccessText>
                             _Wyloguj
                         </AccessText>
                     </Button>
-                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch" Command="comm:ProfileSettings.Profile">
+                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch" Command="comm:ProfileSettings.Profile" Margin="15 3 15 2">
                         <AccessText>
                             _Moje konto
                         </AccessText>

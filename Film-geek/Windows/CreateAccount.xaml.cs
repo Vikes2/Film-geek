@@ -61,6 +61,7 @@ namespace Film_geek.Windows
             }
             NewUser.Password = TB_passwd.Password;
             #endregion
+            SaveAvatar();
             DialogResult = true;
             Close();
         }

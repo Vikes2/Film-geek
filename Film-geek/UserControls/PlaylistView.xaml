@@ -25,7 +25,7 @@
                     <Image Grid.Column="0" Margin="0,0,5,0" MaxHeight="64" Source="{Binding Path=ImagePath}" VerticalAlignment="Center" />
 
                     <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-                    <inputToolkit:Rating Grid.Column="2" ItemCount="5" Value="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <inputToolkit:Rating Grid.Column="2" ItemCount="5" Value="0.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
@@ -64,7 +64,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="5" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
+            <TextBox Name="QuickSearchTB" Height="35" Padding="5" Margin="15" VerticalContentAlignment="Center">Szybko wyszukaj film...</TextBox>
             <ListBox Name="LB_Notifications" Grid.Column="1" Margin="10 5">
                 <ListBoxItem>Powiadomienie 1</ListBoxItem>
                 <ListBoxItem>Powiadomienie 2</ListBoxItem>
@@ -81,12 +81,12 @@
             </Grid>
             <Grid Grid.Column="3" VerticalAlignment="Center">
                 <StackPanel>
-                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch" Command="comm:LogOutCommand.LogOut">
+                    <Button Name="BTN_LogOut" HorizontalAlignment="Stretch" Command="comm:LogOutCommand.LogOut" Margin="15 3">
                         <AccessText>
                             _Wyloguj
                         </AccessText>
                     </Button>
-                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch" Command="comm:ProfileSettings.Profile">
+                    <Button Grid.Row="1" Name="BTN_Account" HorizontalAlignment="Stretch" Command="comm:ProfileSettings.Profile" Margin="15 3">
                         <AccessText>
                             _Moje konto
                         </AccessText>

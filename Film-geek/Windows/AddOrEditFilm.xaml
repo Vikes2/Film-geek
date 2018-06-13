@@ -20,7 +20,7 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Name="GD_ValuesGrid" DataContext="">
+        <Grid Grid.Row="0" Name="GD_ValuesGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -48,10 +48,25 @@
                 <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding Path=Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                            <CheckBox Name="CHB_GenreItem" Content="{Binding Path=Genre.Name}" IsChecked="{Binding Path=Value, ValidatesOnDataErrors=True}" Checked="CHB_GenreItem_Checked" Unchecked="CHB_GenreItem_Checked" ></CheckBox>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="comboBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
                 </ComboBox>
+                <!--<ContentPresenter Content="{Binding ElementName=CB_Genre, Path=(Validation.Errors).CurrentItem}" HorizontalAlignment="Left"/>-->
             </Grid>
             <TextBox Name="TB_Directors" Grid.Row="3" Grid.Column="2" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
             <TextBox Name="TB_Actors" Grid.Row="4" Grid.Column="2" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>

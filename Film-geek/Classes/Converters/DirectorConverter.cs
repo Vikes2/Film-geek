@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace Film_geek.Classes.Converters
 {
-    public class DirectorConverter : IValueConverter
+    public class DirectorConverter : IValueConverter //do poprawy
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -30,10 +30,19 @@ namespace Film_geek.Classes.Converters
             string obj = (string)value;
             List<Director> newList = new List<Director>();
             string[] sepString = obj.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach(string x in sepString)
+            foreach (string x in sepString)
             {
                 string[] sepString2 = x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                newList.Add(new Director(sepString2[0], sepString2[1]));
+                if (sepString2.Count() == 1)
+                {
+                    newList.Add(new Director("", sepString2[0]));
+                    continue;
+                }
+                string fullName = "";
+                for (int i = 1; i < sepString2.Count(); i++)
+                    fullName += sepString2[i] + " ";
+                fullName.Remove(fullName.Length - 1);//?
+                newList.Add(new Director(sepString2[0], fullName));
             }
             return newList;
         }
