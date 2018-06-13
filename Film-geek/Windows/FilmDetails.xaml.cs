@@ -92,10 +92,10 @@ namespace Film_geek.Windows
             LBL_FilmDirector.Content = film.DirectorsDetails();
             LBL_FilmActors.Content = film.ActorsDetails();
             #region setReleaseDate
-            if (film.ReleaseDate == null)
-                LBL_FilmRelease.Content = "brak daty premiery";
-            else
-                LBL_FilmRelease.Content = String.Format("{0:MM/dd/yyyy}", film.ReleaseDate);
+            //if (film.ReleaseDate == null)
+            //    LBL_FilmRelease.Content = "brak daty premiery";
+            //else
+            //    LBL_FilmRelease.Content = String.Format("{0:MM/dd/yyyy}", film.ReleaseDate);
             #endregion
             #region setDescription
             if (film.Description == String.Empty && film.Description == null)

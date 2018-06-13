@@ -67,6 +67,7 @@
     <Compile Include="Classes\Converters\ActorConverter.cs" />
     <Compile Include="Classes\Converters\DirectorConverter.cs" />
     <Compile Include="Classes\Commands.cs" />
+    <Compile Include="Classes\Converters\RatingConverter.cs" />
     <Compile Include="Classes\Director.cs" />
     <Compile Include="Classes\Print.cs" />
     <Compile Include="Classes\Serializer\FilmSerializer.cs" />
@@ -92,9 +93,6 @@
     </Compile>
     <Compile Include="UserControls\ProfilesView.xaml.cs">
       <DependentUpon>ProfilesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UserPanel.xaml.cs">
-      <DependentUpon>UserPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\Auth.cs" />
     <Compile Include="Windows\AddOrEditFilm.xaml.cs">
@@ -164,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ProfilesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\UserPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

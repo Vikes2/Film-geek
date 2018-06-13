@@ -59,17 +59,12 @@ namespace Film_geek.Windows
             InitializeComponent();
 
             ActiveFilm = new Film();
-            ActiveFilm.Directors = new List<Director>();
+            ActiveFilm.Directors = new List<Director>();            
 
-            List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
-            genres = new List<GenreDic>();
-
-
-            foreach (var genre in allGenres)
-            {
-                genres.Add(new GenreDic() { Genre = genre, Value = ActiveFilm.Genres.Contains(genre) });
-            }//potrzebny odpowiedni duplikat
-            CB_Genre.ItemsSource = genres;
+            //foreach (var genre in allGenres)
+            //{
+            //    genres.Add(new GenreDic() { Genre = genre, Value = ActiveFilm.Genres.Contains(genre.Name) });
+            //}//potrzebny odpowiedni duplikat
         }
 
         private void SaveImage()
@@ -108,13 +103,22 @@ namespace Film_geek.Windows
 
         private void BTN_Confirm_Click(object sender, RoutedEventArgs e)
         {
+            List<FilmGenre> tmp = new List<FilmGenre>();
             foreach(GenreDic gd in genres)
             {
                 if (gd.Value == true)
                 {
-                    ActiveFilm.Genres.Add(new FilmGenre() { Name = gd.Genre.Name });
+                    tmp.Add(new FilmGenre() { Name = gd.Genre.Name });
                 }
             }
+
+            ActiveFilm.Genres = tmp;
+
+            (TB_Name.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
+            (TB_Description.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
+            (TB_Actors.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
+            (TB_Directors.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
+            
             DialogResult = true;
             SaveImage();
             Close();
@@ -125,43 +129,31 @@ namespace Film_geek.Windows
             Close();
         }
 
-        private void CB_Genre_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-                if (!(CB_Genre.Text == ""))
-                    if (!(((App)Application.Current).AllGenres.Contains(new FilmGenre() {Name = CB_Genre.Text })))
-                    {
-                        FilmGenre newGenre = new FilmGenre() { Name = CB_Genre.Text };
-                        ((App)Application.Current).AllGenres.Add(newGenre);//genres czy globalna?
-                        genres.Add(new GenreDic() { Genre = newGenre, Value = true });
-                        ActiveFilm.Genres.Add(newGenre);
-                        CB_Genre.ItemsSource = null;
-                        CB_Genre.ItemsSource = genres;
-                    }
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GD_ValuesGrid.DataContext = ActiveFilm;
-        }
 
-        private void CHB_GenreItem_Checked(object sender, RoutedEventArgs e)
-        {
-            List<FilmGenre> deletable = new List<FilmGenre>();
-            CheckBox cb = (sender as CheckBox);
-            if (cb.IsChecked == true)
-                ActiveFilm.Genres.Add(new FilmGenre() { Name = cb.Name });
-            else
+            List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
+
+            genres = new List<GenreDic>();
+
+            foreach (var genre in allGenres)
             {
-                foreach (FilmGenre item in ActiveFilm.Genres)
-                    if (item.Name == cb.Name)
-                        deletable.Add(item);
-                foreach (FilmGenre item in deletable)
-                    ActiveFilm.Genres.Remove(item);
-            }        
+                GenreDic gd = new GenreDic();
+                gd.Genre = genre;
+                gd.Value = false;
+                foreach (var filmGenre in ActiveFilm.Genres)
+                {
+                    if (genre.Name == filmGenre.Name)
+                    {
+                        gd.Value = true;
+                        break;
+                    }
+                }
+                genres.Add(gd);
+            }
+
+            CB_Genre.ItemsSource = genres;
         }
     }
-
-    
-
 }

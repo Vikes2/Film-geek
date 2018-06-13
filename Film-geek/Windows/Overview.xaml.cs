@@ -124,7 +124,8 @@ namespace Film_geek.Windows
                 
                 if(addOrEditWindow.ShowDialog() == true)
                 {
-
+                    Auth.Instance.SavePlaylists();
+                   
                 }
             }
         }

@@ -66,6 +66,13 @@ namespace Film_geek.Util
             {
                 Directory.CreateDirectory(path);
             }
+
+            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Film-geek", "Covers");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
         private void LoadUsersFromFile()
@@ -113,8 +120,8 @@ namespace Film_geek.Util
                 LoggedUser.Playlists[0].Films.Add(film);
             }
 
-            filmSerializer.PushData();
             playlistSerializer.PushData();
+            filmSerializer.PushData();
         }
 
         public void DeleteFilm(Film film)
@@ -131,8 +138,8 @@ namespace Film_geek.Util
                 }
             }
 
-            filmSerializer.PushData();
             playlistSerializer.PushData();
+            filmSerializer.PushData();
         }
 
         public void SetFilmsIntoPlaylist(ObservableCollection<Film> films, int idPlaylist)
@@ -156,8 +163,8 @@ namespace Film_geek.Util
                     }
                 }
             }
-            filmSerializer.PushData();
             playlistSerializer.PushData();
+            filmSerializer.PushData();
         }
 
         public void DeletePlaylist(Playlist playlist)
@@ -274,6 +281,15 @@ namespace Film_geek.Util
         public void SaveUsers()
         {
             profileSerializer.PushData();
+        }
+
+        public void SavePlaylists()
+        {
+            User user = LoggedUser;
+            playlistSerializer = new PlaylistSerializer<Playlist>(user.Id, "playlists", user.Playlists);
+            playlistSerializer.PushData();
+            filmSerializer = new FilmSerializer<Film>(user.Id, "films", user.Playlists[0].Films);
+            filmSerializer.PushData();
         }
 
         public bool CheckSecurityAnswer(User user, string securityAnswer)
