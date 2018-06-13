@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Film_geek.Util;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -113,22 +114,41 @@ namespace Film_geek.Classes
     }
 
 
-
     //public class FilmIdToBoolConverter : IValueConverter
     //{
+       
     //    #region FilmToBoolConverter 
     //    public object Convert(object value, Type targetType, object parameter,
     //        System.Globalization.CultureInfo culture)
     //    {
     //        if (targetType != typeof(int))
-    //            throw new InvalidOperationException("The target must be a boolean");
-    //        if ((int)value != 0 && (int)value != null)
+    //            throw new InvalidOperationException("The target must be a int");
+    //        if ((int)value > 0 )
     //        {
+    //            int idFilmu = (int)value;
+    //            int idPlaylisty = ((App)Application.Current).EditPlaylist.IdPlaylist;
+    //            Playlist playlist = null;
+    //            foreach (Playlist p in Auth.Instance.LoggedUser.Playlists)
+    //            {
+    //                if(p.Id == idPlaylisty)
+    //                {
+    //                    playlist = p;
+    //                    break;
+    //                }
+    //            }
+    //            foreach (Film f in playlist.Films)
+    //            {
+    //                if(f.Id == idFilmu)
+    //                {
+    //                    return true;
+    //                }
+    //            }
 
-
-
+    //            return false;
     //        }
-                
+    //        throw new InvalidOperationException("The target must be > 0");
+
+
     //    }
     //    public object ConvertBack(object value, Type targetType, object parameter,
     //        System.Globalization.CultureInfo culture)
@@ -137,6 +157,4 @@ namespace Film_geek.Classes
     //    }
     //    #endregion
     //}
-
-
 }

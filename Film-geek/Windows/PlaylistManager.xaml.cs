@@ -49,8 +49,10 @@ namespace Film_geek.Windows
         {
             ObservableCollection<Film> films = ((Playlist)(((Button)sender).Tag)).Films;
             EditPlaylist window = new EditPlaylist(films);
-            if(window.ShowDialog() == true)
+            window.IdPlaylist = ((Playlist)(((Button)sender).Tag)).Id;
+            if (window.ShowDialog() == true)
             {
+                Auth.Instance.SetFilmsIntoPlaylist(window.films, window.IdPlaylist);
 
             }
             else
@@ -61,7 +63,7 @@ namespace Film_geek.Windows
 
         private void BTN_back_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

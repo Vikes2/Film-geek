@@ -10,7 +10,8 @@
         Title="EditPlaylist" Height="300" Width="300"
         Loaded="Window_Loaded">
     <Window.Resources>
-        <app:ImageConverter x:Key="FilmIdToBoolConverter"/>
+        
+
         <DataTemplate x:Key="FilmTemplate">
             <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch" >
                 <Grid HorizontalAlignment="Stretch">
@@ -21,31 +22,30 @@
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
 
-                    <CheckBox  Name="CHKB_isInclude" IsChecked="{Binding Path=Id, Converter={StaticResource FilmIdToBoolConverter}, ConverterParameter={Binding Path=IdPlaylist}}" Grid.Column="0">
-                        
+                    <CheckBox  Name="CHKB_isInclude" Checked="CHKB_isInclude_Checked" Unchecked="CHKB_isInclude_Unchecked" IsChecked="{Binding Path=isShowing, Mode=TwoWay}" Tag="{Binding}" Grid.Column="0">
                     </CheckBox>
                     <Image Grid.Column="1" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
-
                     <Label Grid.Column="2" Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
-
-
                     <Slider Grid.Column="3"></Slider>
-
 
                 </Grid>
             </Border>
         </DataTemplate>
+        
+        
+        
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <!--<RowDefinition Height="3*"/>-->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <ListView Name="LB_FilmViews" Grid.Row="0" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch">
-
-        </ListView>
         
+        <!--<ListView Name="LB_FilmViews" Grid.Row="0" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch">
+        </ListView>-->
+        <ListView Name="LB_ExFilmViews" Grid.Row="0" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch">
+        </ListView>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -22,6 +22,7 @@ namespace Film_geek
         public Overview Overview { get; set; }
         public SignIn SignIn { get; set; }
         public PlaylistView PlaylistView { get; set; }
+        public EditPlaylist EditPlaylist { get; set; }
 
         private ObservableCollection<Playlist> playlists = new ObservableCollection<Playlist>();
         public ObservableCollection<Playlist> Playlists

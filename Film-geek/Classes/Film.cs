@@ -22,6 +22,7 @@ namespace Film_geek.Classes
         public List<int> Playlists { get; set; }
         public int Rating { get; set; }
 
+        public bool isShowing { get; set; }
         public Film()
         {
             ImagePath = "/resources/Images/FilmTest.png";
