@@ -46,6 +46,7 @@ namespace Film_geek.UserControls
 
                 signInWindow.GD_SignInContent.Children.Clear();
                 signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
+                TB_Password.Password = String.Empty;
             }
             else
             {
@@ -64,7 +65,7 @@ namespace Film_geek.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             GD_userContext.DataContext = User;
-            signInWindow.LB_InfoBar.Content = "Podaj hasło. Hasło: 1234.";
+            signInWindow.LB_InfoBar.Content = "Podaj hasło.";
         }
 
         private void LBL_PasswordRemind_LeftButtonDown(object sender, MouseEventArgs e)

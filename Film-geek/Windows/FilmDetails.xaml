@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
-        Title="FilmDetails" Height="600" Width="450" SizeToContent="Height"
+        Title="Szczegóły filmu" Height="600" Width="450" SizeToContent="Height"
         Loaded="Window_Loaded">
-    <DockPanel Style="{StaticResource StandardContainer}" Name="ContentContainer">
+    <DockPanel Style="{StaticResource StandardContainer}" Name="ContentContainer" DataContext="">
         <Grid DockPanel.Dock="Top" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -22,9 +23,9 @@
             <Image x:Name="IMG_FilmImage"  Grid.RowSpan="4"/>
             <Label x:Name="LBL_FilmTitle" Grid.Column="1"/>
             <TextBlock x:Name="TBL_FilmGenres" Grid.Column="1" Grid.Row="1" Margin="5"/>
-            <Slider Name="SL_Rating" Grid.Row="2" Grid.Column="1" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="False"/>
+            <inputtoolkit:Rating Grid.Row="2" Grid.Column="1" Margin="5" ItemCount="5" Value="{Binding Path=Rating}" IsReadOnly="True"/>
 
-            <CheckBox x:Name="CHB_IsWatched" Grid.Column="1" Grid.Row="3" IsEnabled="False"></CheckBox>
+
         </Grid>
         <StackPanel DockPanel.Dock="Top" Margin="10">
             <StackPanel Orientation="Horizontal">
@@ -35,11 +36,6 @@
                 <Label Content="Aktorzy: "/>
                 <Label x:Name="LBL_FilmActors"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Premiera: "/>
-                <Label x:Name="LBL_FilmRelease"/>
-            </StackPanel>
-            <TextBlock x:Name="TBL_FilmDescription" Margin="10" FontStyle="Italic" FontSize="12"/>
         </StackPanel>
         <Grid DockPanel.Dock="Bottom" Margin="2">
             <Grid.ColumnDefinitions>
@@ -47,16 +43,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BTN_FilmPrint" Grid.Column="0" Click="BTN_FilmPrint_Click" >
-                <AccessText>
-                    _Drukuj szczegóły
-                </AccessText>
-            </Button>
-            <Button x:Name="BTN_FilmEdit" Grid.Column="1" Click="BTN_FilmEdit_Click">
-                <AccessText>
-                    _Edytuj
-                </AccessText>
-            </Button>
             <Button x:Name="BTN_Cancel" Grid.Column="2" Click="BTN_Cancel_Click">
                 <AccessText>
                     _Wyjdź
