@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Util;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,14 @@ namespace Film_geek.Windows
 
     public partial class AddOrEditFilm : Window
     {
+
+        public class GenreDic
+        {
+            public string Name { get; set; }
+            public bool Value { get; set; }
+        }
+        private List<GenreDic> genres;
+        
         private Dictionary<FilmGenre, bool> filmGenres = new Dictionary<FilmGenre, bool>();
         public Dictionary<FilmGenre, bool> FilmGenres
         {
@@ -35,67 +44,40 @@ namespace Film_geek.Windows
                 filmGenres = value;
             }
         }
-        private List<GenreDic> genres;
-
 
         public AddOrEditFilm()
         {
-            InitializeComponent();
-            //FilmGenre a = new FilmGenre() { Name = "horror" };
-            //FilmGenre b = new FilmGenre() { Name = "cartoon" };
-            FilmGenre c = new FilmGenre() { Name = "drama" };
-            //((App)Application.Current).AllGenres.Add(a);
-            //((App)Application.Current).AllGenres.Add(b);
+            //test data
+            ((App)Application.Current).AllGenres.Add(new FilmGenre() { Name = "Horror z pawelskim" });
 
-
-            //ActiveFilm = new Film()
-            //{
-            //    Genres = new List<FilmGenre>(((App)Application.Current).AllGenres)
-            //};
-
-
-            //((App)Application.Current).AllGenres.Add(c);
-
-            //List<FilmGenre> genres = ((App)Application.Current).AllGenres;
-
-
-            //foreach(var genre in genres)
-            //{
-            //    filmGenres[genre] = ActiveFilm.Genres.Contains(genre);
-            //}
-
-            //CB_Genre.ItemsSource = filmGenres;
+            InitializeComponent();        
             ActiveFilm = new Film();
-            ActiveFilm.Directors = new List<Director>();
-            ActiveFilm.Directors.Add(new Director("Marian", "Kowlaski"));
             
-            GD_ValuesGrid.DataContext = ActiveFilm;
+            //GD_ValuesGrid.DataContext = ActiveFilm;
 
             // dev
-            ((App)Application.Current).AllGenres.Add(c); 
-
             List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
             genres = new List<GenreDic>();
 
             foreach(var genre in allGenres)
             {
                 genres.Add(new GenreDic() { Name = genre.Name, Value = ActiveFilm.Genres.Contains(genre) });
-            }
+            }//potrzebny odpowiedni duplikat
             CB_Genre.ItemsSource = genres;
+            
             //endev
-
         }
         
         public AddOrEditFilm(Film NewFilm)
         {
+            isEditing = true;
             ActiveFilm = NewFilm;
+            SL_Rating.DataContext = Auth.Instance.LoggedUser.Rating[ActiveFilm];//? i identyko z WatchStatus
             InitializeComponent();
-            GD_ValuesGrid.DataContext = ActiveFilm;
         }
 
-
+        bool isEditing = false;
         public Film ActiveFilm { get; set; }
-        private FilmGenre film;
 
         private void BTN_ImagePicker_Click(object sender, RoutedEventArgs e)
         {
@@ -115,7 +97,16 @@ namespace Film_geek.Windows
         private void BTN_Confirm_Click(object sender, RoutedEventArgs e)
         {
             // walidacja 
-            DialogResult = true;
+            //DialogResult = true;//który to kurwa mądry to wkleił?
+            if (!isEditing)
+            {
+                Auth.Instance.LoggedUser.Playlists[0].Films.Add(ActiveFilm);
+                Auth.Instance.LoggedUser.Rating.Add(ActiveFilm, (float)SL_Rating.Value);
+                bool ws = false;
+                if (RB_Watched_Y.IsChecked == true)
+                    ws = true;
+                Auth.Instance.LoggedUser.WatchStatus.Add(ActiveFilm, ws);
+            }            
             Close();
         }
 
@@ -123,12 +114,44 @@ namespace Film_geek.Windows
         {
             Close();
         }
+
+        private void CB_Genre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+                if (!(CB_Genre.Text == ""))
+                    if (!(((App)Application.Current).AllGenres.Contains(new FilmGenre() {Name = CB_Genre.Text })))
+                    {
+                        FilmGenre newGenre = new FilmGenre() { Name = CB_Genre.Text };
+                        ((App)Application.Current).AllGenres.Add(newGenre);//genres czy globalna?
+                        genres.Add(new GenreDic() { Name = newGenre.Name, Value = true });
+                        ActiveFilm.Genres.Add(newGenre);
+                        CB_Genre.ItemsSource = null;
+                        CB_Genre.ItemsSource = genres;
+                    }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GD_ValuesGrid.DataContext = ActiveFilm;
+        }
+
+        private void CHB_GenreItem_Checked(object sender, RoutedEventArgs e)
+        {
+            List<FilmGenre> deletable = new List<FilmGenre>();
+            CheckBox cb = (sender as CheckBox);
+            if (cb.IsChecked == true)
+                ActiveFilm.Genres.Add(new FilmGenre() { Name = cb.Name });
+            else
+            {
+                foreach (FilmGenre item in ActiveFilm.Genres)
+                    if (item.Name == cb.Name)
+                        deletable.Add(item);
+                foreach (FilmGenre item in deletable)
+                    ActiveFilm.Genres.Remove(item);
+            }        
+        }
     }
 
-    public class GenreDic
-    {
-        public string Name { get; set; }
-        public bool Value { get; set; }
+    
 
-    }
 }

@@ -10,19 +10,23 @@
         xmlns:app="clr-namespace:Film_geek.Classes"
 
         mc:Ignorable="d"
-        Title="AddOrEditFilm" Height="500" Width="300">
+        Title="AddOrEditFilm" Height="500" Width="300"
+        Loaded="Window_Loaded">
     <!--xmlns:local="clr-namespace:Film_geek.Windows"-->
     <!-- lekki edit xmlns:local, do poprawki-->
     <Window.Resources>
         <local:DirectorConverter x:Key="DirectorConverter"/>
         <local:ActorConverter x:Key="ActorConverter"/>
+        <!--<DataTemplate DataType="{x:Type ValidationError}">
+            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+        </DataTemplate>-->
     </Window.Resources>
     <Grid Style="{StaticResource LightBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Name="GD_ValuesGrid" DataContext="">
+        <Grid Grid.Row="0" Name="GD_ValuesGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -43,19 +47,50 @@
             <Label Content="Reżyser:" Grid.Row="2" Grid.Column="1"/>
             <Label Content="Aktorzy:" Grid.Row="3" Grid.Column="1"/>
             <Label Content="Ocena:" Grid.Row="4" Grid.Column="1"/>
-            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title}"/>
+            <TextBox Name="TB_Name" Grid.Row="0" Grid.Column="2" Text="{Binding Path=Title, ValidatesOnDataErrors=True}">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <ItemsControl ItemsSource="{Binding}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
             <Grid Grid.Row="1"  Grid.Column="2" >
-                <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True">
+                <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="True" Text="{Binding UserEnteredItem, UpdateSourceTrigger=LostFocus}" KeyDown="CB_Genre_KeyDown">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding Path=Key.Name}" IsChecked="{Binding Path=Value}"></CheckBox>
+                            <CheckBox Name="CHB_GenreItem" Content="{Binding Path=Name}" IsChecked="{Binding Path=Value, ValidatesOnDataErrors=True}" Checked="CHB_GenreItem_Checked" Unchecked="CHB_GenreItem_Checked" ></CheckBox>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <AdornedElementPlaceholder x:Name="comboBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
                 </ComboBox>
+                <!--<ContentPresenter Content="{Binding ElementName=CB_Genre, Path=(Validation.Errors).CurrentItem}" HorizontalAlignment="Left"/>-->
             </Grid>
             <TextBox Name="TB_Directors" Grid.Row="2" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Director}" Text="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
+            <!--<ContentPresenter Content="{Binding ElementName=TB_Directors, Path=(Validation.Errors).CurrentItem}" HorizontalAlignment="Left"/>-->
             <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="2" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>
-            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Slider Name="SL_Rating" Grid.Row="4" Grid.Column="2" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!--<Label Content="_Tytuł:" Target="{Binding ElementName=TB_Name}" Grid.Row="0" Grid.Column="1" />
             <Label Content="_Gatunek:" Target="{Binding ElementName=CB_Genre}" Grid.Row="1" Grid.Column="1"/>
@@ -194,12 +229,12 @@
 
                 <!--IsDefault="True" , IsCancel="True" DOOOOOOOODAJ JAK YTRZZEBA -->
 
-                <Button Name="BTN_Confirm" Grid.Column="0">
+                <Button Name="BTN_Confirm" Grid.Column="0" Click="BTN_Confirm_Click">
                     <AccessText>
                         O_K    
                     </AccessText>
                 </Button>
-                <Button Name="BTN_Cancel" Grid.Column="1">
+                <Button Name="BTN_Cancel" Grid.Column="1" Click="BTN_Cancel_Click">
                     <AccessText>
                         A_nuluj
                     </AccessText>

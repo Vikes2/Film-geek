@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Film_geek.Classes
 {
 
-    public class Film
+    public class Film : IDataErrorInfo
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -22,6 +24,7 @@ namespace Film_geek.Classes
         public Film()
         {
             ImagePath = "/resources/Images/FilmTest.png";
+            Genres = new List<FilmGenre>();
             Directors = new List<Director>();
             Actors = new List<Actor>();
             Playlists = new List<int>();
@@ -72,6 +75,36 @@ namespace Film_geek.Classes
                 return genrelist.Remove(genrelist.Length - 2);
             }
         }
+
+        //Obsługa walidacji
+        public string Error { get { return null; } }
+        public string this[string columnName]
+        { 
+            get
+            {
+                switch (columnName)
+                {
+                    case "Title":
+                        if (Title == String.Empty || Title == null)
+                            return "Nie wpisano nazwy filmu";
+                        break;
+                    case "Genres":
+                        if (Genres.Count == 0)
+                            return "Nie wybrano żadnego gatunku.";
+                        break;
+                    //case "Directors":
+                    //    if (Directors.Count == 0)
+                    //        return "Nie wpisano żadnego reżysera.";
+                        //break;
+                    case "Actors":
+                        if (Actors.Count == 0)
+                            return "Nie wpisano żadnego aktora.";
+                        break;
+                }
+                return null;
+            }
+        }
+        //Koniec obsługi walidacji
     }
 
 }

@@ -33,7 +33,16 @@ namespace Film_geek.Classes.Converters
             foreach (string x in sepString)
             {
                 string[] sepString2 = x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                newList.Add(new Actor(sepString2[0], sepString2[1]));
+                if(sepString2.Count() == 1)
+                {
+                    newList.Add(new Actor("", sepString2[0]));
+                    continue;
+                }
+                string fullName = "";
+                for(int i = 1; i < sepString2.Count(); i++)
+                    fullName += sepString2[i];
+                fullName.Remove(fullName.Length - 1);//?
+                newList.Add(new Actor(sepString2[0], fullName));
             }
             return newList;
         }
