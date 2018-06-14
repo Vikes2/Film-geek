@@ -40,7 +40,7 @@ namespace Film_geek.Windows
                 Playlist playlist = (Playlist)((Button)sender).Tag;
                 Auth.Instance.DeletePlaylist(playlist);
                 ((App)Application.Current).Playlists.Remove(playlist);
-                ((App)Application.Current).PlaylistView.CB_Playlists.SelectedIndex = 0;
+                //((App)Application.Current).PlaylistView.CB_Playlists.SelectedIndex = 0;
 
             }
         }

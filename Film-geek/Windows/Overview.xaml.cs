@@ -32,6 +32,8 @@ namespace Film_geek.Windows
             InitializeComponent();
             LoggedUser = Auth.Instance.LoggedUser;
 
+
+
             OUC = new OverviewUC();
             PUC = new PlaylistView();
 

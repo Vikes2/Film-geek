@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="Logowanie" ResizeMode="NoResize" Loaded="SignInWindow_Loaded" Width="720" Height="534">
+        Title="Logowanie" ResizeMode="NoResize" Loaded="SignInWindow_Loaded" Width="720" Height="474">
     <Grid Style="{StaticResource StandardContainer}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

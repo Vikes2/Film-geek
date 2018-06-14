@@ -4,6 +4,7 @@ using Film_geek.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,10 +32,14 @@ namespace Film_geek.UserControls
         public PlaylistView()
         {
             InitializeComponent();
-            CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
-            CB_Playlists.SelectedIndex = 0;
+            FilmsList = Auth.Instance.LoggedUser.Playlists[0].Films;
+            LB_PlaylistsView.ItemsSource = FilmsList;
+            //LB_PlaylistsView.ItemsSource = Auth.Instance.LoggedUser.Playlists[0].Films;
+            //CB_Playlists.ItemsSource = Auth.Instance.LoggedUser.Playlists;
+            //CB_Playlists.SelectedIndex = 0;
             ((App)Application.Current).PlaylistView = this;
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
+            CB_playlistFilter.ItemsSource = Auth.Instance.LoggedUser.Playlists;
         }
 
         private void BTN_Overview_Click(object sender, RoutedEventArgs e)
@@ -76,7 +81,6 @@ namespace Film_geek.UserControls
             }
         }
 
-
         private void BTN_pop_Click(object sender, RoutedEventArgs e)
         {
 
@@ -102,14 +106,6 @@ namespace Film_geek.UserControls
             POP_list.IsOpen = false;
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            ExcludedPlaylists = new ObservableCollection<Playlist>();
-
-            LB_ButtonsView.ItemsSource = ExcludedPlaylists;
-
-        }
-
         private void AddToPlaylist(object sender, RoutedEventArgs e)
         {
             Playlist playlist = (Playlist)((Button)sender).Tag;
@@ -129,7 +125,29 @@ namespace Film_geek.UserControls
         private void deleteFilm(object sender, RoutedEventArgs e)
         {
             Film film = (Film)((Button)sender).Tag;
-            Auth.Instance.DeleteFilm(film);
+            Playlist playlist = CB_playlistFilter.SelectedItem as Playlist;
+            if(playlist != null)
+            {
+
+                Auth.Instance.DeleteFilm(film, playlist);
+            }
+
+            int id = ((Playlist)CB_playlistFilter.SelectedItem).Id;
+
+            if (CB_playlistFilter.SelectedIndex == 0)
+            {
+                View.Filter = null;
+                return;
+            }
+
+            View.Filter = delegate (object item)
+            {
+                if (item is Film f)
+                {
+                    return (f.Playlists.Contains(id));
+                }
+                return false;
+            };
         }
 
         private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
@@ -137,6 +155,109 @@ namespace Film_geek.UserControls
             PlaylistManager window = new PlaylistManager();
             window.Owner = ((App)Application.Current).Overview;
             window.Show();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ExcludedPlaylists = new ObservableCollection<Playlist>();
+
+            LB_ButtonsView.ItemsSource = ExcludedPlaylists;
+
+        }
+
+
+        //-------------sortowanie
+
+
+
+        private ObservableCollection<Film> filmsList;
+        public ObservableCollection<Film> FilmsList
+        {
+            get
+            {
+                return filmsList;
+            }
+            set
+            {
+                filmsList = value;
+            }
+        }
+
+        private ListCollectionView View
+        {
+            get
+            {
+                return (ListCollectionView)CollectionViewSource.GetDefaultView(FilmsList);
+            }
+        }
+
+        //    //private void Filter(object sender, RoutedEventArgs e)
+        //    //{
+        //    //    decimal minimumPrice;
+        //    //    if (Decimal.TryParse(txtMinPrice.Text, out minimumPrice))
+        //    //    {
+        //    //        View.Filter = delegate (object item)
+        //    //        {
+        //    //            Book product = item as Book;
+        //    //            if (product != null)
+        //    //            {
+        //    //                return (product.Price > minimumPrice);
+        //    //            }
+        //    //            return false;
+        //    //        };
+        //    //    }
+        //    //}
+        //    //private void FilterNone(object sender, RoutedEventArgs e)
+        //    //{
+        //    //    View.Filter = null;
+        //    //}
+
+        private class SortByTitleLength : System.Collections.IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                Film film_x = (Film)x;
+                Film film_y = (Film)y;
+                return film_x.Title.Length.CompareTo(film_y.Title.Length);
+            }
+        }
+        private void SortTitleLength(object sender, RoutedEventArgs e)
+        {
+            View.CustomSort = new SortByTitleLength();
+        }
+        private void SortTitle(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Ascending));
+        }
+        private void SortNone(object sender, RoutedEventArgs e)
+        {
+            if(View != null)
+            {
+                View.SortDescriptions.Clear();
+                View.CustomSort = null;
+            }
+
+        }
+
+        private void CB_playlistFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int id = ((Playlist)CB_playlistFilter.SelectedItem).Id;
+
+            if(CB_playlistFilter.SelectedIndex == 0)
+            {
+                View.Filter = null;
+                return;
+            }
+
+            View.Filter = delegate (object item)
+            {
+                if (item is Film film)
+                {
+                    return (film.Playlists.Contains(id));
+                }
+                return false;
+            };
         }
     }
 }

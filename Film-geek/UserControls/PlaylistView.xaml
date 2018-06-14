@@ -101,16 +101,21 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox Name="CB_Playlists" VerticalAlignment="Center" />
-
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                     <Button Name="BTN_NewFilm" Command="comm:FilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                     <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
-
+                    <ComboBox SelectedIndex="0" VerticalAlignment="Center">
+                        <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Name="CB_playlistFilter" VerticalAlignment="Center" SelectedIndex="0" DisplayMemberPath="Name" SelectionChanged="CB_playlistFilter_SelectionChanged">
+                        
+                    </ComboBox>
                 </StackPanel>
             </Grid>
 
-            <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">
+            <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch">
 
             </ListView>
             <Popup x:Name="POP_list"  PopupAnimation="Fade" Placement="Mouse" AllowsTransparency="True" StaysOpen="False">
