@@ -11,10 +11,35 @@
     <UserControl.Resources>
         <DataTemplate x:Key="UserTemplate">
             <Grid MouseLeftButtonDown="User_MouseLeftButtonDown" Tag="{Binding}" >
+                <Grid.RenderTransform>
+                    <ScaleTransform ScaleX="0.9" ScaleY="0.9" />
+                </Grid.RenderTransform>
+                <Grid.Triggers>
+                    <EventTrigger RoutedEvent="ListBox.MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.0" Duration="0:0:0.5" />
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.0" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="ListBox.MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" Duration="0:0:0.5" />
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" Duration="0:0:0.5" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Grid.Triggers>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition SharedSizeGroup="profile"/>
                 </Grid.ColumnDefinitions>
-                <Border Margin="15" BorderThickness="1.2" BorderBrush="SteelBlue" CornerRadius="5" Grid.IsSharedSizeScope="True" VerticalAlignment="Center">
+                <Border Margin="15" BorderThickness="1.2" BorderBrush="SteelBlue" CornerRadius="5" Grid.IsSharedSizeScope="True" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid Margin="10 20">
                         <Grid.RowDefinitions>
                             <RowDefinition/>

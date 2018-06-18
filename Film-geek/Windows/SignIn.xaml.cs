@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -62,7 +63,22 @@ namespace Film_geek.Windows
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.To = 0;
+            anim.Duration = TimeSpan.FromSeconds(0.3);
+            anim.Completed += delegate
+            {
+                Tab.SelectedIndex = 1;
+                DoubleAnimation animation = new DoubleAnimation();
+                anim.To = 1;
+                anim.Duration = TimeSpan.FromSeconds(0.3);
+                Tab.BeginAnimation(TabControl.OpacityProperty, animation);
+            };
+            Tab.BeginAnimation(TabControl.OpacityProperty, anim);
 
 
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -26,20 +27,37 @@ namespace Film_geek.UserControls
     {
         private SignIn signInWindow;
 
+        private User clickedUser;
+
         public ProfilesView()
         {
             InitializeComponent();
             signInWindow = ((App)Application.Current).SignIn;
         }
 
+        private void ShowPasswordWindow(object sender, EventArgs e)
+        {
+            LB_Users.SelectedItem = null;
+            signInWindow.GD_SignInContent.Children.Clear();
+            signInWindow.PasswordView.User = clickedUser;
+            signInWindow.GD_SignInContent.Children.Add(signInWindow.PasswordView);
+
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.To = 1;
+            anim.Duration = TimeSpan.FromSeconds(0.3);
+            signInWindow.GD_SignInContent.BeginAnimation(Grid.OpacityProperty, anim);
+        
+        }
 
         private void User_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            User user = ((Grid)sender).Tag as User;
+            clickedUser = ((Grid)sender).Tag as User;
 
-            signInWindow.GD_SignInContent.Children.Clear();
-            signInWindow.PasswordView.User = user;
-            signInWindow.GD_SignInContent.Children.Add(signInWindow.PasswordView);
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.To = 0;
+            anim.Duration = TimeSpan.FromSeconds(0.3);
+            anim.Completed += ShowPasswordWindow;
+            signInWindow.GD_SignInContent.BeginAnimation(Grid.OpacityProperty, anim);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

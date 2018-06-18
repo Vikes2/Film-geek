@@ -56,7 +56,11 @@ namespace Film_geek.Windows
 
         private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
         {
-            Print.PrintFilmDetails(Film);
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(ContentContainer, "A Simple Drawing");
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

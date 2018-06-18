@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -55,10 +56,25 @@ namespace Film_geek.UserControls
 
         }
 
-        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        private void ShowProfilesWindow(object sender, EventArgs e)
         {
             signInWindow.GD_SignInContent.Children.Clear();
             signInWindow.GD_SignInContent.Children.Add(signInWindow.ProfilesView);
+            
+
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.To = 1;
+            anim.Duration = TimeSpan.FromSeconds(0.3);
+            signInWindow.GD_SignInContent.BeginAnimation(Grid.OpacityProperty, anim);
+        }
+
+        private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.To = 0;
+            anim.Duration = TimeSpan.FromSeconds(0.3);
+            anim.Completed += ShowProfilesWindow;
+            signInWindow.GD_SignInContent.BeginAnimation(Grid.OpacityProperty, anim);
         }
 
 
