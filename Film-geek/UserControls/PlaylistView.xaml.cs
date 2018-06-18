@@ -199,27 +199,19 @@ namespace Film_geek.UserControls
                 return (ListCollectionView)CollectionViewSource.GetDefaultView(FilmsList);
             }
         }
-
-        //    //private void Filter(object sender, RoutedEventArgs e)
-        //    //{
-        //    //    decimal minimumPrice;
-        //    //    if (Decimal.TryParse(txtMinPrice.Text, out minimumPrice))
-        //    //    {
-        //    //        View.Filter = delegate (object item)
-        //    //        {
-        //    //            Book product = item as Book;
-        //    //            if (product != null)
-        //    //            {
-        //    //                return (product.Price > minimumPrice);
-        //    //            }
-        //    //            return false;
-        //    //        };
-        //    //    }
-        //    //}
-        //    //private void FilterNone(object sender, RoutedEventArgs e)
-        //    //{
-        //    //    View.Filter = null;
-        //    //}
+        private class SortByTitleLengthDesc : System.Collections.IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                Film film_x = (Film)x;
+                Film film_y = (Film)y;
+                return film_x.Title.Length.CompareTo(film_y.Title.Length) * -1;
+            }
+        }
+        private void SortTitleLengthDesc(object sender, RoutedEventArgs e)
+        {
+            View.CustomSort = new SortByTitleLengthDesc();
+        }
 
         private class SortByTitleLength : System.Collections.IComparer
         {
@@ -239,6 +231,25 @@ namespace Film_geek.UserControls
             View.SortDescriptions.Clear();
             View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Ascending));
         }
+
+        private void SortRank(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Ascending));
+        }
+
+        private void SortRankDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Descending));
+        }
+
+        private void SortTitleDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Descending));
+        }
+
         private void SortNone(object sender, RoutedEventArgs e)
         {
             if(View != null)
@@ -254,7 +265,6 @@ namespace Film_geek.UserControls
 
         private void Filter()
         {
-            //int selectedGenres = CB_generesFilter.SelectedIndex;
 
             if(CB_generesFilter == null)
             {
@@ -439,9 +449,13 @@ namespace Film_geek.UserControls
             Filter();
         }
 
-
-
-
-    
+        private void ClearFiltrs_Click(object sender, RoutedEventArgs e)
+        {
+            CB_generesFilter.SelectedIndex = 0;
+            CB_playlistFilter.SelectedIndex = 0;
+            CB_ratingFilter.SelectedIndex = 0;
+            View.Filter = null;
+            return;
+        }
     }
 }

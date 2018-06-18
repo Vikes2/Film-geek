@@ -106,8 +106,12 @@
                     <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
                     <ComboBox SelectedIndex="0" VerticalAlignment="Center">
                         <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
-                        <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu</ComboBoxItem>
-                        <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu(a-z)</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitleDesc">Sortuj wg tytułu(z-a)</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu(rosnąco)</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitleLengthDesc">Sortuj wg długości tytułu(malejąco)</ComboBoxItem>
+                        <ComboBoxItem Selected="SortRank">Sortuj wg oceny(rosnąco)</ComboBoxItem>
+                        <ComboBoxItem Selected="SortRankDesc">Sortuj wg oceny(malejąco)</ComboBoxItem>
                     </ComboBox>
                     <ComboBox Name="CB_playlistFilter" VerticalAlignment="Center" SelectedIndex="0" DisplayMemberPath="Name" SelectionChanged="CB_runFilter_SelectionChanged" >
                         
@@ -124,6 +128,7 @@
                     <ComboBox Name="CB_generesFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" >
 
                     </ComboBox>
+                    <Button Name="ClearFiltrs" Click="ClearFiltrs_Click" Content="Wyczyść filtry"/>
                 </StackPanel>
             </Grid>
 

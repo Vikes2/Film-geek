@@ -20,7 +20,7 @@ namespace Film_geek.Classes
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public List<int> Playlists { get; set; }
-        public double Rating { get; set; }
+        public int Rating { get; set; }
 
 
         public bool isShowing { get; set; }
