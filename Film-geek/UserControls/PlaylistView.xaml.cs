@@ -26,6 +26,7 @@ namespace Film_geek.UserControls
     public partial class PlaylistView : UserControl
     {
         public ObservableCollection<Playlist> ExcludedPlaylists { get; set; }
+        public List<string> genresList = new List<string>();
 
         private Film selectedFilm;
 
@@ -40,6 +41,14 @@ namespace Film_geek.UserControls
             ((App)Application.Current).PlaylistView = this;
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
             CB_playlistFilter.ItemsSource = Auth.Instance.LoggedUser.Playlists;
+
+            genresList.Insert(0, "Brak filtru");
+            foreach(FilmGenre fg in ((App)Application.Current).AllGenres)
+            {
+                genresList.Add(fg.Name);
+            }
+            CB_generesFilter.ItemsSource = genresList;
+
         }
 
         private void BTN_Overview_Click(object sender, RoutedEventArgs e)
@@ -240,24 +249,98 @@ namespace Film_geek.UserControls
 
         }
 
-        private void CB_playlistFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int id = ((Playlist)CB_playlistFilter.SelectedItem).Id;
+        // ------------------------filtry
 
-            if(CB_playlistFilter.SelectedIndex == 0)
+
+        private void Filter()
+        {
+            //int selectedGenres = CB_generesFilter.SelectedIndex;
+
+            if(CB_generesFilter == null)
+            {
+                return;
+            }
+
+            if (int.TryParse(CB_generesFilter.SelectedIndex.ToString(), out int selectedGeneres) == false)
+            {
+                selectedGeneres = -1;
+            }
+            MessageBox.Show(selectedGeneres + "");
+
+            Playlist playlist = CB_playlistFilter.SelectedItem as Playlist;
+
+            if(playlist == null)
+            {
+                return;
+            }
+
+            int idPlaylist = playlist.Id; 
+
+            ComboBoxItem cbItem = CB_ratingFilter.SelectedItem as ComboBoxItem;
+            if(cbItem == null)
+            {
+                return;
+            }
+            
+            if (int.TryParse(cbItem.Content.ToString(), out int idRating) == false)
+            {
+                idRating = -1;
+            }
+
+
+            // idPlaylist id playlisty (1= wszystkie, 2- fajne)
+            // idRating wartość CB brak = -1, 1 = 1
+
+
+
+            if (idPlaylist == 1 && idRating == -1)
             {
                 View.Filter = null;
                 return;
             }
-
-            View.Filter = delegate (object item)
+            else if (idPlaylist != 1 && idRating == -1)
             {
-                if (item is Film film)
+                View.Filter = delegate (object item)
                 {
-                    return (film.Playlists.Contains(id));
-                }
-                return false;
-            };
+                    if (item is Film film)
+                    {
+                        return (film.Playlists.Contains(idPlaylist));
+                    }
+                    return false;
+                };
+            }
+            else if (idPlaylist == 1 && idRating != -1)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+                        return (film.Rating == idRating);
+                    }
+                    return false;
+                };
+            }
+            else if (idPlaylist != 1 && idRating != -1)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+                        return (film.Rating == idRating && film.Playlists.Contains(idPlaylist));
+                    }
+                    return false;
+                };
+            }
         }
+
+        private void CB_runFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+
+
+
+    
     }
 }

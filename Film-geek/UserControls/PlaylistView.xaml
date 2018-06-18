@@ -109,8 +109,20 @@
                         <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu</ComboBoxItem>
                         <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu</ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Name="CB_playlistFilter" VerticalAlignment="Center" SelectedIndex="0" DisplayMemberPath="Name" SelectionChanged="CB_playlistFilter_SelectionChanged">
+                    <ComboBox Name="CB_playlistFilter" VerticalAlignment="Center" SelectedIndex="0" DisplayMemberPath="Name" SelectionChanged="CB_runFilter_SelectionChanged" >
                         
+                    </ComboBox>
+                    <ComboBox Name="CB_ratingFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged">
+                        <ComboBoxItem >Bez filtru</ComboBoxItem>
+                        <ComboBoxItem >0</ComboBoxItem>
+                        <ComboBoxItem >1</ComboBoxItem>
+                        <ComboBoxItem >2</ComboBoxItem>
+                        <ComboBoxItem >3</ComboBoxItem>
+                        <ComboBoxItem >4</ComboBoxItem>
+                        <ComboBoxItem >5</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Name="CB_generesFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" >
+
                     </ComboBox>
                 </StackPanel>
             </Grid>
