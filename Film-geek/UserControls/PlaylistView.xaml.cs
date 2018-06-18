@@ -263,9 +263,26 @@ namespace Film_geek.UserControls
 
             if (int.TryParse(CB_generesFilter.SelectedIndex.ToString(), out int selectedGeneres) == false)
             {
-                selectedGeneres = -1;
+                return;
             }
-            MessageBox.Show(selectedGeneres + "");
+
+            FilmGenre selectedObjGenre = null;
+
+
+
+            if ( selectedGeneres >0)
+            {
+                foreach (FilmGenre fg in ((App)Application.Current).AllGenres)
+                {
+                    if (fg.Name == genresList[selectedGeneres]) 
+                    {
+                        selectedObjGenre = fg;
+                        break;
+                    }
+                }
+
+            }
+
 
             Playlist playlist = CB_playlistFilter.SelectedItem as Playlist;
 
@@ -290,15 +307,15 @@ namespace Film_geek.UserControls
 
             // idPlaylist id playlisty (1= wszystkie, 2- fajne)
             // idRating wartość CB brak = -1, 1 = 1
+            // selectedGenere index kategori 0 - brak, 1 - horror ...
 
 
-
-            if (idPlaylist == 1 && idRating == -1)
+            if (idPlaylist == 1 && idRating == -1 && selectedGeneres == 0)
             {
                 View.Filter = null;
                 return;
             }
-            else if (idPlaylist != 1 && idRating == -1)
+            else if (idPlaylist != 1 && idRating == -1 && selectedGeneres == 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -309,7 +326,7 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }
-            else if (idPlaylist == 1 && idRating != -1)
+            else if (idPlaylist == 1 && idRating != -1 && selectedGeneres == 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -320,13 +337,97 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }
-            else if (idPlaylist != 1 && idRating != -1)
+            else if (idPlaylist != 1 && idRating != -1 && selectedGeneres == 0)
             {
                 View.Filter = delegate (object item)
                 {
                     if (item is Film film)
                     {
                         return (film.Rating == idRating && film.Playlists.Contains(idPlaylist));
+                    }
+                    return false;
+                };
+            }   // ======================================================================================= kategorie
+            else if (idPlaylist == 1 && idRating == -1 && selectedGeneres != 0)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+                        if(selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if(f.Name == selectedObjGenre.Name)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    return false;
+                };
+            }                                                             
+            else if (idPlaylist != 1 && idRating == -1 && selectedGeneres != 0)
+            {                                                             
+                View.Filter = delegate (object item)                      
+                {                                                         
+                    if (item is Film film)                                
+                    {
+
+                        if (selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if (f.Name == selectedObjGenre.Name && film.Playlists.Contains(idPlaylist))
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }                                                     
+                    return false;                                         
+                };                                                        
+            }                                                             
+            else if (idPlaylist == 1 && idRating != -1 && selectedGeneres != 0)
+            {                                                             
+                View.Filter = delegate (object item)                      
+                {                                                         
+                    if (item is Film film)                                
+                    {
+
+                        if (selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if (f.Name == selectedObjGenre.Name && film.Rating == idRating)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }                                                     
+                    return false;                                         
+                };                                                        
+            }                                                             
+            else if (idPlaylist != 1 && idRating != -1 && selectedGeneres != 0)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+
+                        if (selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if (f.Name == selectedObjGenre.Name && film.Rating == idRating && film.Playlists.Contains(idPlaylist))
+                                {
+                                    return true;
+                                }
+                            }
+                        }
                     }
                     return false;
                 };
