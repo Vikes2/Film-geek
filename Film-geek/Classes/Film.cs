@@ -12,7 +12,7 @@ namespace Film_geek.Classes
     public class Film : IDataErrorInfo, INotifyPropertyChanged
     {
         private string imagePath;
-        private double rating;
+        private int rating;
 
         public int Id { get; set; }
         public string Title { get; set; }
@@ -34,7 +34,7 @@ namespace Film_geek.Classes
             }
         }
         public List<int> Playlists { get; set; }
-        public double Rating
+        public int Rating
         {
             get
             {
@@ -46,6 +46,7 @@ namespace Film_geek.Classes
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rating"));
             }
         }
+
 
 
         public bool isShowing { get; set; }

@@ -3,6 +3,7 @@ using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,9 @@ namespace Film_geek.Windows
         public ObservableCollection<Film> films;
         public ObservableCollection<Film> allFilms;
         public ObservableCollection<Film> diff;
+
+        public List<string> genresList = new List<string>();
+
 
         public int IdPlaylist { get; set; }
         private Playlist MyPlaylist;
@@ -49,6 +53,13 @@ namespace Film_geek.Windows
             currentFilms = true;
 
             loadPlaylists(_films);
+
+            genresList.Insert(0, "Brak filtru");
+            foreach (FilmGenre fg in ((App)Application.Current).AllGenres)
+            {
+                genresList.Add(fg.Name);
+            }
+            CB_genresFilter.ItemsSource = genresList;
 
 
             ((App)Application.Current).EditPlaylist = this;
@@ -141,7 +152,10 @@ namespace Film_geek.Windows
             // adding to playlist
             Film film = (Film)(((CheckBox)sender).Tag);
             films.Add(film);
-            diff.Remove(film);
+
+
+
+            diff.Remove(film); 
             syncLists();
 
         }
@@ -153,5 +167,236 @@ namespace Film_geek.Windows
             films.Remove(film);
             syncLists();
         }
+
+
+        #region filtry/sort
+
+
+        //-------------sortowanie
+
+
+
+        private ObservableCollection<Film> filmsList;
+        public ObservableCollection<Film> FilmsList
+        {
+            get
+            {
+                return filmsList;
+            }
+            set
+            {
+                filmsList = value;
+            }
+        }
+
+        private ListCollectionView View
+        {
+            get
+            {
+                return (ListCollectionView)CollectionViewSource.GetDefaultView(allFilms);
+            }
+        }
+        private class SortByTitleLengthDesc : System.Collections.IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                Film film_x = (Film)x;
+                Film film_y = (Film)y;
+                return film_x.Title.Length.CompareTo(film_y.Title.Length) * -1;
+            }
+        }
+        private void SortTitleLengthDesc(object sender, RoutedEventArgs e)
+        {
+            View.CustomSort = new SortByTitleLengthDesc();
+        }
+
+        private class SortByTitleLength : System.Collections.IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                Film film_x = (Film)x;
+                Film film_y = (Film)y;
+                return film_x.Title.Length.CompareTo(film_y.Title.Length);
+            }
+        }
+        private void SortTitleLength(object sender, RoutedEventArgs e)
+        {
+            View.CustomSort = new SortByTitleLength();
+        }
+        private void SortTitle(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Ascending));
+        }
+
+        private void SortRank(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Ascending));
+        }
+
+        private void SortRankDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Descending));
+        }
+
+        private void SortTitleDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Descending));
+        }
+
+        private void SortNone(object sender, RoutedEventArgs e)
+        {
+            if (View != null)
+            {
+                View.SortDescriptions.Clear();
+                View.CustomSort = null;
+            }
+
+        }
+
+        
+
+
+
+        private void Filter()
+        {
+
+            if (CB_genresFilter == null)
+            {
+                return;
+            }
+
+            if (int.TryParse(CB_genresFilter.SelectedIndex.ToString(), out int selectedgenres) == false)
+            {
+                return;
+            }
+
+            FilmGenre selectedObjGenre = null;
+
+
+
+            if (selectedgenres > 0)
+            {
+                foreach (FilmGenre fg in ((App)Application.Current).AllGenres)
+                {
+                    if (fg.Name == genresList[selectedgenres])
+                    {
+                        selectedObjGenre = fg;
+                        break;
+                    }
+                }
+
+            }
+
+
+
+            ComboBoxItem cbItem = CB_ratingFilter.SelectedItem as ComboBoxItem;
+            if (cbItem == null)
+            {
+                return;
+            }
+
+            if (int.TryParse(cbItem.Content.ToString(), out int idRating) == false)
+            {
+                idRating = -1;
+            }
+
+
+            // idRating wartość CB brak = -1, 1 = 1
+            // selectedgenre index kategori 0 - brak, 1 - horror ...
+
+
+            if (idRating == -1 && selectedgenres == 0)
+            {
+                View.Filter = null;
+                return;
+            }
+            else if (idRating != -1 && selectedgenres == 0)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+                        return (film.Rating == idRating);
+                    }
+                    return false;
+                };
+            }
+            else if (idRating == -1 && selectedgenres != 0)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+                        if (selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if (f.Name == selectedObjGenre.Name)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    return false;
+                };
+            }
+            else if (idRating != -1 && selectedgenres != 0)
+            {
+                View.Filter = delegate (object item)
+                {
+                    if (item is Film film)
+                    {
+
+                        if (selectedObjGenre != null)
+                        {
+                            foreach (FilmGenre f in film.Genres)
+                            {
+                                if (f.Name == selectedObjGenre.Name && film.Rating == idRating)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }
+                    return false;
+                };
+            }
+
+        }
+
+
+
+
+        private void CB_runFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+
+        public void ClearFilters()
+        {
+            CB_genresFilter.SelectedIndex = 0;
+            CB_ratingFilter.SelectedIndex = 0;
+            View.Filter = null;
+            return;
+        }
+
+        private void ClearFiltrs_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFilters();
+        }
+
+
+        #endregion
+
+
+
+
     }
 }

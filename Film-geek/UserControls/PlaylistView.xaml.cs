@@ -47,7 +47,7 @@ namespace Film_geek.UserControls
             {
                 genresList.Add(fg.Name);
             }
-            CB_generesFilter.ItemsSource = genresList;
+            CB_genresFilter.ItemsSource = genresList;
 
         }
 
@@ -199,27 +199,19 @@ namespace Film_geek.UserControls
                 return (ListCollectionView)CollectionViewSource.GetDefaultView(FilmsList);
             }
         }
-
-        //    //private void Filter(object sender, RoutedEventArgs e)
-        //    //{
-        //    //    decimal minimumPrice;
-        //    //    if (Decimal.TryParse(txtMinPrice.Text, out minimumPrice))
-        //    //    {
-        //    //        View.Filter = delegate (object item)
-        //    //        {
-        //    //            Book product = item as Book;
-        //    //            if (product != null)
-        //    //            {
-        //    //                return (product.Price > minimumPrice);
-        //    //            }
-        //    //            return false;
-        //    //        };
-        //    //    }
-        //    //}
-        //    //private void FilterNone(object sender, RoutedEventArgs e)
-        //    //{
-        //    //    View.Filter = null;
-        //    //}
+        private class SortByTitleLengthDesc : System.Collections.IComparer
+        {
+            public int Compare(object x, object y)
+            {
+                Film film_x = (Film)x;
+                Film film_y = (Film)y;
+                return film_x.Title.Length.CompareTo(film_y.Title.Length) * -1;
+            }
+        }
+        private void SortTitleLengthDesc(object sender, RoutedEventArgs e)
+        {
+            View.CustomSort = new SortByTitleLengthDesc();
+        }
 
         private class SortByTitleLength : System.Collections.IComparer
         {
@@ -239,6 +231,25 @@ namespace Film_geek.UserControls
             View.SortDescriptions.Clear();
             View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Ascending));
         }
+
+        private void SortRank(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Ascending));
+        }
+
+        private void SortRankDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Rating", ListSortDirection.Descending));
+        }
+
+        private void SortTitleDesc(object sender, RoutedEventArgs e)
+        {
+            View.SortDescriptions.Clear();
+            View.SortDescriptions.Add(new SortDescription("Title", ListSortDirection.Descending));
+        }
+
         private void SortNone(object sender, RoutedEventArgs e)
         {
             if(View != null)
@@ -254,14 +265,13 @@ namespace Film_geek.UserControls
 
         private void Filter()
         {
-            //int selectedGenres = CB_generesFilter.SelectedIndex;
 
-            if(CB_generesFilter == null)
+            if(CB_genresFilter == null)
             {
                 return;
             }
 
-            if (int.TryParse(CB_generesFilter.SelectedIndex.ToString(), out int selectedGeneres) == false)
+            if (int.TryParse(CB_genresFilter.SelectedIndex.ToString(), out int selectedgenres) == false)
             {
                 return;
             }
@@ -270,11 +280,11 @@ namespace Film_geek.UserControls
 
 
 
-            if ( selectedGeneres >0)
+            if ( selectedgenres >0)
             {
                 foreach (FilmGenre fg in ((App)Application.Current).AllGenres)
                 {
-                    if (fg.Name == genresList[selectedGeneres]) 
+                    if (fg.Name == genresList[selectedgenres]) 
                     {
                         selectedObjGenre = fg;
                         break;
@@ -307,15 +317,15 @@ namespace Film_geek.UserControls
 
             // idPlaylist id playlisty (1= wszystkie, 2- fajne)
             // idRating wartość CB brak = -1, 1 = 1
-            // selectedGenere index kategori 0 - brak, 1 - horror ...
+            // selectedgenre index kategori 0 - brak, 1 - horror ...
 
 
-            if (idPlaylist == 1 && idRating == -1 && selectedGeneres == 0)
+            if (idPlaylist == 1 && idRating == -1 && selectedgenres == 0)
             {
                 View.Filter = null;
                 return;
             }
-            else if (idPlaylist != 1 && idRating == -1 && selectedGeneres == 0)
+            else if (idPlaylist != 1 && idRating == -1 && selectedgenres == 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -326,7 +336,7 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }
-            else if (idPlaylist == 1 && idRating != -1 && selectedGeneres == 0)
+            else if (idPlaylist == 1 && idRating != -1 && selectedgenres == 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -337,7 +347,7 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }
-            else if (idPlaylist != 1 && idRating != -1 && selectedGeneres == 0)
+            else if (idPlaylist != 1 && idRating != -1 && selectedgenres == 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -348,7 +358,7 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }   // ======================================================================================= kategorie
-            else if (idPlaylist == 1 && idRating == -1 && selectedGeneres != 0)
+            else if (idPlaylist == 1 && idRating == -1 && selectedgenres != 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -368,7 +378,7 @@ namespace Film_geek.UserControls
                     return false;
                 };
             }                                                             
-            else if (idPlaylist != 1 && idRating == -1 && selectedGeneres != 0)
+            else if (idPlaylist != 1 && idRating == -1 && selectedgenres != 0)
             {                                                             
                 View.Filter = delegate (object item)                      
                 {                                                         
@@ -389,7 +399,7 @@ namespace Film_geek.UserControls
                     return false;                                         
                 };                                                        
             }                                                             
-            else if (idPlaylist == 1 && idRating != -1 && selectedGeneres != 0)
+            else if (idPlaylist == 1 && idRating != -1 && selectedgenres != 0)
             {                                                             
                 View.Filter = delegate (object item)                      
                 {                                                         
@@ -411,7 +421,7 @@ namespace Film_geek.UserControls
                     return false;                                         
                 };                                                        
             }                                                             
-            else if (idPlaylist != 1 && idRating != -1 && selectedGeneres != 0)
+            else if (idPlaylist != 1 && idRating != -1 && selectedgenres != 0)
             {
                 View.Filter = delegate (object item)
                 {
@@ -438,5 +448,20 @@ namespace Film_geek.UserControls
         {
             Filter();
         }
+
+        public void ClearFilters()
+        {
+            CB_genresFilter.SelectedIndex = 0;
+            CB_playlistFilter.SelectedIndex = 0;
+            CB_ratingFilter.SelectedIndex = 0;
+            View.Filter = null;
+            return;
+        }
+
+        private void ClearFiltrs_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFilters();
+        }
+
     }
 }
