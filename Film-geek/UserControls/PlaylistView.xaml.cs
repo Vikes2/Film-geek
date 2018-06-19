@@ -58,6 +58,13 @@ namespace Film_geek.UserControls
             overview.GD_Content.Children.Add(overview.OUC);
         }
 
+        public void refreshListSource()
+        {
+            LB_PlaylistsView.ItemsSource = null;
+            FilmsList = Auth.Instance.LoggedUser.Playlists[0].Films;
+            LB_PlaylistsView.ItemsSource = FilmsList;
+        }
+
         private void updateSource(Film film)
         {
             List<Playlist> toDel = new List<Playlist>();
@@ -128,7 +135,7 @@ namespace Film_geek.UserControls
             }
             POP_list.IsOpen = false;
 
-
+            Filter();
         }
 
         private void deleteFilm(object sender, RoutedEventArgs e)
@@ -141,22 +148,8 @@ namespace Film_geek.UserControls
                 Auth.Instance.DeleteFilm(film, playlist);
             }
 
-            int id = ((Playlist)CB_playlistFilter.SelectedItem).Id;
+            Filter();
 
-            if (CB_playlistFilter.SelectedIndex == 0)
-            {
-                View.Filter = null;
-                return;
-            }
-
-            View.Filter = delegate (object item)
-            {
-                if (item is Film f)
-                {
-                    return (f.Playlists.Contains(id));
-                }
-                return false;
-            };
         }
 
         private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
@@ -174,7 +167,7 @@ namespace Film_geek.UserControls
 
         }
 
-
+        #region
         //-------------sortowanie
 
 
@@ -260,10 +253,12 @@ namespace Film_geek.UserControls
 
         }
 
+        
+
         // ------------------------filtry
 
 
-        private void Filter()
+        public void Filter()
         {
 
             if(CB_genresFilter == null)
@@ -462,6 +457,7 @@ namespace Film_geek.UserControls
         {
             ClearFilters();
         }
+        #endregion
 
     }
 }

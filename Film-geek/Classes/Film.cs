@@ -21,6 +21,7 @@ namespace Film_geek.Classes
         public List<Actor> Actors { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
+        public List<int> Playlists { get; set; }
         public string ImagePath
         {
             get
@@ -33,7 +34,6 @@ namespace Film_geek.Classes
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImagePath"));
             }
         }
-        public List<int> Playlists { get; set; }
         public int Rating
         {
             get

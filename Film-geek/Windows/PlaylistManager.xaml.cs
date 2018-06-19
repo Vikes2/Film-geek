@@ -53,7 +53,7 @@ namespace Film_geek.Windows
             if (window.ShowDialog() == true)
             {
                 Auth.Instance.SetFilmsIntoPlaylist(window.films, window.IdPlaylist);
-                ((App)Application.Current).PlaylistView.ClearFilters();
+                ((App)Application.Current).PlaylistView.Filter();
 
             }
             else
@@ -82,6 +82,11 @@ namespace Film_geek.Windows
             LB_PlaylistsView.ItemsSource = ((App)Application.Current).Playlists;
 
             
+        }
+
+        private void BTN_addPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -49,6 +49,8 @@ namespace Film_geek.Windows
             {
                 Auth.Instance.AddNewFilm(addWindow.ActiveFilm);
                 //window.ActiveFilm - to add to selected playlists
+                ((App)Application.Current).PlaylistView.refreshListSource();
+
             }
         }
 

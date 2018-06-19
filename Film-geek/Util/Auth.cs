@@ -110,33 +110,18 @@ namespace Film_geek.Util
             }
             else
             {
-                foreach(Film f in LoggedUser.Playlists[0].Films)
+
+                foreach (Film f in LoggedUser.Playlists[0].Films)
                 {
-                    if (f.Playlists.Contains(playlist.Id) && f.Id == film.Id)
+                    if(f.Id == film.Id)
                     {
-                        var tmp = f.Playlists;
-                        int i = 0;
-                        foreach (int pId in f.Playlists)
-                        {
-                            if (pId == playlist.Id)
-                            {
-                                tmp.RemoveAt(i);
-                                i++;
-                                break;
-                            }
-                        }
-                        f.Playlists = tmp;
+                        f.Playlists.Remove(playlist.Id);
                     }
                 }
+
+
             }
 
-            foreach (Playlist p in LoggedUser.Playlists)
-            {
-                if (p.Id == playlist.Id)
-                {
-
-                }
-            }
 
             playlistSerializer.PushData();
             filmSerializer.PushData();
@@ -152,10 +137,10 @@ namespace Film_geek.Util
                 if (!playlist.Films.Contains(film))
                 {
                     playlist.Films.Add(film);
-                    if (!film.Playlists.Contains(playlist.Id))
-                    {
-                        film.Playlists.Add(playlist.Id);
-                    }
+                }
+                if (!film.Playlists.Contains(playlist.Id))
+                {
+                    film.Playlists.Add(playlist.Id);
                 }
             }
 
@@ -248,11 +233,7 @@ namespace Film_geek.Util
                 Name = name
             };
 
-            Overview overview = ((App)Application.Current).Overview;
-// +++++++++++++++++++++++++++++ po dodaniu dodaj /do folderu jak trzeb
-//
-//
-//
+
 
             LoggedUser.AddPlaylist(newPlaylist);
             //LoggedUser.Playlists.Add(newPlaylist);
@@ -266,18 +247,19 @@ namespace Film_geek.Util
 
             film.Id = GetFilmLastId();
 
-            foreach (var playlistId in film.Playlists)
-            {
-                foreach (var playlist in LoggedUser.Playlists)
-                {
-                    if (playlist.Id == playlistId)
-                    {
-                        playlist.Films.Add(film);
-                    }
-                }
-            }
+            //foreach (var playlistId in film.Playlists)
+            //{
+            //    foreach (var playlist in LoggedUser.Playlists)
+            //    {
+            //        if (playlist.Id == playlistId)
+            //        {
+            //            playlist.Films.Add(film);
+            //        }
+            //    }
+            //}
 
             LoggedUser.Playlists[0].Films.Add(film);
+
 
             filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
             filmSerializer.PushData();
