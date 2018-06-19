@@ -125,7 +125,7 @@
                         <ComboBoxItem >4</ComboBoxItem>
                         <ComboBoxItem >5</ComboBoxItem>
                     </ComboBox>
-                    <ComboBox Name="CB_generesFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" >
+                    <ComboBox Name="CB_genresFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" >
 
                     </ComboBox>
                     <Button Name="ClearFiltrs" Click="ClearFiltrs_Click" Content="Wyczyść filtry"/>

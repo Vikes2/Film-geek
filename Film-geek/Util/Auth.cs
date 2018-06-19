@@ -98,31 +98,6 @@ namespace Film_geek.Util
             }
         }
 
-        public void AddFilmToPlaylist(Film film, Playlist playlist = null)
-        {
-            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
-
-            if (playlist != null)
-            {
-                if (!playlist.Films.Contains(film))
-                {
-                    playlist.Films.Add(film);
-                    if (!film.Playlists.Contains(playlist.Id))
-                    {
-                        film.Playlists.Add(playlist.Id);
-                    }
-                }
-            }
-
-            if (!LoggedUser.Playlists[0].Films.Contains(film))
-            {
-                LoggedUser.Playlists[0].Films.Add(film);
-            }
-
-            playlistSerializer.PushData();
-            filmSerializer.PushData();
-        }
 
         public void DeleteFilm(Film film, Playlist playlist)
         {
@@ -167,10 +142,35 @@ namespace Film_geek.Util
             filmSerializer.PushData();
         }
 
-        public void SetFilmsIntoPlaylist(ObservableCollection<Film> films, int idPlaylist)
+        public void AddFilmToPlaylist(Film film, Playlist playlist = null)
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
             filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
+            if (playlist != null)
+            {
+                if (!playlist.Films.Contains(film))
+                {
+                    playlist.Films.Add(film);
+                    if (!film.Playlists.Contains(playlist.Id))
+                    {
+                        film.Playlists.Add(playlist.Id);
+                    }
+                }
+            }
+
+            if (!LoggedUser.Playlists[0].Films.Contains(film))
+            {
+                LoggedUser.Playlists[0].Films.Add(film);
+            }
+
+            playlistSerializer.PushData();
+            filmSerializer.PushData();
+        }
+
+        public void SetFilmsIntoPlaylist(ObservableCollection<Film> films, int idPlaylist)
+        {
+            
 
 
             foreach (Playlist playlist in LoggedUser.Playlists)
@@ -178,16 +178,23 @@ namespace Film_geek.Util
                 if (playlist.Id == idPlaylist)
                 {
 
+                    foreach (Film f in playlist.Films)
+                    {
+                        f.Playlists.Remove(playlist.Id);
+                    }
                     playlist.Films.Clear();
+
+
                     foreach (Film film in films)
                     {
-                        playlist.Films.Add(film);
-                        //======================================================
-                        // neeeed serializowac zmiany
+                        AddFilmToPlaylist(film, playlist);
 
                     }
                 }
             }
+
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
             playlistSerializer.PushData();
             filmSerializer.PushData();
         }

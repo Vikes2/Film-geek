@@ -35,6 +35,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        
+
+
         <ListView Name="LB_PlaylistsView" Grid.Row="0" ItemTemplate="{StaticResource PlaylistTemplate}"  HorizontalContentAlignment="Stretch">
 
         </ListView>

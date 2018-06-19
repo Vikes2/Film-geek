@@ -53,6 +53,7 @@ namespace Film_geek.Windows
             if (window.ShowDialog() == true)
             {
                 Auth.Instance.SetFilmsIntoPlaylist(window.films, window.IdPlaylist);
+                ((App)Application.Current).PlaylistView.ClearFilters();
 
             }
             else

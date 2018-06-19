@@ -38,15 +38,43 @@
     </Window.Resources>
     <Grid Style="{StaticResource StandardContainer}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <ComboBox SelectedIndex="0" VerticalAlignment="Center">
+                <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
+                <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu(a-z)</ComboBoxItem>
+                <ComboBoxItem Selected="SortTitleDesc">Sortuj wg tytułu(z-a)</ComboBoxItem>
+                <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu(rosnąco)</ComboBoxItem>
+                <ComboBoxItem Selected="SortTitleLengthDesc">Sortuj wg długości tytułu(malejąco)</ComboBoxItem>
+                <ComboBoxItem Selected="SortRank">Sortuj wg oceny(rosnąco)</ComboBoxItem>
+                <ComboBoxItem Selected="SortRankDesc">Sortuj wg oceny(malejąco)</ComboBoxItem>
+            </ComboBox>
 
-        <ListView Name="LB_ExFilmViews" Grid.Row="0" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
+            <ComboBox Name="CB_ratingFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged">
+                <ComboBoxItem >Bez filtru</ComboBoxItem>
+                <ComboBoxItem >0</ComboBoxItem>
+                <ComboBoxItem >1</ComboBoxItem>
+                <ComboBoxItem >2</ComboBoxItem>
+                <ComboBoxItem >3</ComboBoxItem>
+                <ComboBoxItem >4</ComboBoxItem>
+                <ComboBoxItem >5</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Name="CB_genresFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" >
+
+            </ComboBox>
+            <Button Name="ClearFiltrs" Click="ClearFiltrs_Click" Content="Wyczyść filtry"/>
+        </StackPanel>
+        
+        
+
+        <ListView Name="LB_ExFilmViews" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
         </ListView>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
