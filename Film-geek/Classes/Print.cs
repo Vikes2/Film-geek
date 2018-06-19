@@ -13,10 +13,10 @@ namespace Film_geek.Classes
     {
         public static void PrintFilmDetails(Film film)
         {
-            FilmDetails filmWindow = new FilmDetails(film);
-            PrintDialog printDialog = new PrintDialog();
-            if (printDialog.ShowDialog() == true)
-                printDialog.PrintVisual(filmWindow.ContentContainer, "Film Details");
+            //FilmDetails filmWindow = new FilmDetails(film);
+            //PrintDialog printDialog = new PrintDialog();
+            //if (printDialog.ShowDialog() == true)
+            //    printDialog.PrintVisual(filmWindow.ContentContainer, "Film Details");
 
         }
     }

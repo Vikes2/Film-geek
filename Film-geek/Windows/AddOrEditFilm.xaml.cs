@@ -130,6 +130,7 @@ namespace Film_geek.Windows
             GD_ValuesGrid.DataContext = ActiveFilm;
 
             List<FilmGenre> allGenres = ((App)Application.Current).AllGenres;
+            SL_Rating.Value = ActiveFilm.Rating;
 
             genres = new List<GenreDic>();
 

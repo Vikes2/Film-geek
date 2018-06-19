@@ -4,64 +4,69 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
+        xmlns:app="clr-namespace:Film_geek.Classes"
+        xmlns:conv="clr-namespace:Film_geek.Classes.Converters"
+        xmlns:uc="clr-namespace:Film_geek.UserControls"
         mc:Ignorable="d"
-        Title="FilmDetails" Height="600" Width="450" SizeToContent="Height"
+        Title="{Binding Film.Title}" Height="600" Width="450" SizeToContent="Height"
         Loaded="Window_Loaded">
-    <DockPanel Style="{StaticResource StandardContainer}" Name="ContentContainer">
-        <Grid DockPanel.Dock="Top" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <app:ImageConverter x:Key="ImageConverter"/>
+        <conv:ActorConverter x:Key="ActorConverter"/>
+        <conv:DirectorConverter x:Key="DirectorConverter"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="app:FilmCommand.Edit" Executed="CommandBinding_Executed" CanExecute="CommandBinding_CanExecute"/>
+    </Window.CommandBindings>
+    <Grid Style="{StaticResource StandardContainer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Name="ContentContainer">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="IMG_FilmImage"  Grid.RowSpan="4"/>
-            <Label x:Name="LBL_FilmTitle" Grid.Column="1"/>
-            <TextBlock x:Name="TBL_FilmGenres" Grid.Column="1" Grid.Row="1" Margin="5"/>
-            <Slider Name="SL_Rating" Grid.Row="2" Grid.Column="1" Minimum="1" Maximum="5" TickFrequency="0.5" IsSnapToTickEnabled="True" IsEnabled="False"/>
-
-            <CheckBox x:Name="CHB_IsWatched" Grid.Column="1" Grid.Row="3" IsEnabled="False"></CheckBox>
-        </Grid>
-        <StackPanel DockPanel.Dock="Top" Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Reżyseria: "/>
-                <Label x:Name="LBL_FilmDirector"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Aktorzy: "/>
-                <Label x:Name="LBL_FilmActors"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Premiera: "/>
-                <Label x:Name="LBL_FilmRelease"/>
-            </StackPanel>
-            <TextBlock x:Name="TBL_FilmDescription" Margin="10" FontStyle="Italic" FontSize="12"/>
-        </StackPanel>
-        <Grid DockPanel.Dock="Bottom" Margin="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="BTN_FilmPrint" Grid.Column="0" Click="BTN_FilmPrint_Click" >
+            <Image x:Name="IMG_FilmImage" Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" RenderOptions.BitmapScalingMode="Fant" Grid.RowSpan="3"/>
+            <Label x:Name="LBL_FilmTitle" Content="{Binding Path=Title}" Grid.Column="1" Style="{StaticResource Header-1}"/>
+            <TextBlock x:Name="TBL_FilmGenres" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=Rating}"/>
+            <uc:Rating x:Name="SL_Rating"  Grid.Row="2" Grid.Column="1" Value="{Binding Path=Rating, Mode=TwoWay}" VerticalAlignment="Center" ReadOnly="True" />
+            <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Reżyseria: "/>
+                    <Label x:Name="LBL_FilmDirector" Content="{Binding Path=Directors, Converter={StaticResource DirectorConverter}}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Aktorzy: "/>
+                    <Label x:Name="LBL_FilmActors" Content="{Binding Path=Actors, Converter={StaticResource ActorConverter}}"/>
+                </StackPanel>
+                <TextBlock x:Name="TBL_FilmDescription" Margin="10" FontStyle="Italic" FontSize="12"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button x:Name="BTN_FilmPrint" Click="BTN_FilmPrint_Click">
                 <AccessText>
                     _Drukuj szczegóły
                 </AccessText>
             </Button>
-            <Button x:Name="BTN_FilmEdit" Grid.Column="1" Click="BTN_FilmEdit_Click">
+            <Button x:Name="BTN_FilmEdit" Command="app:FilmCommand.Edit">
                 <AccessText>
                     _Edytuj
                 </AccessText>
             </Button>
-            <Button x:Name="BTN_Cancel" Grid.Column="2" Click="BTN_Cancel_Click">
+            <Button x:Name="BTN_Cancel" Click="BTN_Cancel_Click">
                 <AccessText>
                     _Wyjdź
                 </AccessText>
             </Button>
-        </Grid>
-    </DockPanel>
+        </StackPanel>
+    </Grid>
 </Window>

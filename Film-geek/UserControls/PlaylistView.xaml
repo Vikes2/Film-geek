@@ -26,7 +26,7 @@
 
                     <Label Grid.Column="1"  Content="{Binding Path=Title}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
                     <!--<inputToolkit:Rating Grid.Column="2" ItemCount="5" Value="{Binding Path=Rating, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-                    <local:Rating Grid.Column="2" Value="{Binding Path=Rating, Mode=TwoWay}" VerticalAlignment="Center" />
+                    <local:Rating Grid.Column="2" Value="{Binding Path=Rating, Mode=TwoWay}" VerticalAlignment="Center" x:Name="SL_Rating" />
 
                     <StackPanel Grid.Column="3" Orientation="Horizontal">
                         <Button Command="comm:FilmCommand.Detail" CommandParameter="{Binding}">Szczegóły</Button>
@@ -40,11 +40,14 @@
         </DataTemplate>
 
         <DataTemplate x:Key="ButtonTemplate">
-            <Border Margin="5" Padding="3" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch">
-                <Grid HorizontalAlignment="Stretch" >
-                    <Button Click="AddToPlaylist" Tag="{Binding}" Content="{Binding Path=Name}" ></Button>
+            <!--<Border Margin="5" Padding="3" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="4" HorizontalAlignment="Stretch">-->
+                <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" SharedSizeGroup="list"/>
+                </Grid.ColumnDefinitions>
+                    <Button Click="AddToPlaylist" Tag="{Binding}" Content="{Binding Path=Name}"></Button>
                 </Grid>
-            </Border>
+            <!--</Border>-->
         </DataTemplate>
 
     </UserControl.Resources>
@@ -102,30 +105,47 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox Name="CB_Playlists" VerticalAlignment="Center" />
-
                 <StackPanel Orientation="Horizontal" Grid.Column="2">
                     <Button Name="BTN_NewFilm" Command="comm:FilmCommand.Add" DockPanel.Dock="Right" HorizontalAlignment="Right"  Content="Dodaj Film" />
                     <Button Name="BTN_PlaylistManager" Click="BTN_PlaylistManager_Click"  Content="zarzadzanie playlistami" />
+                    <ComboBox SelectedIndex="0" VerticalAlignment="Center">
+                        <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitle">Sortuj wg tytułu</ComboBoxItem>
+                        <ComboBoxItem Selected="SortTitleLength">Sortuj wg długości tytułu</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Name="CB_playlistFilter" VerticalAlignment="Center" SelectedIndex="0" DisplayMemberPath="Name" SelectionChanged="CB_runFilter_SelectionChanged" >
+                        
+                    </ComboBox>
+                    <ComboBox Name="CB_ratingFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged">
+                        <ComboBoxItem >Bez filtru</ComboBoxItem>
+                        <ComboBoxItem >0</ComboBoxItem>
+                        <ComboBoxItem >1</ComboBoxItem>
+                        <ComboBoxItem >2</ComboBoxItem>
+                        <ComboBoxItem >3</ComboBoxItem>
+                        <ComboBoxItem >4</ComboBoxItem>
+                        <ComboBoxItem >5</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Name="CB_generesFilter" VerticalAlignment="Center" SelectedIndex="0"  SelectionChanged="CB_runFilter_SelectionChanged" Margin="10 0 0 0">
 
+                    </ComboBox>
                 </StackPanel>
             </Grid>
 
-            <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}" ItemsSource="{Binding ElementName=CB_Playlists, Path=SelectedItem.Films}" HorizontalContentAlignment="Stretch">
+            <ListView Name="LB_PlaylistsView" Grid.Row="1" ItemTemplate="{StaticResource FilmTemplate}"  HorizontalContentAlignment="Stretch">
 
             </ListView>
             <Popup x:Name="POP_list"  PopupAnimation="Fade" Placement="Mouse" AllowsTransparency="True" StaysOpen="False">
                 <Grid Background="WhiteSmoke">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <DockPanel Grid.Row="0">
 
-                        <Button Padding="-2"  HorizontalAlignment="Right" Name="BTN_exit" Click="BTN_exit_Click" >X</Button>
+                        <Button Padding="-2" FontSize="8" HorizontalAlignment="Right" Name="BTN_exit" Click="BTN_exit_Click" >X</Button>
                     </DockPanel>
                     <DockPanel Grid.Row="1" >
-                        <ListView Name="LB_ButtonsView" ItemTemplate="{StaticResource ButtonTemplate}" >
+                        <ListView Name="LB_ButtonsView" ItemTemplate="{StaticResource ButtonTemplate}" HorizontalAlignment="Stretch" Grid.IsSharedSizeScope="True">
 
                         </ListView>
 

@@ -91,6 +91,9 @@
     <Compile Include="UserControls\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PrintLists.xaml.cs">
+      <DependentUpon>PrintLists.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProfilesView.xaml.cs">
       <DependentUpon>ProfilesView.xaml</DependentUpon>
     </Compile>
@@ -157,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PrintLists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

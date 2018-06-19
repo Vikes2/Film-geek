@@ -1,4 +1,5 @@
 ﻿using Film_geek.Classes;
+using Film_geek.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Film_geek.Windows
             {
                 return film;
             }
-          set
+            set
             {
                 film = value;
             }
@@ -38,21 +39,11 @@ namespace Film_geek.Windows
 
         }
 
-        public FilmDetails(Film f)
-        {
-            film = f;
-        }
-
-
         private void BTN_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void BTN_FilmEdit_Click(object sender, RoutedEventArgs e)
-        {
-            // addOrEditFilm(film)
-        }
 
         private void BTN_FilmPrint_Click(object sender, RoutedEventArgs e)
         {
@@ -65,19 +56,24 @@ namespace Film_geek.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            #region setImage
-            BitmapImage bimage = new BitmapImage();
-            bimage.BeginInit();
-            bimage.UriSource = new Uri(film.ImagePath, UriKind.RelativeOrAbsolute);
-            bimage.EndInit();
-            IMG_FilmImage.Source = bimage;
-            #endregion
-            LBL_FilmTitle.Content = film.Title;
-            TBL_FilmGenres.Text = film.GenresDetails();
+            ContentContainer.DataContext = Film;
+            SL_Rating.Value = Film.Rating;
+        }
 
-            LBL_FilmDirector.Content = film.DirectorsDetails();
-            LBL_FilmActors.Content = film.ActorsDetails();
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            AddOrEditFilm addOrEditWindow = new AddOrEditFilm();
+            addOrEditWindow.ActiveFilm = film;
 
+            if (addOrEditWindow.ShowDialog() == true)
+            {
+                Auth.Instance.SavePlaylists();
+            }
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

@@ -124,17 +124,42 @@ namespace Film_geek.Util
             filmSerializer.PushData();
         }
 
-        public void DeleteFilm(Film film)
+        public void DeleteFilm(Film film, Playlist playlist)
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
             filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
+            if(playlist.Id == 1)
+            {
+                playlist.Films.Remove(film);
+            }
+            else
+            {
+                foreach(Film f in LoggedUser.Playlists[0].Films)
+                {
+                    if (f.Playlists.Contains(playlist.Id) && f.Id == film.Id)
+                    {
+                        var tmp = f.Playlists;
+                        int i = 0;
+                        foreach (int pId in f.Playlists)
+                        {
+                            if (pId == playlist.Id)
+                            {
+                                tmp.RemoveAt(i);
+                                i++;
+                                break;
+                            }
+                        }
+                        f.Playlists = tmp;
+                    }
+                }
+            }
 
             foreach (Playlist p in LoggedUser.Playlists)
             {
-                if (p.Films.Contains(film))
+                if (p.Id == playlist.Id)
                 {
-                    p.Films.Remove(film);
+
                 }
             }
 
@@ -217,8 +242,11 @@ namespace Film_geek.Util
             };
 
             Overview overview = ((App)Application.Current).Overview;
-            overview.PUC.CB_Playlists.ItemsSource = null;
-            overview.PUC.CB_Playlists.ItemsSource = LoggedUser.Playlists;
+// +++++++++++++++++++++++++++++ po dodaniu dodaj /do folderu jak trzeb
+//
+//
+//
+
             LoggedUser.AddPlaylist(newPlaylist);
             //LoggedUser.Playlists.Add(newPlaylist);
             playlistSerializer.PushData();

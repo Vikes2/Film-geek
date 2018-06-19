@@ -9,8 +9,11 @@ using System.Windows;
 namespace Film_geek.Classes
 {
 
-    public class Film : IDataErrorInfo
+    public class Film : IDataErrorInfo, INotifyPropertyChanged
     {
+        private string imagePath;
+        private double rating;
+
         public int Id { get; set; }
         public string Title { get; set; }
         public List<FilmGenre> Genres { get; set; }
@@ -18,9 +21,31 @@ namespace Film_geek.Classes
         public List<Actor> Actors { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
-        public string ImagePath { get; set; }
+        public string ImagePath
+        {
+            get
+            {
+                return imagePath;
+            }
+            set
+            {
+                imagePath = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ImagePath"));
+            }
+        }
         public List<int> Playlists { get; set; }
-        public double Rating { get; set; }
+        public double Rating
+        {
+            get
+            {
+                return rating;
+            }
+            set
+            {
+                rating = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rating"));
+            }
+        }
 
 
         public bool isShowing { get; set; }
@@ -33,6 +58,8 @@ namespace Film_geek.Classes
             Playlists = new List<int>();
             Genres = new List<FilmGenre>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {

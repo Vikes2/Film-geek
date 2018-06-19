@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +20,43 @@ namespace Film_geek.UserControls
     /// <summary>
     /// Logika interakcji dla klasy Rating.xaml
     /// </summary>
-    public partial class Rating : UserControl
+    public partial class Rating : UserControl, INotifyPropertyChanged
     {
-        public static readonly DependencyProperty RatingProperty = DependencyProperty.Register("Value", typeof(int), typeof(Rating));
+        public static readonly DependencyProperty RatingProperty = DependencyProperty.Register("Value", typeof(double), typeof(Rating), new FrameworkPropertyMetadata(OnValueChanged));
         public static readonly DependencyProperty ReadOnlyProperty = DependencyProperty.Register("ReadOnly", typeof(bool), typeof(Rating));
 
-        public int Value
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public double Value
         {
-            get { return (int)GetValue(RatingProperty); }
-            set { SetValue(RatingProperty, value); }
+            get { return (double)GetValue(RatingProperty); }
+            set
+            {
+                SetValue(RatingProperty, value);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
+            }
         }
 
         public bool ReadOnly
         {
             get { return (bool)GetValue(ReadOnlyProperty); }
             set { SetValue(ReadOnlyProperty, value); }
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Rating rating = new Rating();
+            double value = (double)d.GetValue(RatingProperty);
+            for (int i = 1; i <= (int)value; i++)
+            {
+                foreach (Polygon s in rating.StarContainer.Children)
+                {
+                    if (int.Parse(s.Tag.ToString()) <= value)
+                    {
+                        s.Fill = Brushes.Orange;
+                    }
+                }
+            }
         }
 
         public Rating()
@@ -57,13 +80,16 @@ namespace Film_geek.UserControls
 
         private void Polygon_MouseEnter(object sender, MouseEventArgs e)
         {
-            Polygon star = e.Source as Polygon;
-            int.TryParse(star.Tag.ToString(), out int index);
-            if(Value > index)
+            if (!ReadOnly)
             {
-                ColourStars(Value, null);
+                Polygon star = e.Source as Polygon;
+                int.TryParse(star.Tag.ToString(), out int index);
+                if(Value > index)
+                {
+                    ColourStars((int)Value, null);
+                }
+                ColourStars(index, Brushes.Orange);
             }
-            ColourStars(index, Brushes.Orange);
         }
 
         private void Polygon_MouseLeave(object sender, MouseEventArgs e)
@@ -73,7 +99,7 @@ namespace Film_geek.UserControls
             if(Value > 0)
             {
                 ColourStars(5, null);
-                ColourStars(Value, Brushes.Orange);
+                ColourStars((int)Value, Brushes.Orange);
             }
             else
             {
@@ -92,9 +118,16 @@ namespace Film_geek.UserControls
             }
         }
 
+        public void Refresh()
+        {
+            ColourStars((int)Value, Brushes.Orange);
+            //MessageBox.Show(Value.ToString());
+        }
+
         private void RatingStar_Loaded(object sender, RoutedEventArgs e)
         {
-            ColourStars(Value, Brushes.Orange);
+            ColourStars((int)Value, Brushes.Orange);
+            //MessageBox.Show(Value.ToString());
         }
     }
 }

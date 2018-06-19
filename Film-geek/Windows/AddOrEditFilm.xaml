@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Film_geek.Windows"
         xmlns:app="clr-namespace:Film_geek.Classes"
         xmlns:conv="clr-namespace:Film_geek.Classes.Converters"
+        xmlns:uc="clr-namespace:Film_geek.UserControls"
         xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
         Title="AddOrEditFilm" SizeToContent="Height" MinWidth="400" Width="400" Loaded="Window_Loaded">
@@ -75,7 +76,8 @@
                 <TextBox Name="TB_Actors" Grid.Row="3" Grid.Column="1" Margin="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Actors}" Text="{Binding Path=Actors, Converter={StaticResource ActorConverter}, UpdateSourceTrigger=Explicit}"/>
             
                 <Label Content="Ocena:" Grid.Row="4" Margin="5" />
-            <inputtoolkit:Rating Name="SL_Rating" Grid.Row="4" Grid.Column="1" Margin="5" ItemCount="5" IsEnabled="{Binding Path=IsChecked, ElementName=CHB_Rating}" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <uc:Rating x:Name="SL_Rating"  Grid.Row="4" Grid.Column="1" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+
         </Grid>
         <Label Grid.Row="2" Target="{Binding ElementName=TB_Description}" Content="O_pis:" Margin="0"/>
         <TextBox Name="TB_Description" Grid.Row="2" Grid.Column="1" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=Description, UpdateSourceTrigger=Explicit}"/>

@@ -116,7 +116,7 @@ namespace Film_geek.Windows
 
         private void BTN_OK_Click(object sender, RoutedEventArgs e)
         {
-            ((App)Application.Current).PlaylistView.CB_Playlists.SelectedIndex = 0;
+            //((App)Application.Current).PlaylistView.CB_Playlists.SelectedIndex = 0;
             DialogResult = true;
             Close();
         }

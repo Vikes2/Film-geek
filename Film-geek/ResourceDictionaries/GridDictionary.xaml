@@ -40,5 +40,10 @@
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}">
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
+    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
+        <Setter Property="Padding" Value="15 10"/>
+        <Setter Property="Margin" Value="5 0"/>
+    </Style>
     
 </ResourceDictionary>

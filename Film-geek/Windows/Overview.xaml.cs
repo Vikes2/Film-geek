@@ -32,6 +32,8 @@ namespace Film_geek.Windows
             InitializeComponent();
             LoggedUser = Auth.Instance.LoggedUser;
 
+
+
             OUC = new OverviewUC();
             PUC = new PlaylistView();
 
@@ -125,7 +127,11 @@ namespace Film_geek.Windows
                 if(addOrEditWindow.ShowDialog() == true)
                 {
                     Auth.Instance.SavePlaylists();
-                   
+                    ((App)Application.Current).Overview.PUC.LB_PlaylistsView.Items.Refresh();
+                    //foreach(UserControls.Rating rating in ((App)Application.Current).Overview.PUC.LB_PlaylistsView.Items)
+                    //{
+                    //    rating.Refresh();
+                    //}
                 }
             }
         }
