@@ -111,7 +111,6 @@ namespace Film_geek.Windows
             ActiveFilm.Genres = tmp;
 
             (TB_Name.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
-            (TB_Description.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
             (TB_Actors.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
             (TB_Directors.GetBindingExpression(TextBox.TextProperty)).UpdateSource();
             

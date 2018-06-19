@@ -91,9 +91,6 @@
     <Compile Include="UserControls\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PrintLists.xaml.cs">
-      <DependentUpon>PrintLists.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\ProfilesView.xaml.cs">
       <DependentUpon>ProfilesView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +112,9 @@
     </Compile>
     <Compile Include="Windows\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Init.xaml.cs">
+      <DependentUpon>Init.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
@@ -163,10 +163,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\PrintLists.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\ProfilesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Init.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

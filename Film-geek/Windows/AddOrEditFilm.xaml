@@ -9,7 +9,7 @@
         xmlns:uc="clr-namespace:Film_geek.UserControls"
         xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
-        Title="AddOrEditFilm" SizeToContent="Height" MinWidth="400" Width="400" Loaded="Window_Loaded">
+        Title="Film" SizeToContent="Height" MinWidth="400" Width="400" Loaded="Window_Loaded">
 
     <Window.Resources>
         <conv:DirectorConverter x:Key="DirectorConverter"/>
@@ -46,7 +46,7 @@
             
                 <Label Content="Gatunek:" Grid.Row="1" Margin="5"/>
                 <Grid Grid.Row="1"  Grid.Column="1" Margin="5">
-                    <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="False">
+                    <ComboBox Name="CB_Genre" Grid.Row="1" Grid.Column="2" IsEditable="False" Margin="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <CheckBox Name="CHB_GenreItem" Content="{Binding Path=Genre.Name}" IsChecked="{Binding Path=Value, ValidatesOnDataErrors=True}"></CheckBox>
@@ -79,8 +79,6 @@
                 <uc:Rating x:Name="SL_Rating"  Grid.Row="4" Grid.Column="1" Value="{Binding Path=Rating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
 
         </Grid>
-        <Label Grid.Row="2" Target="{Binding ElementName=TB_Description}" Content="O_pis:" Margin="0"/>
-        <TextBox Name="TB_Description" Grid.Row="2" Grid.Column="1" IsEnabled="True" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=Description, UpdateSourceTrigger=Explicit}"/>
 
         <Button Name="BTN_ImagePicker" Grid.Row="3" Grid.Column="1" Content="Wybierz plik..." Click="BTN_ImagePicker_Click">
             <Button.ToolTip>
