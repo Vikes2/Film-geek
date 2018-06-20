@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         xmlns:app="clr-namespace:Film_geek.Classes"
-        xmlns:inputtoolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:uc="clr-namespace:Film_geek.UserControls"
         mc:Ignorable="d"
-        Title="Edycja listy" Height="300" Width="500" SizeToContent="WidthAndHeight"
+        Title="Edycja listy" Height="300" Width="500" SizeToContent="WidthAndHeight" MinHeight="300" MinWidth="500"
         Loaded="Window_Loaded">
     <Window.Resources>
         
@@ -26,7 +26,8 @@
                     </CheckBox>
                     <Image Grid.Column="1" MaxHeight="64" Source="{Binding Path=ImagePath}"/>
                     <Label Grid.Column="2" Content="{Binding Path=Title}" HorizontalContentAlignment="Center"></Label>
-                    <inputtoolkit:Rating Grid.Column="3" Margin="5" ItemCount="5" Value="{Binding Path=Rating}" IsReadOnly="True"/>
+                    <uc:Rating Grid.Column="3" Value="{Binding Path=Rating}" VerticalAlignment="Center" ReadOnly="True"/>
+
 
 
                 </Grid>

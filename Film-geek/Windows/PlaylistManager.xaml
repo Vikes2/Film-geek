@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Film_geek.Windows"
         mc:Ignorable="d"
-        Title="Zarządzanie listą" Height="400" Width="400"
+        Title="Zarządzanie listą" Height="450" Width="600" MinHeight="450" MinWidth="600" WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="PlaylistTemplate">
@@ -31,8 +31,8 @@
     </Window.Resources>
     <Grid Style="{StaticResource StandardContainer}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
 

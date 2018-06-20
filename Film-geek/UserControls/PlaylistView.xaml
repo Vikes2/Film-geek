@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/resources/images/logo.png" HorizontalAlignment="Left" MaxHeight="100" RenderOptions.BitmapScalingMode="Fant"/>
+            <Image Source="/resources/images/logo_light.png" HorizontalAlignment="Left" MaxHeight="100" RenderOptions.BitmapScalingMode="Fant"/>
 
             <Grid Grid.Column="2" Name="GD_UserDetails" VerticalAlignment="Center" Margin="10">
                 <Grid.RowDefinitions>

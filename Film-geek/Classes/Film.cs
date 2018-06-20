@@ -52,7 +52,7 @@ namespace Film_geek.Classes
         public bool isShowing { get; set; }
         public Film()
         {
-            ImagePath = "/resources/Images/FilmTest.png";
+            ImagePath = "/resources/Images/default_cover.png";
             Genres = new List<FilmGenre>();
             Directors = new List<Director>();
             Actors = new List<Actor>();
@@ -105,6 +105,26 @@ namespace Film_geek.Classes
             else
             {
                 return genrelist.Remove(genrelist.Length - 2);
+            }
+        }
+
+        public string GenresDesc
+        {
+            get
+            {
+                string genrelist = "";
+                foreach (FilmGenre g in Genres)
+                {
+                    genrelist += g.ToString() + ", ";
+                }
+                if (genrelist.Length == 0)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return genrelist.Remove(genrelist.Length - 2);
+                }
             }
         }
 
