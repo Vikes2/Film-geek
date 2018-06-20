@@ -154,8 +154,12 @@ namespace Film_geek.UserControls
 
         private void BTN_PlaylistManager_Click(object sender, RoutedEventArgs e)
         {
+            var test2 = Auth.Instance.LoggedUser.Playlists;
+
             PlaylistManager window = new PlaylistManager();
             window.Owner = ((App)Application.Current).Overview;
+            var test1 = Auth.Instance.LoggedUser.Playlists;
+
             window.Show();
         }
 

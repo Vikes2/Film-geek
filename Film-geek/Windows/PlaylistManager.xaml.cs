@@ -86,6 +86,52 @@ namespace Film_geek.Windows
 
         private void BTN_addPlaylist_Click(object sender, RoutedEventArgs e)
         {
+            var test2 = Auth.Instance.LoggedUser.Playlists;
+
+            string name = "";
+            int listCount = 0;
+            foreach(var playlist in Auth.Instance.LoggedUser.Playlists)
+            {
+                if (playlist.Name.Contains("NowaPlaylista"))
+                {
+                    listCount++;
+                }
+            }
+            if(listCount == 0)
+            {
+                name = "NowaPlaylista";
+            }
+            else
+            {
+                name = "NowaPlaylista(" + listCount + ")";
+            }
+            var test = Auth.Instance.LoggedUser.Playlists;
+            Auth.Instance.AddNewPlaylist(name);
+            var test1 = Auth.Instance.LoggedUser.Playlists;
+
+
+            LB_PlaylistsView.ItemsSource = null;
+
+            ((App)Application.Current).Playlists.Clear();
+            foreach (Playlist p in Auth.Instance.LoggedUser.Playlists)
+            {
+                if (p.Id != 1)
+                {
+                    ((App)Application.Current).Playlists.Add(p);
+                }
+
+            }
+
+            LB_PlaylistsView.ItemsSource = ((App)Application.Current).Playlists;
+
+            int index = ((App)Application.Current).PlaylistView.CB_playlistFilter.SelectedIndex;
+
+            ((App)Application.Current).PlaylistView.CB_playlistFilter.ItemsSource = null;
+            ((App)Application.Current).PlaylistView.CB_playlistFilter.ItemsSource = Auth.Instance.LoggedUser.Playlists;
+            ((App)Application.Current).PlaylistView.CB_playlistFilter.SelectedIndex = index;
+            ((App)Application.Current).PlaylistView.FilmsList = Auth.Instance.LoggedUser.Playlists[0].Films;
+
+            ((App)Application.Current).PlaylistView.Filter();
 
         }
     }

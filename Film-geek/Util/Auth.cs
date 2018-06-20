@@ -21,8 +21,11 @@ namespace Film_geek.Util
         private ProfileSerializer<User> profileSerializer;
         private PlaylistSerializer<Playlist> playlistSerializer;
         private FilmSerializer<Film> filmSerializer;
+        
 
         public ObservableCollection<User> users;
+
+
         private User loggedUser;
         
         public User LoggedUser
@@ -32,7 +35,6 @@ namespace Film_geek.Util
 
         }
         public List<Playlist> UsersPlaylists { get; set; }
-
 
         public static Auth Instance
         {
@@ -101,8 +103,6 @@ namespace Film_geek.Util
 
         public void DeleteFilm(Film film, Playlist playlist)
         {
-            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
             if(playlist.Id == 1)
             {
@@ -118,10 +118,19 @@ namespace Film_geek.Util
                         f.Playlists.Remove(playlist.Id);
                     }
                 }
+                foreach (Playlist pl in LoggedUser.Playlists)
+                {
+                    if( pl.Id == playlist.Id)
+                    {
+                        pl.Films.Remove(film);
+                    }
+                }
 
 
             }
 
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
             playlistSerializer.PushData();
             filmSerializer.PushData();
@@ -129,8 +138,7 @@ namespace Film_geek.Util
 
         public void AddFilmToPlaylist(Film film, Playlist playlist = null)
         {
-            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+            //filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
             if (playlist != null)
             {
@@ -149,13 +157,15 @@ namespace Film_geek.Util
                 LoggedUser.Playlists[0].Films.Add(film);
             }
 
+            playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
             playlistSerializer.PushData();
-            filmSerializer.PushData();
+            //filmSerializer.PushData();
         }
 
         public void SetFilmsIntoPlaylist(ObservableCollection<Film> films, int idPlaylist)
         {
             
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
 
 
             foreach (Playlist playlist in LoggedUser.Playlists)
@@ -179,7 +189,6 @@ namespace Film_geek.Util
             }
 
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
-            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
             playlistSerializer.PushData();
             filmSerializer.PushData();
         }
@@ -226,18 +235,24 @@ namespace Film_geek.Util
         public void AddNewPlaylist(string name)
         {
             playlistSerializer = new PlaylistSerializer<Playlist>(LoggedUser.Id, "playlists", LoggedUser.Playlists);
+            filmSerializer = new FilmSerializer<Film>(LoggedUser.Id, "films", LoggedUser.Playlists[0].Films);
+
 
             Playlist newPlaylist = new Playlist()
             {
                 Id = GetPlaylistLastId(),
-                Name = name
+                Name = name,
+                Films = new ObservableCollection<Film>()
+
             };
 
 
 
+            loggedUser.Playlists[0].Films = filmSerializer.PullData();
             LoggedUser.AddPlaylist(newPlaylist);
             //LoggedUser.Playlists.Add(newPlaylist);
             playlistSerializer.PushData();
+            filmSerializer.PushData();
         }
 
         public void AddNewFilm(Film film)

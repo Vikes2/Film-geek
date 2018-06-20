@@ -24,6 +24,7 @@ namespace Film_geek.Classes
         private string password;
         private string securityAnswer;
         private ObservableCollection<Playlist> playlists;
+        public int BrandPlaylistCount { get; set; }
 
         public string Id
         {
@@ -107,6 +108,7 @@ namespace Film_geek.Classes
             Rating = new Dictionary<Film, float>();
             WatchStatus = new Dictionary<Film, bool>();
             ImagePath = "/resources/Avatars/Default.png";
+            BrandPlaylistCount = 0;
         }
 
         public void AddPlaylist(Playlist playlist)
