@@ -22,14 +22,14 @@ namespace Film_geek.UserControls
     /// </summary>
     public partial class Rating : UserControl, INotifyPropertyChanged
     {
-        public static readonly DependencyProperty RatingProperty = DependencyProperty.Register("Value", typeof(double), typeof(Rating), new FrameworkPropertyMetadata(OnValueChanged));
+        public static readonly DependencyProperty RatingProperty = DependencyProperty.Register("Value", typeof(int), typeof(Rating), new FrameworkPropertyMetadata(OnValueChanged));
         public static readonly DependencyProperty ReadOnlyProperty = DependencyProperty.Register("ReadOnly", typeof(bool), typeof(Rating));
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public double Value
+        public int Value
         {
-            get { return (double)GetValue(RatingProperty); }
+            get { return (int)GetValue(RatingProperty); }
             set
             {
                 SetValue(RatingProperty, value);
@@ -46,8 +46,8 @@ namespace Film_geek.UserControls
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Rating rating = new Rating();
-            double value = (double)d.GetValue(RatingProperty);
-            for (int i = 1; i <= (int)value; i++)
+            int value = (int)d.GetValue(RatingProperty);
+            for (int i = 1; i <= value; i++)
             {
                 foreach (Polygon s in rating.StarContainer.Children)
                 {
@@ -86,7 +86,7 @@ namespace Film_geek.UserControls
                 int.TryParse(star.Tag.ToString(), out int index);
                 if(Value > index)
                 {
-                    ColourStars((int)Value, null);
+                    ColourStars(Value, null);
                 }
                 ColourStars(index, Brushes.Orange);
             }
@@ -99,7 +99,7 @@ namespace Film_geek.UserControls
             if(Value > 0)
             {
                 ColourStars(5, null);
-                ColourStars((int)Value, Brushes.Orange);
+                ColourStars(Value, Brushes.Orange);
             }
             else
             {
@@ -120,13 +120,13 @@ namespace Film_geek.UserControls
 
         public void Refresh()
         {
-            ColourStars((int)Value, Brushes.Orange);
+            ColourStars(Value, Brushes.Orange);
             //MessageBox.Show(Value.ToString());
         }
 
         private void RatingStar_Loaded(object sender, RoutedEventArgs e)
         {
-            ColourStars((int)Value, Brushes.Orange);
+            ColourStars(Value, Brushes.Orange);
             //MessageBox.Show(Value.ToString());
         }
     }
