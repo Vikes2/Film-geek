@@ -42,7 +42,7 @@ namespace Film_geek.UserControls
             GD_UserDetails.DataContext = Auth.Instance.LoggedUser;
             CB_playlistFilter.ItemsSource = Auth.Instance.LoggedUser.Playlists;
 
-            genresList.Insert(0, "Brak filtru");
+            genresList.Insert(0, "Wszystkie gatunki");
             foreach(FilmGenre fg in ((App)Application.Current).AllGenres)
             {
                 genresList.Add(fg.Name);
@@ -459,5 +459,11 @@ namespace Film_geek.UserControls
         }
         #endregion
 
+        private void BTN_Print_Click(object sender, RoutedEventArgs e)
+        {
+            PrintPlaylist pp = new PrintPlaylist();
+            pp.Show();
+            pp.Hide();
+        }
     }
 }
