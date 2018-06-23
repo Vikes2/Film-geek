@@ -24,7 +24,7 @@ namespace Film_geek.Classes.Converters
 
             double.TryParse(((ComboBoxItem)value).Content.ToString(), out double rating);
 
-            MessageBox.Show(rating.ToString());
+            //MessageBox.Show(rating.ToString());
             if (rating >= 0 && rating <= 5)
             {
                 return rating * 0.2;

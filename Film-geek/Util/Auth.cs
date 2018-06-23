@@ -118,6 +118,13 @@ namespace Film_geek.Util
                         f.Playlists.Remove(playlist.Id);
                     }
                 }
+                foreach(Playlist p1 in loggedUser.Playlists)
+                {
+                    if(p1.Id == playlist.Id)
+                    {
+                        p1.Films.Remove(film);
+                    }
+                }
 
 
             }

@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <Image x:Name="IMG_FilmImage" Source="{Binding Path=ImagePath, Converter={StaticResource ImageConverter}}" RenderOptions.BitmapScalingMode="Fant" Grid.RowSpan="3"/>
             <Label x:Name="LBL_FilmTitle" Content="{Binding Path=Title}" Grid.Column="1" Style="{StaticResource Header-1}"/>
-            <TextBlock x:Name="TBL_FilmGenres" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=GenresDesc}"/>
+            <TextBlock x:Name="TBL_FilmGenres" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Path=GenresDesc}" TextWrapping="Wrap" Width="200"/>
             <uc:Rating x:Name="SL_Rating"  Grid.Row="2" Grid.Column="1" Value="{Binding Path=Rating, Mode=TwoWay}" VerticalAlignment="Center" ReadOnly="True" />
             <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="10">
                 <StackPanel Orientation="Horizontal">

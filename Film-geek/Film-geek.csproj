@@ -125,6 +125,9 @@
     <Compile Include="Windows\PlaylistManager.xaml.cs">
       <DependentUpon>PlaylistManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PrintList.xaml.cs">
+      <DependentUpon>PrintList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\PlaylistManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PrintList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

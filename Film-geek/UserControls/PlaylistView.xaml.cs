@@ -459,5 +459,11 @@ namespace Film_geek.UserControls
         }
         #endregion
 
+        private void BTN_Print_Click(object sender, RoutedEventArgs e)
+        {
+            PrintList pp = new PrintList();
+            pp.Show();
+            pp.Hide();
+        }
     }
 }

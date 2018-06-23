@@ -78,7 +78,7 @@ namespace Film_geek.Windows
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        //MessageBox.Show(ex.Message);
                     }
                 }
             }

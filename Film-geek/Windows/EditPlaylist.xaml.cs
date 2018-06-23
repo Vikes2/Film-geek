@@ -108,7 +108,7 @@ namespace Film_geek.Windows
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    //MessageBox.Show("Error");
                 }
             }
         }
